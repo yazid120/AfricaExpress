@@ -30,7 +30,6 @@ Route::post('/SignUp', [SignupController::class,'signup']);
 Route::post('/login', [LoginController::class,'login']);
 
 //Product Api Controller
-Route::get('/product',[ProductsController::class, 'show']);
-
+Route::get('/product',[ProductsController::class, 'index']);
 //Product Api Controller
 Route::post('/product',[ProductsController::class, 'store']);

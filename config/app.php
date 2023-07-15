@@ -183,6 +183,10 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Validator'=> Illuminate\Support\Facades\Validator::class,
+        'View'=> Illuminate\Support\Facades\View::class,
+        'Session'=> Illuminate\Support\Facades\Session::class,
+        'Route' => \Illuminate\Support\Facades\Route::class,
     ])->toArray(),
 
 ];
