@@ -1,11 +1,36 @@
 import React from "react";
 import { useState } from "react";
+import axios from 'axios';
 
 let SignUp = function(){
+  const [FormData,setFormData]=useState({
+    'name':'',
+    'email':'',
+    'password':'',
+    'confirm_password':''
+  });
+
+  const HandleChange = (e)=>{
+   setFormData({ ...FormData, [e.target.name]:e.target.value})
+  }
+
+  const HandleSubmit = async (e)=>{
+    e.preventDefault();
+    console.log(FormData);
+    try{
+    axios.post('/api/SignUp',FormData).then(
+      response=>{
+        console.log(response.data);
+      }
+    )
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
     return(
         <>
-
-
         <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
     <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
@@ -63,23 +88,29 @@ let SignUp = function(){
                         </div>
                     </div>
 
+
                     <div className="mx-auto max-w-xs">
+                      <form className="Form-signup_wrapp" onSubmit={HandleSubmit} action="" method="post">
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                            type="text" placeholder="Full Name" />
+                            type="text" placeholder="Full Name" name="name"
+                            value={FormData.name} onChange={HandleChange}/>
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="email" placeholder="email" />
+                            type="email" placeholder="email" name="email"
+                            value={FormData.email} onChange={HandleChange} />
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="password" placeholder="Password" />
+                            type="password" placeholder="Password" name="password"
+                            value={FormData.password} onChange={HandleChange} />
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="password" placeholder="re-password" />
+                            type="password" placeholder="re-password" name="confirm_password"
+                            value={FormData.confirm_password} onChange={HandleChange}/>
                         <button
                             className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                             <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2"
-                                strokeLinecap="round" strokeLinejoin="round">
+                                strokeLinecap="round" strokeLinejoin="round" type="submit">
                                 <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
                                 <circle cx="8.5" cy="7" r="4" />
                                 <path d="M20 8v6M23 11h-6" />
@@ -88,6 +119,7 @@ let SignUp = function(){
                             SignUp
                             </span>
                         </button>
+                        </form>
                         <p className="mt-6 text-xs text-gray-600 text-center">
                             I agree to abide by templatana's
                             <a href="#" className="border-b border-gray-500 border-dotted">
