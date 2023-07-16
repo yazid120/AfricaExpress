@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProductsController;
 use App\Http\Controllers\API\UsersController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/user',[UsersController::class,'store']);
 
 //SignUp Api Controller
-Route::post('/SignUp', [SignupController::class,'SignUp']);
+Route::post('/signup', [AuthController::class,'signup']);
 
 //Login Api Controller
-Route::post('/login', [LoginController::class,'login']);
+Route::post('/login', [AuthController::class,'login']);
 
 //Product Api Controller
 Route::get('/product',[ProductsController::class, 'index']);

@@ -12,34 +12,10 @@ use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
-    public function SignUp(Request $request){
-      $validated= Validator::make($request->json()->all(),[
-        'Name'=>'required|string|min:3|max:55',
-        'email'=>'required|string|email|max:200|unique:user',
-        'password'=>'required|string|min:6',
-        'password_confirm'=>'required|string|same:password',
-      ]);
-      if($validated->fails()){
-       return response()->json([
-        'message'=>$validated->errors(),
-        'status'=>'validation-error'
-       ],404);
-    }
+public function UserControlle(){
+    return 'usercontroller';
+}
 
-      $user= User::create([
-        'Name'=>$request->Name,
-        'email'=>$request->email,
-        'password'=> Hash::make($request->json()->get('password')),
-      ]);
 
-      $user->save();
-      return response()->json([
-        'message'=>'User registrated Successfuly',
-        'user'=>$user,
-      ],201);
-    }
 
-    public function login(Request $request){
-
-    }
 }

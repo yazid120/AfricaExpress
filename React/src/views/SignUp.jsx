@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "../api/axios"
 
 let SignUp = function(){
   const [FormData,setFormData]=useState({
@@ -14,11 +14,11 @@ let SignUp = function(){
    setFormData({ ...FormData, [e.target.name]:e.target.value})
   }
 
-  const HandleSubmit = async (e)=>{
-    e.preventDefault();
+  const HandleSubmit = async (event)=>{
+    event.preventDefault();
     console.log(FormData);
     try{
-    axios.post('/api/SignUp',FormData).then(
+    await axios.post('/signup',FormData).then(
       response=>{
         console.log(response.data);
       }
@@ -90,7 +90,7 @@ let SignUp = function(){
 
 
                     <div className="mx-auto max-w-xs">
-                      <form className="Form-signup_wrapp" onSubmit={HandleSubmit} action="" method="post">
+                      <form className="Form-signup_wrapp" onSubmit={HandleSubmit} action="#" method="POST">
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                             type="text" placeholder="Full Name" name="name"
