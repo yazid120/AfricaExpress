@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class UsersController extends Controller
 {
 public function UserControlle(){
-    return 'usercontroller';
+    return 'user Controller';
 }
 
 

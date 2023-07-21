@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import axios from "../api/axios"
+import axios from "../api/axios";
+import {useNavigate} from 'react-router-dom';
+
 
 let SignUp = function(){
+  const Navigate = useNavigate();
   const [FormData,setFormData]=useState({
     'name':'',
     'email':'',
@@ -16,16 +19,15 @@ let SignUp = function(){
 
   const HandleSubmit = async (event)=>{
     event.preventDefault();
-    console.log(FormData);
     try{
-    await axios.post('/signup',FormData).then(
+    await axios.post('http://127.0.0.1:8000/api/signup',FormData).then(
       response=>{
         console.log(response.data);
       }
     )
     }
     catch(error){
-      console.log(error);
+      console.log(error.response.data);
     }
   }
 

@@ -25,6 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/user',[UsersController::class,'store']);
 
 //SignUp Api Controller
+Route::get('/signup', [AuthController::class,'signup']);
+
 Route::post('/signup', [AuthController::class,'signup']);
 
 //Login Api Controller

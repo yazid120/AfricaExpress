@@ -24,6 +24,7 @@ class AuthController extends Controller
         'message'=>$validated->errors(),
         'status'=>'validation-error'
        ],404);
+    return 'error validation';
     }
 
       $user= User::create([
@@ -32,7 +33,7 @@ class AuthController extends Controller
         'password'=> Hash::make($request->json()->get('password')),
       ]);
 
-      $user->save();
+    //   $user->save();
 
       return response()->json([
         'message'=>'User registrated Successfuly',
