@@ -14,10 +14,9 @@ class AuthController extends Controller
 {
     public function SignUp(Request $request){
       $validated= Validator::make($request->json()->all(),[
-        'Name'=>'required|string|min:3|max:55',
+        'name'=>'required|string|min:3|max:55',
         'email'=>'required|string|email|max:200|unique:user',
-        'password'=>'required|string|min:6',
-        'password_confirm'=>'required|string|same:password',
+        'password'=>'required|string|min:6'
       ]);
       if($validated->fails()){
        return response()->json([
@@ -28,7 +27,7 @@ class AuthController extends Controller
     }
 
       $user= User::create([
-        'Name'=>$request->Name,
+        'name'=>$request->name,
         'email'=>$request->email,
         'password'=> Hash::make($request->json()->get('password')),
       ]);
