@@ -18,6 +18,7 @@ class AuthController extends Controller
         'email'=>'required|string|email|max:200|unique:user',
         'password'=>'required|string|min:6'
       ]);
+
       if($validated->fails()){
        return response()->json([
         'message'=>$validated->errors(),
@@ -26,11 +27,11 @@ class AuthController extends Controller
     return 'error validation';
     }
 
-      $user= User::create([
-        'name'=>$request->name,
-        'email'=>$request->email,
-        'password'=> Hash::make($request->json()->get('password')),
-      ]);
+    $user= User::create([
+      'name'=>$request->name,
+      'email'=>$request->email,
+      'password'=> Hash::make($request->json()->get('password')),
+    ]);
 
     //   $user->save();
 
@@ -42,6 +43,22 @@ class AuthController extends Controller
 
 
     public function login(Request $request){
+      $validated_login = Validator::make($request->all(),[
+        "email"=>"required|string|email|max:200", 
+        "password"=>"required|string|min:6"
+      ]);
+
+      if($validated_login->fails()){
+       return response()->json([
+        "message"=>$validated_login->errors(),
+        "status"=>"login validation error"
+       ]);
+      }
+
+      $email_status = User::where("email", $request->email)->first();
+
+      if($email_status)
+
       return 'login';
     }
 }

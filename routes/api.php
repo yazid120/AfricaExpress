@@ -32,6 +32,8 @@ Route::post('/signup', [AuthController::class,'signup']);
 //Login Api Controller
 Route::post('/login', [AuthController::class,'login']);
 
+Route::get('/login', [AuthController::class,'login']);
+
 //Product Api Controller
 Route::get('/product',[ProductsController::class, 'index']);
 //Product Api Controller
