@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios"; 
+import axios from "axios";
 
 
 let Login = function(){
@@ -10,17 +10,19 @@ let Login = function(){
    async function HandleLogin(e){
     e.preventDefault();
     const FormatData={
-        email:email, 
+        email:email,
         password:password
-    } 
+    }
     const api_link = "http://127.0.0.1:8000/api/login";
-    console.log(FormatData);
-    /*try{
-    //axios.post(api_link) 
+    // console.log(FormatData);
+    try{
+    axios.post(api_link,FormatData).then(response=>{
+     console.log(response.data);
+    })
     }catch(error){
-        console.log(error.response.data);
-    }*/
-    
+        //console.log(error.response.data);
+    }
+
    }
     return(
         <>

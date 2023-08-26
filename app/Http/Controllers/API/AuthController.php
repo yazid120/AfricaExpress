@@ -30,7 +30,7 @@ class AuthController extends Controller
     $user= User::create([
       'name'=>$request->name,
       'email'=>$request->email,
-      'password'=> Hash::make($request->json()->get('password')),
+      'password'=> Hash::make(md5($request->password)),
     ]);
 
     //   $user->save();
@@ -44,7 +44,7 @@ class AuthController extends Controller
 
     public function login(Request $request){
       $validated_login = Validator::make($request->all(),[
-        "email"=>"required|string|email|max:200", 
+        "email"=>"required|string|email|max:200",
         "password"=>"required|string|min:6"
       ]);
 
@@ -55,11 +55,26 @@ class AuthController extends Controller
        ]);
       }
 
-      $email_status = User::where("email", $request->email)->first();
+     $email_status = User::where("email", $request->email)->first();
+  $password_status = User::where("email",$request->email)->where('password',md5($request->password))->first();
+    //   if(!is_null($email_status)){
+    //     //  return response()->json(['status'=>'ok','message'=>'correct email address']);
 
-      if($email_status)
-
-      return 'login';
+    //      }else{
+    //         return response()->json(['status'=>'ok','message'=>'correct password']);
+    //      }
+    //   }
+// if(!is_null($password_status)){
+//             return response()->json(['status'=>'error','message'=>'inccorect password']);
+// }else{
+//   return response()->json(['status'=>'ok','message'=>'correct password']);
+// }
+if(Hash::check($request->password, '$2y$10$YyfcB/.b61aMYy/lGxJBJ.5XsF0bwPdQwCdaBXpKrjSdskMdNdZ6i')){
+ return 'password match';
+}else{
+  return 'inccorect password'; 
+}
+      return $password_status;
     }
 }
 
