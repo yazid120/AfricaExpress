@@ -1,22 +1,52 @@
 import React from "react";
 import { Children,Suspense } from "react";
-import { BrowserRouter, createBrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import App from "./App";
 import GuestLayout from "./components/GuestLayout";
+import Footer from './views/Elements/Footer';
+import NavBar from './views/Elements/NavBar';
 import Main from "./main";
 import Home from "./views/home";
 import Login from "./views/login";
 import SignUp from "./views/SignUp";
 import Product from "./views/product";
+import Admin from "./views/admin/admin";
+
+function Guest_layout(){
+  return(
+    <>
+    <NavBar/>
+    <Outlet/>
+    <Footer/>
+    </>
+  )
+}
+
+function Admin_layout(){
+  return(
+    <Outlet/>
+  )
+}
+
 
 const Routing = function(){
   return(
   <Suspense>
    <Routes>
-    <Route path="/" element={<Home/>}/>
+    {/* Guest Layout routes */}
+    <Route path="/" element={<Guest_layout/>}>
+    <Route index element={<Home/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/product" element={<Product/>}/>
+    </Route>
+
+    {/* Admin Layout routes */}
+    <Route path="/admin" element={<Admin_layout/>}>
+    <Route index element={<Admin/>}/>
+    </Route>
+
+
    </Routes>
    </Suspense>
   )
