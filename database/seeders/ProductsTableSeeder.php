@@ -36,7 +36,7 @@ class ProductsTableSeeder extends Seeder
         ];
 
         foreach ($products as $product) {
-            DB::table('product')->insert($product);
+            DB::table('products')->insert($product);
         }
     }
 }

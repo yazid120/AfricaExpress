@@ -57,13 +57,13 @@ class AuthController extends Controller
 
      $email_status = User::where("email", $request->email)->first();
   $password_status = User::where("email",$request->email)->where('password',md5($request->password))->first();
-    //   if(!is_null($email_status)){
-    //     //  return response()->json(['status'=>'ok','message'=>'correct email address']);
+    if(!is_null($email_status)){
+        //  return response()->json(['status'=>'ok','message'=>'correct email address']);
 
-    //      }else{
-    //         return response()->json(['status'=>'ok','message'=>'correct password']);
-    //      }
-    //   }
+    }else{
+            return response()->json(['status'=>'ok','message'=>'correct password']);
+    }
+
 // if(!is_null($password_status)){
 //             return response()->json(['status'=>'error','message'=>'inccorect password']);
 // }else{
@@ -72,7 +72,7 @@ class AuthController extends Controller
 if(Hash::check($request->password, '$2y$10$YyfcB/.b61aMYy/lGxJBJ.5XsF0bwPdQwCdaBXpKrjSdskMdNdZ6i')){
  return 'password match';
 }else{
-  return 'inccorect password'; 
+  return 'inccorect password';
 }
       return $password_status;
     }
