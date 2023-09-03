@@ -34,7 +34,7 @@ let Login = function(){
                     className="w-32 mx-auto" />
             </div>
             <div className="mt-12 flex flex-col items-center">
-                <h1 className="text-2xl xl:text-3xl font-extrabold">
+                <h1 className="text-2xl xl:text-3xl font-extrabold text-black">
                 login
                 </h1>
                 <div className="w-full flex-1 mt-8">

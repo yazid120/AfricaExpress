@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProductsController;
 use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,6 @@ Route::post('/user',[UsersController::class,'store']);
 
 //SignUp Api Controller
 Route::get('/signup', [AuthController::class,'signup']);
-
 Route::post('/signup', [AuthController::class,'signup']);
 
 //Login Api Controller
@@ -38,3 +38,10 @@ Route::get('/login', [AuthController::class,'login']);
 Route::post('/product',[ProductsController::class, 'index']);
 //Product Api Controller
 Route::get('/product',[ProductsController::class, 'show']);
+
+
+//Admin api Controller Api
+Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
+Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']); 
+Route::get('/admin/signup', [AdminController::class, 'SignupAdmin']); 
+Route::get('/admin/login', [AdminController::class, 'LoginAdmin']);

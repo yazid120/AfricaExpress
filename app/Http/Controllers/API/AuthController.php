@@ -75,7 +75,7 @@ if(Hash::check($request->password, '$2y$10$YyfcB/.b61aMYy/lGxJBJ.5XsF0bwPdQwCdaB
   return 'inccorect password';
 }
       return $password_status;
-    }
+}
 }
 
 ?>

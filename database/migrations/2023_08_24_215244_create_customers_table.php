@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('customers', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('name');
-        //     $table->string('address');
-        //     $table->string('city');
-        //     $table->string('type');
-        //     $table->string('postal_code');
-        //     $table->unsignedBigInteger('user_id');
-        //     $table->foreign('user_id')->references('id')->on('user');
-        //     $table->timestamps();
-        //  });
+         Schema::create('customers', function (Blueprint $table) {
+             $table->id();
+             $table->string('name');
+             $table->string('address');
+             $table->string('city');
+             $table->string('type');
+             $table->string('postal_code');
+             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user');
+             $table->timestamps();
+          });
     }
 
     /**
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('customers');
+         Schema::dropIfExists('customers');
     }
 };

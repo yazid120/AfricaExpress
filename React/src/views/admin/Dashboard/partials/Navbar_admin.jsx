@@ -2,7 +2,7 @@ import React from "react"
 
 
 
-export default function Navbar_admin(){
+function Navbar_admin(){
     return(
         <>
         <nav className="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -212,3 +212,4 @@ export default function Navbar_admin(){
     </>
     )
 }
+export default Navbar_admin;
