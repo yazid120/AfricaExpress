@@ -70,6 +70,9 @@ return [
         //     'table' => 'users',
         // ],
     ],
+    
+    /* Email verification */
+    'email_verification'=>true,
 
     /*
     |--------------------------------------------------------------------------

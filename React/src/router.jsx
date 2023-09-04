@@ -8,8 +8,9 @@ import Footer from './views/Elements/Footer';
 import NavBar from './views/Elements/NavBar';
 import Main from "./main";
 import Home from "./views/home";
-import Login from "./views/login";
-import SignUp from "./views/SignUp";
+import Login from "./views/Auth/login";
+import SignUp from "./views/Auth/SignUp";
+import ResetPassword from "./views/Auth/ResetPassword";
 import Product from "./views/product";
 
 import { useNavigate } from "react-router-dom";
@@ -51,6 +52,7 @@ const Routing = function(){
     <Route index element={<Home/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
+    <Route path="/resetpassword" element={<ResetPassword/>}/>
     <Route path="/product" element={<Product/>}/>
     </Route>
 

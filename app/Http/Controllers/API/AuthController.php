@@ -30,7 +30,7 @@ class AuthController extends Controller
     $user= User::create([
       'name'=>$request->name,
       'email'=>$request->email,
-      'password'=> Hash::make(md5($request->password)),
+      'password'=> md5($request-> password),
     ]);
 
     //   $user->save();
@@ -56,25 +56,24 @@ class AuthController extends Controller
       }
 
      $email_status = User::where("email", $request->email)->first();
-  $password_status = User::where("email",$request->email)->where('password',md5($request->password))->first();
+    $password_status = User::where("email",$request->email)->where('password',md5($request->password))->first();
     if(!is_null($email_status)){
-        //  return response()->json(['status'=>'ok','message'=>'correct email address']);
-
+    #correct email address
+        if(!is_null($password_status)){
+        #correct password
+          if(md5($request->password) === $password_status->password){
+          #matched pwd and login successful
+          return response()->json(['status'=>'ok','message'=>'user logged in successfuly','user_id'=>$password_status->id]);
+          }else{
+           return response()->json(['status'=>'error', 'message'=>'wrong password']); 
+          }
+        }else{
+          return response()->json(['status'=>'error','message'=>'invalid password'.$password_status]);
+        }
     }else{
-            return response()->json(['status'=>'ok','message'=>'correct password']);
+          return response()->json(['status'=>'error','message'=>'wrong email address']);
     }
-
-// if(!is_null($password_status)){
-//             return response()->json(['status'=>'error','message'=>'inccorect password']);
-// }else{
-//   return response()->json(['status'=>'ok','message'=>'correct password']);
-// }
-if(Hash::check($request->password, '$2y$10$YyfcB/.b61aMYy/lGxJBJ.5XsF0bwPdQwCdaBXpKrjSdskMdNdZ6i')){
- return 'password match';
-}else{
-  return 'inccorect password';
-}
-      return $password_status;
+     
 }
 }
 
