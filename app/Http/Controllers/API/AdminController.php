@@ -27,7 +27,7 @@ class AdminController extends Controller
      $admin = Admin::create([
         'name'=>$request->name,
         'email'=>$request->email, 
-        'password'=> Hash::make(md5($request-> password))
+        'password'=> md5($request-> password)
      ]);
      return response()->json([
         'message'=>'Admin account created Successfuly',
@@ -50,7 +50,24 @@ class AdminController extends Controller
      }
 
      $email_status = Admin::where('email', $request->email)->first();
-     $password_status = Admin::where('email', $request->email)->where('password',md5($request->password))->first();
+     $password_status = Admin::where('email', $request->email)->where('password', md5($request->password))->first();
+     if(!is_null($email_status)){
+
+      if(!is_null($password_status)){
+
+         if(md5($request->password) === $password_status->password){
+            return response()->json(['status'=>'success', 'message'=>'admin logged successfuly','admin_id'=>
+         $password_status->id]);
+         }else{
+            return response()->json(['status'=>'error', 'message'=>'incorrect password']); 
+         }
+      }
+      else{
+         return response()->json(['status'=>'error', 'message'=>'password is null']);
+      }
+     }else{
+      return response()->json(['status'=>'error', 'message'=>'email not found']);
+     }
      
     }
 }

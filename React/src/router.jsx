@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Children,Suspense } from "react";
 import { lazy } from 'react';
 import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet } from "react-router-dom";
@@ -12,6 +12,7 @@ import Login from "./views/login";
 import SignUp from "./views/SignUp";
 import Product from "./views/product";
 
+import { useNavigate } from "react-router-dom";
 {/*** Admin layouts components ***/}
 const Admin = React.lazy( ()=> import("./views/admin/admin"));
 const LoginAdmin = React.lazy( ()=> import("./views/admin/login_admin"));
@@ -28,12 +29,19 @@ function Guest_layout(){
 }
 
 function Admin_layout(){
+  const navigate = useNavigate();
+  const Admin_auth = localStorage.getItem('admin_id');
+
+  useEffect(()=>{
+    if(!Admin_auth){
+      navigate('/admin/login')
+    }
+  },[Admin_auth,navigate]);
+
   return(
-    <Outlet/>
+    Admin_auth ? <Outlet/> : <LoginAdmin/>
   )
 }
-
-
 const Routing = function(){
   return(
   <Suspense>

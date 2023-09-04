@@ -32,7 +32,7 @@ let SignupAdmin = function(){
         <Navbar_admin/>
         </div>
         <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 shadow-md rounded-lg">
+      <div className="bg-white p-8 shadow-md rounded-lg w-2/6">
         <h2 className="text-2xl font-semibold mb-4 text-black">Signup</h2>
         <form onSubmit={HandleAdminSignup} action="post">
           <div className="mb-4">
@@ -55,9 +55,11 @@ let SignupAdmin = function(){
             <input type="password" id="password" className="w-full border border-gray-300 p-2 rounded" 
             onChange={(e)=>SetAdminRepassword(e.target.value)}/>
           </div>
-          <div className="flex justify-between items-center">
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Signup</button>
-          </div>
+          <div className="flex justify-between items-center mb-2">
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-1/5"
+            >Signup</button>
+          </div> 
+          <a className="text-black" href="/admin/login">already have an account!!</a>
         </form>
       </div>
     </div>

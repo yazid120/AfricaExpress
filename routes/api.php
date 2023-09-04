@@ -39,7 +39,6 @@ Route::post('/product',[ProductsController::class, 'index']);
 //Product Api Controller
 Route::get('/product',[ProductsController::class, 'show']);
 
-
 //Admin api Controller Api
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
 Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']); 

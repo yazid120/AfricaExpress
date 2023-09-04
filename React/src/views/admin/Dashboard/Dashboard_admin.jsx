@@ -96,7 +96,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center min-w-0">
-                        <img className="flex-shrink-0 w-10 h-10" src="/images/products/iphone.png" alt="imac image" />
+                        <img className="flex-shrink-0 w-10 h-10" src="" alt="imac image" />
                         <div className="ml-3">
                           <p className="font-medium text-gray-900 truncate dark:text-white">
                             iPhone 14 Pro
@@ -118,7 +118,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center min-w-0">
-                        <img className="flex-shrink-0 w-10 h-10" src="/images/products/imac.png" alt="imac image" />
+                        <img className="flex-shrink-0 w-10 h-10" src="" alt="imac image" />
                         <div className="ml-3">
                           <p className="font-medium text-gray-900 truncate dark:text-white">
                             Apple iMac 27"
@@ -140,7 +140,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center min-w-0">
-                        <img className="flex-shrink-0 w-10 h-10" src="/images/products/watch.png" alt="watch image" />
+                        <img className="flex-shrink-0 w-10 h-10" src="" alt="watch image" />
                         <div className="ml-3">
                           <p className="font-medium text-gray-900 truncate dark:text-white">
                             Apple Watch SE
@@ -162,7 +162,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center min-w-0">
-                        <img className="flex-shrink-0 w-10 h-10" src="/images/products/ipad.png" alt="ipad image" />
+                        <img className="flex-shrink-0 w-10 h-10" src="" alt="ipad image" />
                         <div className="ml-3">
                           <p className="font-medium text-gray-900 truncate dark:text-white">
                             Apple iPad Air
@@ -184,7 +184,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center min-w-0">
-                        <img className="flex-shrink-0 w-10 h-10" src="/images/products/imac.png" alt="imac image" />
+                        <img className="flex-shrink-0 w-10 h-10" src="" alt="imac image" />
                         <div className="ml-3">
                           <p className="font-medium text-gray-900 truncate dark:text-white">
                             Apple iMac 24"
@@ -210,7 +210,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex-shrink-0">
-                        <img className="w-8 h-8 rounded-full" src="/images/users/neil-sims.png" alt="Neil image" />
+                        <img className="w-8 h-8 rounded-full" src="" alt="Neil image" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-gray-900 truncate dark:text-white">
@@ -228,7 +228,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex-shrink-0">
-                        <img className="w-8 h-8 rounded-full" src="/images/users/bonnie-green.png" alt="Neil image" />
+                        <img className="w-8 h-8 rounded-full" src="" alt="Neil image" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-gray-900 truncate dark:text-white">
@@ -246,7 +246,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex-shrink-0">
-                        <img className="w-8 h-8 rounded-full" src="/images/users/michael-gough.png" alt="Neil image" />
+                        <img className="w-8 h-8 rounded-full" src="" alt="Neil image" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-gray-900 truncate dark:text-white">
@@ -282,7 +282,7 @@ function Dashboard_admin(){
                   <li className="py-3 sm:py-4">
                     <div className="flex items-center space-x-4">
                       <div className="flex-shrink-0">
-                        <img className="w-8 h-8 rounded-full" src="/images/users/lana-byrd.png" alt="Neil image" />
+                        <img className="w-8 h-8 rounded-full" src="" alt="Neil image" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-gray-900 truncate dark:text-white">
@@ -419,7 +419,8 @@ function Dashboard_admin(){
               <article className="mb-5">
                 <footer className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
-                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough" />Michael Gough</p>
+                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full"
+                     src="" alt="Michael Gough" />Michael Gough</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate="true" dateTime="2022-02-08" title="February 8th, 2022"> 01/03/2023 4:15 PM</time></p>
                   </div>
                   <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1" className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
@@ -458,7 +459,7 @@ function Dashboard_admin(){
               <article className="mb-5">
                 <footer className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
-                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="Bonnie avatar" />Bonnie Green</p>
+                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full" src="" alt="Bonnie avatar" />Bonnie Green</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate="true" dateTime="2022-02-08" title="February 8th, 2022"> 01/03/2023 4:15 PM</time></p>
                   </div>
                   <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2" className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
@@ -531,7 +532,7 @@ function Dashboard_admin(){
               <article className="mb-5">
                 <footer className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
-                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Jese avatar" />Jese Leos</p>
+                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full" src="" alt="Jese avatar" />Jese Leos</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate="true" dateTime="2022-02-08" title="February 8th, 2022"> 01/03/2023 4:15 PM</time></p>
                   </div>
                   <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3" className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
@@ -649,7 +650,7 @@ function Dashboard_admin(){
               <article className="pl-12 mb-5">
                 <footer className="flex items-center justify-between mb-2">
                   <div className="flex items-center">
-                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Jese avatar" />Jese Leos</p>
+                    <p className="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white"><img className="w-6 h-6 mr-2 rounded-full"  alt="Jese avatar" />Jese Leos</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400"><time pubdate="true" dateTime="2022-02-08" title="February 8th, 2022"> 01/03/2023 4:15 PM</time></p>
                   </div>
                   <button id="dropdownComment5Button" data-dropdown-toggle="dropdownComment5" className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:ring-gray-600" type="button">
