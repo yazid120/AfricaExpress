@@ -18,6 +18,10 @@ let Login = function(){
     try{
     axios.post(api_link,FormatData).then(response=>{
      console.log(response.data);
+     if(response.data['message']=== 'user logged in successfuly' && response.data['status'] === 'success'){
+      localStorage.setItem('user_id',response.data['user_id']); 
+       window.location.replace('/profile');
+     }
     })
     }catch(error){
         //console.log(error.response.data);

@@ -23,6 +23,9 @@ let SignUp = function(){
     await axios.post('http://127.0.0.1:8000/api/signup',FormData).then(
       response=>{
         console.log(response.data);
+        if(response.data['message'] === 'User registrated Successfuly' && response.data['status'] === 'ok'){
+          window.location.href = '/login';
+        }
       }
     )
     }

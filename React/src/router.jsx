@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Children,Suspense } from "react";
 import { lazy } from 'react';
-import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet,Navigate } from "react-router-dom";
 import App from "./App";
 import GuestLayout from "./components/GuestLayout";
 import Footer from './views/Elements/Footer';
@@ -11,7 +11,11 @@ import Home from "./views/home";
 import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import ResetPassword from "./views/Auth/ResetPassword";
+import Profile from "./views/Profile/Profile";
 import Product from "./views/product";
+
+import NotFound_404 from "./views/404_NotFound";
+
 
 import { useNavigate } from "react-router-dom";
 {/*** Admin layouts components ***/}
@@ -33,16 +37,17 @@ function Admin_layout(){
   const navigate = useNavigate();
   const Admin_auth = localStorage.getItem('admin_id');
 
-  useEffect(()=>{
-    if(!Admin_auth){
-      navigate('/admin/login')
-    }
-  },[Admin_auth,navigate]);
+  // useEffect(()=>{
+  //   if(!Admin_auth){
+  //     navigate('/admin/login')
+  //   }
+  // },[Admin_auth,navigate]);
 
-  return(
-    Admin_auth ? <Outlet/> : <LoginAdmin/>
+ return(
+     Admin_auth ? <Admin/>  : <Outlet/>
   )
 }
+
 const Routing = function(){
   return(
   <Suspense>
@@ -53,8 +58,12 @@ const Routing = function(){
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
+    <Route path="/profile" element={<Profile/>}/>
     <Route path="/product" element={<Product/>}/>
     </Route>
+    {/* 404 page not found route */}
+    <Route path='/404' element={<NotFound_404/>}/>
+    <Route path='*' element={<Navigate to='/404'/>}/>
 
     {/* Admin Layout routes */}
     <Route path="/admin" element={<Admin_layout/>}>

@@ -16,7 +16,8 @@ class AuthController extends Controller
       $validated= Validator::make($request->json()->all(),[
         'name'=>'required|string|min:3|max:55',
         'email'=>'required|string|email|max:200|unique:user',
-        'password'=>'required|string|min:6'
+        'password'=>'required|string|min:6',
+        'confirm_password'=>'required_with:password|same:password|min:6'
       ]);
 
       if($validated->fails()){
@@ -30,13 +31,13 @@ class AuthController extends Controller
     $user= User::create([
       'name'=>$request->name,
       'email'=>$request->email,
-      'password'=> md5($request-> password),
+      'password'=> md5($request-> password)
     ]);
 
-    //   $user->save();
 
       return response()->json([
         'message'=>'User registrated Successfuly',
+        'status'=>'ok',
         'user'=>$user,
       ],201);
     }
@@ -63,9 +64,9 @@ class AuthController extends Controller
         #correct password
           if(md5($request->password) === $password_status->password){
           #matched pwd and login successful
-          return response()->json(['status'=>'ok','message'=>'user logged in successfuly','user_id'=>$password_status->id]);
+          return response()->json(['status'=>'success','message'=>'user logged in successfuly','user_id'=>$password_status->id]);
           }else{
-           return response()->json(['status'=>'error', 'message'=>'wrong password']); 
+           return response()->json(['status'=>'error', 'message'=>'wrong password']);
           }
         }else{
           return response()->json(['status'=>'error','message'=>'invalid password'.$password_status]);
@@ -73,7 +74,7 @@ class AuthController extends Controller
     }else{
           return response()->json(['status'=>'error','message'=>'wrong email address']);
     }
-     
+
 }
 }
 
