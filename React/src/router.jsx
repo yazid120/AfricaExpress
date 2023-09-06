@@ -12,7 +12,7 @@ import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import ResetPassword from "./views/Auth/ResetPassword";
 import Profile from "./views/Profile/Profile";
-import Product from "./views/product";
+import Product from "./views/Product/product";
 
 import NotFound_404 from "./views/404_NotFound";
 
@@ -22,6 +22,8 @@ import { useNavigate } from "react-router-dom";
 const Admin = React.lazy( ()=> import("./views/admin/admin"));
 const LoginAdmin = React.lazy( ()=> import("./views/admin/login_admin"));
 const SignupAdmin = React.lazy( ()=> import("./views/admin/Signup_admin"));
+const CategorieProdAdmin = React.lazy( ()=> import("./views/admin/Categories_admin"));
+const ProductAdmin = React.lazy( ()=> import("./views/admin/Product_admin"));
 
 function Guest_layout(){
   return(
@@ -70,6 +72,8 @@ const Routing = function(){
     <Route index element={<Admin/>}/>
     <Route path="/admin/login" element={<LoginAdmin/>}/>
     <Route path="/admin/signup" element={<SignupAdmin/>}/>
+    <Route path="/admin/product" element={<ProductAdmin/>}/>
+    <Route path="/admin/product/categorie" element={<CategorieProdAdmin/>}/>
     </Route>
 
    </Routes>

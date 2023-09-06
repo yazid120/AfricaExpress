@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class product extends Model
 {
@@ -16,5 +17,10 @@ class product extends Model
         'image',
         'quantity'
     ];
+
+    // Categorie product relation
+    public function Categorie(){
+      return $this->belongsToMany(Category::class);
+    }
 
 }
