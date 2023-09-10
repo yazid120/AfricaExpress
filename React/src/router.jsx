@@ -12,7 +12,6 @@ import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import ResetPassword from "./views/Auth/ResetPassword";
 import Profile from "./views/Profile/Profile";
-import Product from "./views/Product/product";
 
 import NotFound_404 from "./views/404_NotFound";
 
@@ -61,7 +60,7 @@ const Routing = function(){
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
     <Route path="/profile" element={<Profile/>}/>
-    <Route path="/product" element={<Product/>}/>
+    
     </Route>
     {/* 404 page not found route */}
     <Route path='/404' element={<NotFound_404/>}/>
@@ -73,7 +72,7 @@ const Routing = function(){
     <Route path="/admin/login" element={<LoginAdmin/>}/>
     <Route path="/admin/signup" element={<SignupAdmin/>}/>
     <Route path="/admin/product" element={<ProductAdmin/>}/>
-    <Route path="/admin/product/categorie" element={<CategorieProdAdmin/>}/>
+    <Route path="/admin/product/category" element={<CategorieProdAdmin/>}/>
     </Route>
 
    </Routes>

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\ProductsController;
 use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AdminController;
+use App\Http\Controllers\API\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,6 @@ Route::get('/product',[ProductsController::class, 'show']);
 //Admin api Controller Api
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
 Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']); 
-Route::get('/admin/signup', [AdminController::class, 'SignupAdmin']); 
-Route::get('/admin/login', [AdminController::class, 'LoginAdmin']);
+
+Route::get('/admin/product/category', [CategoryController::class, 'create']);
+Route::post('/admin/product/category', [CategoryController::class, 'create']);
