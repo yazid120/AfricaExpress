@@ -11,10 +11,17 @@ function CategorieProdAdmin(){
   async function HandleCategoryProduct(e){
     e.preventDefault();
     const FormData = { 
-      'Category_name':nameCategory, 
-      'description_Category':descriptionCategory
+      'cat_name':nameCategory, 
+      'product_Category_description':descriptionCategory
     }
-    console.log(FormData);
+    const Link_api = 'http://localhost:8000/api/admin/product/category';
+    try{
+     await axios.post(Link_api,FormData).then(response=>{
+      console.log(response.data);
+     })
+    }catch(error){
+      //console.log(error); 
+    }
   }
 
   return(
@@ -33,7 +40,7 @@ function CategorieProdAdmin(){
             <input
               type="text"
               id="Category_name"
-              name="Category_name"
+              name="cat_name"
               placeholder="Enter Category name"
               className="w-full border border-gray-300 rounded px-2 py-1"
               onChange={(e)=>SetNameCategory(e.target.value)}

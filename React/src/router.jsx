@@ -22,7 +22,8 @@ const Admin = React.lazy( ()=> import("./views/admin/admin"));
 const LoginAdmin = React.lazy( ()=> import("./views/admin/login_admin"));
 const SignupAdmin = React.lazy( ()=> import("./views/admin/Signup_admin"));
 const CategorieProdAdmin = React.lazy( ()=> import("./views/admin/Categories_admin"));
-const ProductAdmin = React.lazy( ()=> import("./views/admin/Product_admin"));
+const ProductAdminCreate = React.lazy( ()=> import("./views/admin/Product/Product_admin_create"));
+const ProductAdminShow = React.lazy( ()=> import("./views/admin/Product/Product_admin_show"));
 
 function Guest_layout(){
   return(
@@ -62,18 +63,21 @@ const Routing = function(){
     <Route path="/profile" element={<Profile/>}/>
     
     </Route>
-    {/* 404 page not found route */}
-    <Route path='/404' element={<NotFound_404/>}/>
-    <Route path='*' element={<Navigate to='/404'/>}/>
+    
 
     {/* Admin Layout routes */}
     <Route path="/admin" element={<Admin_layout/>}>
     <Route index element={<Admin/>}/>
     <Route path="/admin/login" element={<LoginAdmin/>}/>
     <Route path="/admin/signup" element={<SignupAdmin/>}/>
-    <Route path="/admin/product" element={<ProductAdmin/>}/>
+    <Route path="/admin/product/create" element={<ProductAdminCreate/>}/>
+    <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/category" element={<CategorieProdAdmin/>}/>
     </Route>
+
+    {/* 404 page not found route */}
+    <Route path='/404' element={<NotFound_404/>}/>
+    <Route path='*' element={<Navigate to='/404'/>}/>
 
    </Routes>
    </Suspense>
