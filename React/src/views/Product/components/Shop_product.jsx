@@ -28,7 +28,7 @@ function ShopProduct(){
 
   {
     products.map(product=>(
-     <li key={product.id} className="product_el_wrapp bg-white rounded-lg p-4 shadow-md">
+     <li key={product.id} className="product_el_wrapp bg-white rounded-lg p-4 shadow-md cursor-pointer">
       <img src={image_path_uri+product.image} alt={product.name} className="h-auto p-8 rounded-t-lg" />
       <h3 className="text-xl font-semibold mt-2 taxt-black">{product.name}</h3>
     <p className="text-green-600 font-semibold"><span className='text-black'>Price: </span>{product.price_unit}$</p>

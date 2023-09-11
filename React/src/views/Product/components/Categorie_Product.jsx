@@ -1,6 +1,20 @@
 import React from "react";
+import {useEffect,useState} from "react";
+import axios from "axios";
+
+const GetProductCategories = async function(link,SetCategories){
+   useEffect(()=>{
+    axios.get(link).then(response=>{
+      SetCategories(response.data);
+    })
+   },[]);
+}
 
 function CategorieProduct(){
+  const [Categories, SetCategories] = useState([]);
+  const productCategories = GetProductCategories('http://127.0.0.1:8000/api/admin/product/category/index',SetCategories);
+
+  console.log(Categories);
   return(
     <>
       {/* ./sidebar */}
@@ -11,66 +25,23 @@ function CategorieProduct(){
             Categories
           </h3>
           <div className="space-y-2">
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="cat-1"
-                id="cat-1"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="cat-1"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Bedroom
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(15)</div>
-            </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="cat-2"
-                id="cat-2"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="cat-2"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Sofa
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(9)</div>
-            </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="cat-3"
-                id="cat-3"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="cat-3"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Office
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(21)</div>
-            </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="cat-4"
-                id="cat-4"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="cat-4"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Outdoor
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(10)</div>
-            </div>
+            {
+              Categories.map((Category,id)=>(
+                <div className="flex items-center" key={id}>
+                  <input
+                  type="checkbox"
+                  name={Category.cat_name}
+                  id={Category.id}
+                  className="text-primary focus:ring-0 rounded-sm cursor-pointer"/>
+
+                  <label htmlFor={Category.id}
+                  className="text-gray-600 ml-3 cusror-pointer">
+                    {Category.cat_name}
+                  </label>
+                  <div className="ml-auto text-gray-600 text-sm">(15)</div>
+                </div>
+              ))
+            }
           </div>
         </div>
         <div className="pt-4">

@@ -12,6 +12,9 @@ import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import ResetPassword from "./views/Auth/ResetPassword";
 import Profile from "./views/Profile/Profile";
+import ProductArticle from "./views/Product/Product_article";
+import Cart from "./views/Cart/cart";
+import Wishlist from "./views/Wishlist/wishlist";
 
 import NotFound_404 from "./views/404_NotFound";
 
@@ -24,6 +27,7 @@ const SignupAdmin = React.lazy( ()=> import("./views/admin/Signup_admin"));
 const CategorieProdAdmin = React.lazy( ()=> import("./views/admin/Categories_admin"));
 const ProductAdminCreate = React.lazy( ()=> import("./views/admin/Product/Product_admin_create"));
 const ProductAdminShow = React.lazy( ()=> import("./views/admin/Product/Product_admin_show"));
+const ProductAdminUpdate = React.lazy( ()=> import("./views/admin/Product/Product_admin_update"));
 
 function Guest_layout(){
   return(
@@ -57,13 +61,15 @@ const Routing = function(){
     {/* Guest Layout routes */}
     <Route path="/" element={<Guest_layout/>}>
     <Route index element={<Home/>}/>
+    <Route path="/product/${id}" element={<ProductArticle/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
     <Route path="/profile" element={<Profile/>}/>
-    
+    <Route path="/cart" element={<Cart/>}/>
+    <Route path="/Wishlist" element={<Wishlist/>}/>
     </Route>
-    
+
 
     {/* Admin Layout routes */}
     <Route path="/admin" element={<Admin_layout/>}>
@@ -72,6 +78,7 @@ const Routing = function(){
     <Route path="/admin/signup" element={<SignupAdmin/>}/>
     <Route path="/admin/product/create" element={<ProductAdminCreate/>}/>
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
+    <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>
     <Route path="/admin/product/category" element={<CategorieProdAdmin/>}/>
     </Route>
 

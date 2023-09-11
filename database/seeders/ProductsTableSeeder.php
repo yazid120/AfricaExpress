@@ -12,25 +12,11 @@ class ProductsTableSeeder extends Seeder
     {
         $products = [
             [
-                'name' => 'apple watch',
-                'categorie_prod' => 'electronique',
-                'price_unit' => '10.99',
-                'image' => 'appleWatch_AM.png',
-                'quantity' => 20,
-            ],
-            [
-                'name' => 'Ps4 Pro',
-                'categorie_prod' => 'gaming & console',
-                'price_unit' => '300',
-                'image' => 'Ps4_Pro.jpg',
-                'quantity' => 50,
-            ],
-            [
-                'name' => 'Adidas t-shirt',
-                'categorie_prod' => 'clothing',
-                'price_unit' => '50.30',
-                'image' => 't-shirt_Adidas_noir_ce2228.jpg',
-                'quantity' => 100,
+                'name' => 'Nespresso InissiaKrups machine',
+                'categorie_prod' => 'coffee machines',
+                'price_unit' => '79.99',
+                'image' => 'Nespresso_InissiaKrups_Machine.jpg',
+                'quantity' => 8,
             ]
             // Add more product data entries here...
         ];

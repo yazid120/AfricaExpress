@@ -9,10 +9,9 @@ function ProductAdminShow(){
         <div>
             <Navbar_admin/>
         </div>
-        <div>
+
             <ProductTable/>
-        </div>
         </>
     )
 }
-export default ProductAdminShow; 
+export default ProductAdminShow;
