@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import SearchBarProduct from "./Search_Bar_product";
 
 
 function SortedCatProduct(){
@@ -16,6 +17,11 @@ function SortedCatProduct(){
           <option value="price-high-to-low">Price high to low</option>
           <option value="latest">Latest product</option>
         </select>
+
+      {/* Product search bar */}
+      <SearchBarProduct/>
+
+
         <div className="flex gap-2 ml-auto">
           <div className="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer">
             <i className="fa-solid fa-grip-vertical" />
@@ -24,6 +30,7 @@ function SortedCatProduct(){
             <i className="fa-solid fa-list" />
           </div>
         </div>
+
       </div>
     </>
   )

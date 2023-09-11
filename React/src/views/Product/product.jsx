@@ -5,6 +5,7 @@ import ShopProduct from './components/Shop_product';
 import SortedCatProduct from './components/Sorted_Categorie_Product';
 
 
+
 let Product = function(){
 return(
 <>
@@ -13,6 +14,7 @@ return(
   style={{
     maxWidth:'100%'
   }}>
+    
     {/* sidebar Categotie products */}
     <CategorieProduct/>
 
