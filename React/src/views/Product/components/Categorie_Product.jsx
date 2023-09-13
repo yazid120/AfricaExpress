@@ -13,8 +13,6 @@ const GetProductCategories = async function(link,SetCategories){
 function CategorieProduct(){
   const [Categories, SetCategories] = useState([]);
   const productCategories = GetProductCategories('http://127.0.0.1:8000/api/admin/product/category/index',SetCategories);
-
-  console.log(Categories);
   return(
     <>
       {/* ./sidebar */}

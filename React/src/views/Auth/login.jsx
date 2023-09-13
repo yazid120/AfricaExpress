@@ -20,6 +20,7 @@ let Login = function(){
      console.log(response.data);
      if(response.data['message']=== 'user logged in successfuly' && response.data['status'] === 'success'){
       localStorage.setItem('user_id',response.data['user_id']); 
+      localStorage.setItem('cart_id',response.data['cart_id']); 
        window.location.replace('/profile');
      }
     })

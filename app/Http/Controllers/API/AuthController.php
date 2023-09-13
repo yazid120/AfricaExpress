@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,11 +35,17 @@ class AuthController extends Controller
       'password'=> md5($request-> password)
     ]);
 
+    // add a cart id to user
+    $cart= Cart::create([
+      'user_id'=>$user->id
+    ]);
+
 
       return response()->json([
         'message'=>'User registrated Successfuly',
         'status'=>'ok',
         'user'=>$user,
+        'cart'=>$cart
       ],201);
     }
 
@@ -56,16 +63,25 @@ class AuthController extends Controller
        ]);
       }
 
-     $email_status = User::where("email", $request->email)->first();
+    $email_status = User::where("email", $request->email)->first();
     $password_status = User::where("email",$request->email)->where('password',md5($request->password))->first();
+
     if(!is_null($email_status)){
     #correct email address
         if(!is_null($password_status)){
+        # if the user exist we will create his cart 
+          $cart_status = Cart::where('user_id', $password_status->id)->first(); 
+          
         #correct password
           if(md5($request->password) === $password_status->password){
-          #matched pwd and login successful
-          return response()->json(['status'=>'success','message'=>'user logged in successfuly','user_id'=>$password_status->id]);
-          }else{
+            if(!is_null($cart_status)){
+            #matched pwd and login successful
+            return response()->json(['status'=>'success','message'=>'user logged in successfuly','user_id'=>$password_status->id,
+            'cart_id'=>$cart_status->id]);
+            }else{
+            return response()->json(['status'=>'error', 'message'=>'cart not created properly']);
+            }
+         }else{
            return response()->json(['status'=>'error', 'message'=>'wrong password']);
           }
         }else{

@@ -13,7 +13,6 @@ class ProductsTableSeeder extends Seeder
         $products = [
             [
                 'name' => 'Nespresso InissiaKrups machine',
-                'categorie_prod' => 'coffee machines',
                 'price_unit' => '79.99',
                 'image' => 'Nespresso_InissiaKrups_Machine.jpg',
                 'quantity' => 8,
