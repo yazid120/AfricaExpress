@@ -8,7 +8,7 @@
   font-weight: 400;
   /*color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);*/
-  background-color: #697a78;
+  background-color: #989e9d;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,14 +18,14 @@
 
 
 /* product wrapp box style */
-.product_el_wrapp{ 
+.product_el_wrapp{
   -webkit-box-sizing: border-box;
   -webkit-box-direction: normal;
   box-sizing: border-box;
-  display:flex; 
+  display:flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .product_el_wrapp .h3{
@@ -34,7 +34,7 @@
 
 
 
-footer{ 
+footer{
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin-top: 2rem;

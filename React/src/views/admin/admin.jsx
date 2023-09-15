@@ -26,9 +26,7 @@ const Admin = function(){
             <Footer_admin/>
 
           </div>
-
         </div>
-
       </div>
 
         </>

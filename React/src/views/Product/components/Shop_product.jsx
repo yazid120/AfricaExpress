@@ -1,6 +1,4 @@
 import React from "react";
-import {useState,useEffect} from "react";
-import axios from "axios";
 
 let logged_user = (id)=>{
   if(id === null){
@@ -23,24 +21,10 @@ let AddToCart = (e)=>{
   $data_Object=[];
   console.log('add product');
 }
-function ShopProduct(){
-  const [products,SetProduct] = useState([]);
-  const user_id = localStorage.getItem('user_id') ?? 'null'; 
-  const cart_id = localStorage.getItem('cart_id') ?? 'null'; 
 
-  console.log('user'+logged_user(user_id)); 
-  console.log('cart'+exist_cart(cart_id));
-
-   const api_link = "http://127.0.0.1:8000/api/product";
-   useEffect(() => {
-    fetch(api_link)
-        .then(response => response.json())
-        .then(data => SetProduct(data))
-        .catch(error => console.error(error));
-   }, []);
-   {/* products images path uri */}
-   const image_path_uri = '../src/assets/images/Products/';
-
+function ShopProduct({products}){
+  {/* products images path uri */}
+  const image_path_uri = '../src/assets/images/Products/';
   return(
     <>
      <div className="">

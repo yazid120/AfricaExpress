@@ -25,25 +25,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Users Api Controller
-Route::post('/user',[UsersController::class,'store']);
+Route::post('/user',[UsersController::class, 'store']);
 
-//SignUp Api Controller
-Route::get('/signup', [AuthController::class,'signup']);
+//user Authentication Api Controller
 Route::post('/signup', [AuthController::class,'signup']);
-
-//Login Api Controller
 Route::post('/login', [AuthController::class,'login']);
 
-Route::get('/login', [AuthController::class,'login']);
 
 //Product Api Controller
 Route::post('/product',[ProductsController::class, 'index']);
-//Product Api Controller
 Route::get('/product',[ProductsController::class, 'show']);
+Route::post('/admin/product/create', [ProductsController::class, 'create']);
+// Route::get('/admin/product/create', [ProductsController::class, 'create']);
 
-//Admin api Controller Api
+//Admin Authentications Api Controller
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
-Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']); 
+Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']);
 
 Route::get('/admin/product/category/index', [CategoryController::class, 'index']);
 Route::get('/admin/product/category', [CategoryController::class, 'create']);
