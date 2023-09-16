@@ -16,25 +16,38 @@ const cart = [
     quantity: 1, 
   },
 ];
+/*function Cart(){
 
-function SummaryCart(){
-    const [QteProduct,SetQteProduct] = useState([]);
+ return(
+  <div className="cart">
+  {
+    cart.map((product)=>{
+      <SummaryCart key={product.id} product={product} />
+    })
+  }
+ </div>
+ )
+}*/
+
+function SummaryCart({product}){
+    const [QteProduct, SetQteProduct] = useState(1);
+    console.log(QteProduct)
 
 
-function increase_qte(cart_key){
-  SetQteProduct(QteProduct=>
-    QteProduct.map((cart)=>
-      cart_key === cart.id ? {...cart, product_qte: cart.quantity + 1} : cart
-    )
-  )
+function increase_qte(){
+  if(QteProduct<=0){
+   SetQteProduct(1)
+  }else{
+    SetQteProduct(QteProduct+1)
+  }
 }
 
-function decrease_qte(cart_key){
-  SetQteProduct(QteProduct=>
-    QteProduct.map((item)=>
-      cart_key === item.id ? {...item, product_qte: item.quantity - 1} : item
-    )
-  )
+function decrease_qte(){
+  if(QteProduct<=0){
+    SetQteProduct(1)
+  }else{
+    SetQteProduct(QteProduct-1)
+  }
 }
     return( 
         <>
@@ -46,12 +59,11 @@ function decrease_qte(cart_key){
         <p className="lg:text-4xl text-3xl font-black leading-10 text-gray-800 dark:text-white pt-3">
           Summury
         </p>
-          
           {/* Cart items */} 
           <div>
           {
-            cart.map((item, key)=>(
-            <div key={key} className="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50" >
+            cart.map((item)=>(
+            <div key={item.id} className="md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-gray-50" >
              <div className="flex items-center justify-between w-full pt-1">
               <p className="text-base font-black leading-none text-gray-800 dark:text-white">
                 North wolf bag
@@ -62,32 +74,15 @@ function decrease_qte(cart_key){
               </p>
             </div>
               <div className="flex items-center space-x-2">
-                {/*<input
-                  className="cursor-pointer bg-primary text-white px-3 py-1 rounded-full"
-                  type="button"
-                  id="decrease_btn"
-                  defaultValue="-" onClick={()=>decrease_qte(item.id)}
-            />*/}
-            <button onClick={()=>decrease_qte(item.id)}>-</button>
-                {/*<input
-                  className="w-10 text-center border border-gray-300"
-                  type="text"
-                  id="quantity_product"
-                  value={item.quantity}
-                  maxLength={2}
-                  max={item.quantity}
-                />*/}
-                <div>{item.quantity}</div>
-            <button onClick={()=>increase_qte(item.id)}>+</button>
-                {/*
-                <input
-                  className="cursor-pointer bg-primary text-white px-2 py-1 rounded-full"
-                  type="button"
-                  id="increase_btn"
-                  defaultValue="+" onClick={()=>increase_qte(item.id)} />
-                  <button onClick={()=>increase_qte(item.id)}>increase</button>
-                  */}
+    
+            <button type="button" className="cursor-pointer bg-primary text-white px-3 py-1 rounded-full"
+             onClick={()=>decrease_qte()}>-</button>
+                
+                <p>{QteProduct}</p> 
 
+            <button type="button" className="cursor-pointer bg-primary text-white px-3 py-1 rounded-full"
+             onClick={()=>increase_qte()}>+</button>
+               
               </div>
             </div>
             

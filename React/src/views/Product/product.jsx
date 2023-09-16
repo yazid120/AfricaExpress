@@ -77,7 +77,7 @@ return(
           </div>
         </div>
       </div>
-
+      {/*** Search Product Filter ***/}
       <ShopProduct products={products} SearchProdFilter={SearchProdFilter}/>
     </div>
   </div>
