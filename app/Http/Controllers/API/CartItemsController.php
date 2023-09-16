@@ -18,4 +18,7 @@ class CartItemsController extends Controller
       $cart_status = ''; 
       
     }
+    public function RemoveItemCart(){
+      
+    }
 }
