@@ -11,10 +11,12 @@ import Home from "./views/home";
 import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import ResetPassword from "./views/Auth/ResetPassword";
-import Profile from "./views/Profile/Profile";
 import ProductArticle from "./views/Product/Product_article";
 import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
+
+const Profile = React.lazy(()=> import("./views/Profile/Profile"));
+const ChangePwdProfile = React.lazy(()=> import("./views/Profile/components/ChangePwdProfile"));
 
 import NotFound_404 from "./views/404_NotFound";
 
@@ -54,6 +56,7 @@ function Admin_layout(){
   )
 }
 
+ const userAuth= localStorage.getItem('user_id');
 const Routing = function(){
   return(
   <Suspense>
@@ -65,8 +68,12 @@ const Routing = function(){
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
-    <Route path="/profile" element={<Profile/>}/>
-    <Route path="/cart" element={<Cart/>}/>
+    <Route path="/profile" element=
+    {userAuth ? <Profile/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
+     <Route path="/profile/Change_password" element=
+    {userAuth ? <ChangePwdProfile/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
+
+    <Route path="/cart" element={userAuth ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/Wishlist" element={<Wishlist/>}/>
     </Route>
 

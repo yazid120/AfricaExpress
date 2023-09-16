@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProductsController;
 use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\CategoryController;
 use App\Models\Category;
@@ -30,6 +31,9 @@ Route::post('/user',[UsersController::class, 'store']);
 //user Authentication Api Controller
 Route::post('/signup', [AuthController::class,'signup']);
 Route::post('/login', [AuthController::class,'login']);
+//Profile user Api Controllers
+Route::get('/profile/{id}', [ProfileController::class, 'index']);
+
 
 
 //Product Api Controller
