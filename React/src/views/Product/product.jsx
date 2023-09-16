@@ -3,13 +3,15 @@ import axios from 'axios';
 import {useState,useEffect} from "react";
 import CategorieProduct from './components/Categorie_Product';
 import ShopProduct from './components/Shop_product';
-import SortedCatProduct from './components/Sorted_Categorie_Product';
+import SearchBarProduct from './components/Search_Bar_product';
 
 
 
 let Product = function(){
   const [products,SetProduct] = useState([]);
   const [CategoryFilter, SetCategoryFilter] = useState('all');
+  const [SearchProdFilter, SetSearchProdFilter] = useState('');
+  console.log(SearchProdFilter)
   
   const user_id = localStorage.getItem('user_id') ?? 'null';
   const cart_id = localStorage.getItem('cart_id') ?? 'null';
@@ -24,7 +26,6 @@ let Product = function(){
         .then(data => SetProduct(data))
         .catch(error => console.error(error));
    }, []);
-
 
 return(
 <>
@@ -54,9 +55,30 @@ return(
 
     {/* products */}
     <div className="col-span-3">
-      <SortedCatProduct/>
+    <div className="flex items-center mb-4">
+        <select
+          name="sort"
+          id="sort"
+          className="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary 
+          focus:border-primary">
+          <option value="">Default sorting</option>
+          <option value="price-low-to-high">Price low to high</option>
+          <option value="price-high-to-low">Price high to low</option>
+          <option value="latest">Latest product</option>
+        </select>
+      {/* Product search bar */}
+      <SearchBarProduct HandleFilter={SetSearchProdFilter} SearchProdFilter/>
+        <div className="flex gap-2 ml-auto">
+          <div className="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer">
+            <i className="fa-solid fa-grip-vertical" />
+          </div>
+          <div className="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer">
+            <i className="fa-solid fa-list" />
+          </div>
+        </div>
+      </div>
 
-      <ShopProduct products={products}/>
+      <ShopProduct products={products} SearchProdFilter={SearchProdFilter}/>
     </div>
   </div>
   {/* ./shop wrapper */}
