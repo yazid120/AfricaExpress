@@ -1,6 +1,18 @@
 import React from "react";
 
+
+let logout = function(){
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('cart_id');
+    sessionStorage.clear('user_id');
+    location.replace('/');
+}
+
 let NavBar = function(){
+  const userAuth = localStorage.getItem('user_id');
+
+
+
   const mystyle={
     width:'100%',
     justifyContent:'space-between'
@@ -47,10 +59,19 @@ let NavBar = function(){
         </div>
 
             <div>
+            {!userAuth ?
+            <>
               <a href="/SignUp" className="text-gray-300 hover:bg-gray-700
               hover:text-white px-3 py-2 rounded-md text-sm font-medium">Signup</a>
               <a href="/login" className="text-gray-300 hover:bg-gray-700
                hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+            </>
+               :
+            <>
+             <a onClick={logout} className="text-gray-300 hover:bg-gray-700 cursor-pointer
+               hover:text-white px-3 py-2 rounded-md text-sm font-medium">logout</a>
+            </>
+            }
             </div>
             </div>
           </div>

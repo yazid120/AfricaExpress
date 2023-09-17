@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 import {useState,useEffect} from "react";
 import CategorieProduct from './components/Categorie_Product';
 import ShopProduct from './components/Shop_product';
@@ -11,13 +12,21 @@ let Product = function(){
   const [products,SetProduct] = useState([]);
   const [CategoryFilter, SetCategoryFilter] = useState('all');
   const [SearchProdFilter, SetSearchProdFilter] = useState('');
-  console.log(SearchProdFilter)
-  
+  const [pageNumber, SetPageNumber] = useState(0);
+
+   {/** products pagination **/}
+   const ProductPerPage = 3;
+   const pageCount = Math.ceil(products.length / ProductPerPage);
+   const offset = pageNumber * ProductPerPage;
+   const currentPageData = products.slice(offset,ProductPerPage+offset);
+
+   const HandlePageNumber = ({selected})=>{
+     SetPageNumber(selected);
+   }
+
   const user_id = localStorage.getItem('user_id') ?? 'null';
   const cart_id = localStorage.getItem('cart_id') ?? 'null';
 
-  // console.log('user'+logged_user(user_id));
-  // console.log('cart'+exist_cart(cart_id));
 
    const api_link = "http://127.0.0.1:8000/api/product";
    useEffect(() => {
@@ -59,7 +68,7 @@ return(
         <select
           name="sort"
           id="sort"
-          className="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary 
+          className="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary
           focus:border-primary">
           <option value="">Default sorting</option>
           <option value="price-low-to-high">Price low to high</option>
@@ -78,7 +87,25 @@ return(
         </div>
       </div>
       {/*** Search Product Filter ***/}
-      <ShopProduct products={products} SearchProdFilter={SearchProdFilter}/>
+      <ShopProduct products={currentPageData} SearchProdFilter={SearchProdFilter}/>
+      {/* Product Pagination */}
+  <div className="mt-4 pl-12 pr-12	">
+    <ReactPaginate
+    color="primary"
+    previousLabel="Previous"
+    nextLabel="Next"
+    pageCount={pageCount}
+    shape="rounded"
+    onPageChange={HandlePageNumber}
+    count={10}
+    variant="outlined"
+    previousLinkClassName='px-3 py-2 border rounded-md'
+    nextLinkClassName='px-3 py-2 border rounded-md'
+    disabledClassName='text-grey-300'
+    containerClassName='pagination flex justify-around items-center mt-4'
+    activeClassName='active bg-blue-500 text-white rounded-full p-2 pt-0.5 pb-0.5'/>
+  </div>
+
     </div>
   </div>
   {/* ./shop wrapper */}

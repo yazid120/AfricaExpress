@@ -31,8 +31,8 @@ function ProductTable(){
     SetPageNumber(selected);
   }
 
-  console.log(pageNumber);
-  console.log('offset', offset)
+  // console.log(pageNumber);
+  // console.log('offset', offset)
 
   return(
     <>

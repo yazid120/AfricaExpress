@@ -16,7 +16,7 @@ class ProductsController extends Controller
 
     }
     public function show(){
-     $product = Product::all();
+     $product = DB::table('products')->orderBy('id','desc')->get();
      return response()->json($product);
     }
 
@@ -47,8 +47,9 @@ class ProductsController extends Controller
         'product'=> $product
        ]);
 
-        $products = DB::table('products')->get();
-        return response()->json([$products]);
+        // $products = DB::table('products')->where('id',$product->id)->get();
+        // $category = DB::table('categories')->get();
+        // return response()->json([$products]);
     }
     #Update product admin
     public function update(){

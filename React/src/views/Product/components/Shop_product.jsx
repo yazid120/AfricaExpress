@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+
 
 let logged_user = (id)=>{
   if(id === null){
@@ -21,10 +23,9 @@ let AddToCart = (e)=>{
 }
 
 function ShopProduct({products,SearchProdFilter}){
-  {/* products images path uri */}
+  const [productelement, Setproductelement] = useState([]);
   const image_path_uri = '../src/assets/images/Products/';
 
-  
   return(
     <>
      <div className="">
@@ -53,8 +54,9 @@ function ShopProduct({products,SearchProdFilter}){
   ))
  }
 </ul>
-        </div>
-      </div>
+
+ </div>
+</div>
     </>
   )
 }
