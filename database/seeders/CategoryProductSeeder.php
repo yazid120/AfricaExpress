@@ -15,7 +15,11 @@ class CategoryProductSeeder extends Seeder
     {
 
         $Categories = [
-            ["Grocery & Gourmet Foods", "The Grocery & Gourmet Foods category is a diverse and essential segment of the food industry that encompasses a wide range of products designed to meet consumers' culinary needs and preferences. This category includes everything from basic staples to specialty items, with an emphasis on high-quality and unique food products"],
+            ["cat_name "=>"Grocery & Gourmet Foods",
+             "description"=>"The Grocery & Gourmet Foods category is a diverse and essential segment of the food
+             industry that encompasses a wide range of products designed to meet consumers' culinary needs
+             and preferences. This category includes everything from basic staples to specialty items, with
+              an emphasis on high-quality and unique food products"],
         ];
 
         foreach ($Categories as $Category) {
