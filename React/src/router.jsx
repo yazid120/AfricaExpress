@@ -11,7 +11,7 @@ import Home from "./views/home";
 import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import ResetPassword from "./views/Auth/ResetPassword";
-import ProductArticle from "./views/Product/Product_article";
+import ProductArticle from "./views/Product/Part/Product_article";
 import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
 
@@ -64,7 +64,7 @@ const Routing = function(){
     {/* Guest Layout routes */}
     <Route path="/" element={<Guest_layout/>}>
     <Route index element={<Home/>}/>
-    <Route path="/product/${id}" element={<ProductArticle/>}/>
+    <Route path="/product/article/:id" element={<ProductArticle/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>

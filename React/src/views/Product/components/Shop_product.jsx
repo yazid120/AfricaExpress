@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 
 
 let logged_user = (id)=>{
@@ -26,10 +27,13 @@ function ShopProduct({products,SearchProdFilter}){
   const [productelement, Setproductelement] = useState([]);
   const image_path_uri = '../src/assets/images/Products/';
 
+  async function HandleProductArticle(productArticleID){
+    location.href=`http://127.0.0.1:5000/product/article/${productArticleID}`;
+  }
+
   return(
     <>
-     <div className="">
-        <div className="">
+    <div className="">
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 m-4">
 
   {
@@ -40,7 +44,8 @@ function ShopProduct({products,SearchProdFilter}){
       return val;
      }
     }).map(product=>(
-     <li key={product.id} className="product_el_wrapp bg-white rounded-lg p-4 shadow-md cursor-pointer">
+     <li key={product.id} className="product_el_wrapp bg-white rounded-lg p-4 shadow-md cursor-pointer"
+     onClick={()=>HandleProductArticle(product.id)}>
       <img src={image_path_uri+product.image} alt={product.name} className="h-auto p-8 rounded-t-lg" />
       <h3 className="text-xl font-semibold mt-2 taxt-black" value={product.name}>{product.name}</h3>
     <p className="text-green-600 font-semibold"><span className='text-black'>Price: </span>{product.price_unit}$</p>
@@ -54,9 +59,7 @@ function ShopProduct({products,SearchProdFilter}){
   ))
  }
 </ul>
-
  </div>
-</div>
     </>
   )
 }

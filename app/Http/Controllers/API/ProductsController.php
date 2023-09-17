@@ -12,9 +12,11 @@ use App\Models\Category;
 
 class ProductsController extends Controller
 {
-    public function index(){
-
+    public function index(Request $request){
+      $product_article = product::all()->where('id',$request->id)->first();
+      return response()->json($product_article);
     }
+
     public function show(){
      $product = DB::table('products')->orderBy('id','desc')->get();
      return response()->json($product);

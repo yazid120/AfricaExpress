@@ -1,11 +1,18 @@
 import React from "react";
 
+function GetProductArticle(link_api,SetproductID){
+  useEffect(()=>{
+    SetproductID(
+    axios.get(link_api).then(response=>{
+       console.log(response.data);
+    })
+    )
+  })
+}
 
-
-function ProductArticle(){
+function ProductArticle({id}){
   return(
     <>
-
   {/* breadcrumb */}
   <div className="container py-4 flex items-center gap-3">
     <a href="../index.html" className="text-primary text-base">

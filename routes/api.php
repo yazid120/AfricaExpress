@@ -35,9 +35,8 @@ Route::post('/login', [AuthController::class,'login']);
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
 
 
-
 //Product Api Controller
-Route::post('/product',[ProductsController::class, 'index']);
+Route::get('/product/{id}', [ProductsController::class, 'index']);
 Route::get('/product',[ProductsController::class, 'show']);
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
 // Route::get('/admin/product/create', [ProductsController::class, 'create']);

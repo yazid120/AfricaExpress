@@ -7,7 +7,6 @@ import ShopProduct from './components/Shop_product';
 import SearchBarProduct from './components/Search_Bar_product';
 
 
-
 let Product = function(){
   const [products,SetProduct] = useState([]);
   const [CategoryFilter, SetCategoryFilter] = useState('all');
