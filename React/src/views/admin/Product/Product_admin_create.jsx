@@ -21,34 +21,31 @@ function ProductAdmin(){
   const [productQte, SetProductQte] = useState('');
   const [productCategory, SetProductCategory] = useState('');
 
-  // const onImageChange = (event) => {
-  //   if (event.target.files && event.target.files[0]) {
-  //     SetProductImage(URL.createObjectURL(event.target.files[1]));
-  //   }
-  // }
-
-  {/** extract Categories product**/}
+  {/** Handle product image **/}
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    SetProductImage(file);
+  };
+  {/** extract Categories product api **/}
   const Categories_product = Getcategories('http://localhost:8000/api/admin/product/category/index',SetCategories);
 
   async function HandleAddProduct(e){
     e.preventDefault();
     const link_api ='http://localhost:8000/api/admin/product/create';
     const formData = {
-      'Product_image_uri': productImage,
-      'Product_name': productName,
-      'Product_price': productPrice,
-      'Product_quantity': productQte,
-      'Product_Category': productCategory
+      'product_image': productImage.name,
+      'Product_image_size': productImage.size,
+      'Product_image_fromat': productImage.type,
+      'name': productName,
+      'price_unit': productPrice,
+      'product_quantity': productQte,
+      'product_category': productCategory
     }
 try{
-    await axios.post(link_api,formData,
-    {headers:{
-      'Content-type':'multipart/format-data'
-    },
-  }).then(response=>{
+    await axios.post(link_api,formData).then(response=>{
       console.log(response.data);
     })
-}catch(error){
+  }catch(error){
       // console.error(error);
     }
   }
@@ -66,7 +63,9 @@ try{
     <div className="product">
       <form id="add-product-form" className="space-y-4" onSubmit={HandleAddProduct}>
         <div className="product__image relative">
-          <div className="product__preview border border-gray-300 rounded h-32 w-32"></div>
+          <div className="product__preview border border-gray-300 rounded h-32 w-32">
+            <image />
+          </div>
           <div className="product__overlay absolute top-0 left-0 h-full w-full flex items-center justify-center bg-gray-800 bg-opacity-50 opacity-0 hover:opacity-100">
             <label htmlFor="product_image" className="cursor-pointer text-white bg-blue-500 hover:bg-blue-600 px-2 py-1 rounded">
               Upload Image
@@ -74,11 +73,10 @@ try{
             <input
               id="product_image"
               type="file"
-              name="product_image[]"
-              multiple=""
-              accept="image/*"
+              name="product_image"
+              multiple="" accept="image/*"
               className="hidden"
-              onChange={(e)=>SetProductImage(e.target.files[0])}
+              onChange={handleImageChange}
             />
           </div>
         </div>
@@ -88,7 +86,7 @@ try{
             <input
               type="text"
               id="product_name"
-              name="product_name"
+              name="name"
               placeholder="Enter Product Name"
               className="w-full border border-gray-300 rounded px-2 py-1"
               onChange={(e)=>SetProductName(e.target.value)}
@@ -99,7 +97,7 @@ try{
             <input
               type="number"
               id="product_price"
-              name="product_price"
+              name="price_unit"
               placeholder="Enter Product Price"
               className="w-full border border-gray-300 rounded px-2 py-1"
               onChange={(e)=>SetProductPrice(e.target.value)}
@@ -127,7 +125,7 @@ try{
               onChange={(e)=>SetProductCategory(e.target.value)}>
               {
                 Categories.map((categorie, key)=>(
-                  <option key={key} id={categorie.id}>{categorie.cat_name}</option>
+                  <option key={key} id={categorie.id} name="product_category">{categorie.cat_name}</option>
                 ))
               }
               </select>

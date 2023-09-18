@@ -5,13 +5,13 @@ import Navbar_admin from "./Dashboard/partials/Navbar_admin";
 
 
 function CategorieProdAdmin(){
-  const [nameCategory,SetNameCategory] = useState(''); 
-  const [descriptionCategory,SetdescriptionCategory] = useState(''); 
+  const [nameCategory,SetNameCategory] = useState('');
+  const [descriptionCategory,SetdescriptionCategory] = useState('');
 
   async function HandleCategoryProduct(e){
     e.preventDefault();
-    const FormData = { 
-      'cat_name':nameCategory, 
+    const FormData = {
+      'cat_name':nameCategory,
       'product_Category_description':descriptionCategory
     }
     const Link_api = 'http://localhost:8000/api/admin/product/category';
@@ -20,7 +20,7 @@ function CategorieProdAdmin(){
       console.log(response.data);
      })
     }catch(error){
-      //console.log(error); 
+      //console.log(error);
     }
   }
 
@@ -29,7 +29,7 @@ function CategorieProdAdmin(){
        <Navbar_admin/>
 
 <div style={{
-  position:'relative', 
+  position:'relative',
   top:'4.3rem'
 }}>
   <div className="wrapper mx-auto max-w-md p-4">
@@ -72,4 +72,4 @@ function CategorieProdAdmin(){
     </>
   )
 }
-export default CategorieProdAdmin; 
+export default CategorieProdAdmin;

@@ -29,18 +29,18 @@ class ProductsController extends Controller
     #Create product admin
     public function create(Request $request){
 
-       $validator = $request->validate([
-        'name' => 'required|max:255|min:5|unique:products',
-        'price_unite' => 'required',
-        'image' => 'required',
-        'quantity' => 'required|min:1'
-       ]);
+    //    $validator = $request->validate([
+    //     'name' => 'required|max:255|min:5|unique:products',
+    //     'price_unit' => 'required|numeric',
+    //     'product_image' => 'required',
+    //     'product_quantity' => 'required|integer|min:1'
+    //    ]);
 
        $product = product::create([
-        'name'=> $request->Product_name,
-        'price_unit'=> $request->Product_price,
-        'image' => $request->Product_image_uri,
-        'quantity' => $request->Product_quantity
+        'name' => 'Logitech G502 HERO Wired Gaming Mouse',
+        'price_unit' => '49.99', 
+        'image' => 'Logitech_G502_Hero.jpg',
+        'quantity' => 8,
        ]);
 
        return response()->json([

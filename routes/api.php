@@ -39,7 +39,7 @@ Route::get('/profile/{id}', [ProfileController::class, 'index']);
 Route::get('/product/{id}', [ProductsController::class, 'index']);
 Route::get('/product',[ProductsController::class, 'show']);
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
-// Route::get('/admin/product/create', [ProductsController::class, 'create']);
+Route::get('/admin/product/create', [ProductsController::class, 'create']);
 
 //Admin Authentications Api Controller
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
