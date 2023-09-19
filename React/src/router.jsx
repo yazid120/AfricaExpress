@@ -16,7 +16,10 @@ import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
 
 const Profile = React.lazy(()=> import("./views/Profile/Profile"));
-const ChangePwdProfile = React.lazy(()=> import("./views/Profile/components/ChangePwdProfile"));
+const ChangePwdProfile = React.lazy(()=> import("./views/Profile/Settings/ChangePwdProfile"));
+const OrderHistory = React.lazy(()=> import("./views/Profile/Settings/OrderHistory"));
+const ManageAddress = React.lazy(()=> import("./views/Profile/Settings/ManageAddress"));
+const ProfileInformation = React.lazy(()=> import("./views/Profile/Settings/ProfileInformation"));
 
 import NotFound_404 from "./views/404_NotFound";
 
@@ -35,7 +38,7 @@ function Guest_layout(){
   return(
     <>
     <NavBar/>
-    <Outlet/>
+     <Outlet/>
     <Footer/>
     </>
   )
@@ -62,7 +65,7 @@ const Routing = function(){
   <Suspense>
    <Routes>
     {/* Guest Layout routes */}
-    <Route path="/" element={<Guest_layout/>}>
+  <Route path="/" element={<Guest_layout/>}>
     <Route index element={<Home/>}/>
     <Route path="/product/article/:id" element={<ProductArticle/>}/>
     <Route path="/login" element={<Login/>}/>
@@ -75,11 +78,11 @@ const Routing = function(){
 
     <Route path="/cart" element={userAuth ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/Wishlist" element={<Wishlist/>}/>
-    </Route>
+  </Route>
 
 
     {/* Admin Layout routes */}
-    <Route path="/admin" element={<Admin_layout/>}>
+  <Route path="/admin" element={<Admin_layout/>}>
     <Route index element={<Admin/>}/>
     <Route path="/admin/login" element={<LoginAdmin/>}/>
     <Route path="/admin/signup" element={<SignupAdmin/>}/>
@@ -87,11 +90,11 @@ const Routing = function(){
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>
     <Route path="/admin/product/category" element={<CategorieProdAdmin/>}/>
-    </Route>
+  </Route>
 
     {/* 404 page not found route */}
-    <Route path='/404' element={<NotFound_404/>}/>
-    <Route path='*' element={<Navigate to='/404'/>}/>
+    <Route path='*' element={<NotFound_404/>}/>
+    {/* <Route path='*' element={<Navigate to='/404'/>}/> */}
 
    </Routes>
    </Suspense>
