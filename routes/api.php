@@ -8,6 +8,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\BrandsController;
 use App\Models\Category;
 
 /*
@@ -41,10 +42,12 @@ Route::get('/product',[ProductsController::class, 'show']);
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
 Route::get('/admin/product/create', [ProductsController::class, 'create']);
 
+Route::get('/product/brands/index', [BrandsController::class, 'index']); 
+
+
 //Admin Authentications Api Controller
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
 Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']);
 
 Route::get('/admin/product/category/index', [CategoryController::class, 'index']);
-Route::get('/admin/product/category', [CategoryController::class, 'create']);
 Route::post('/admin/product/category', [CategoryController::class, 'create']);

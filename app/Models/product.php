@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Wishlist;
 use App\Models\WishlistItem;
 use App\Models\ProductImage;
+use App\Models\Brands; 
 
 class product extends Model
 {
@@ -36,6 +37,9 @@ class product extends Model
     // Product image relation
     public function ProductImage(){
         return $this->hasMany(ProductImage::class);
+    }
+    public function ProductBrand(){
+        return $this->hasOne(Brands::class); 
     }
 
 }
