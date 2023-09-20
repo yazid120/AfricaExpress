@@ -1,21 +1,14 @@
 import React from "react";
 import axios from "axios";
 import {useEffect,useState} from "react";
+import SideBarProfile from "./components/SideBarProfile";
+import GetUser from "./components/User_Info/GetUserInfo";
 
-
-async function GetUser(UserId, SetUserId){
-    useEffect(()=>{
-     axios.get(`http://localhost:8000/api/profile/${UserId}`).then(response=>{
-      SetUserId(response.data);
-     })
-    },[])
-}
 
 let Profile = function(){
   const [user, Setuser] = useState([]);
   const UserId = localStorage.getItem('user_id');
   const User_infos = GetUser(UserId,Setuser);
-  console.log(user)
 
   return(
     <>
@@ -36,7 +29,7 @@ let Profile = function(){
         <div className="px-4 py-3 shadow flex items-center gap-4">
           <div className="flex-shrink-0">
             <img
-              src="../assets/images/avatar.png"
+              src="../src/assets/images/Profile/default/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.webp"
               alt="profile"
               className="rounded-full w-14 h-14 border border-gray-200 p-1 object-cover"
             />
@@ -46,99 +39,11 @@ let Profile = function(){
             <h4 className="text-gray-800 font-medium">{user.name}</h4>
           </div>
         </div>
-        <div className="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
-          <div className="space-y-1 pl-8">
 
-            <a
-              href="#"
-              className="relative hover:text-primary block capitalize transition"
-            >
-              Profile information
-            </a>
-            <a
-              href="#"
-              className="relative hover:text-primary block capitalize transition"
-            >
-              Manage addresses
-            </a>
-            <a
-              href="/profile/Change_password"
-              className="relative hover:text-primary block capitalize transition"
-            >
-              Change password
-            </a>
-          </div>
-          <div className="space-y-1 pl-8 pt-4">
-            <a
-              href="#"
-              className="relative hover:text-primary block font-medium capitalize transition"
-            >
-              <span className="absolute -left-8 top-0 text-base">
-                <i className="fa-solid fa-box-archive" />
-              </span>
-              My order history
-            </a>
-            <a
-              href="#"
-              className="relative hover:text-primary block capitalize transition"
-            >
-              My returns
-            </a>
-            <a
-              href="#"
-              className="relative hover:text-primary block capitalize transition"
-            >
-              My Cancellations
-            </a>
-            <a
-              href="#"
-              className="relative hover:text-primary block capitalize transition"
-            >
-              My reviews
-            </a>
-          </div>
-          <div className="space-y-1 pl-8 pt-4">
-            <a
-              href="#"
-              className="relative hover:text-primary block font-medium capitalize transition"
-            >
-              <span className="absolute -left-8 top-0 text-base">
-                <i className="fa-regular fa-credit-card" />
-              </span>
-              Payment methods
-            </a>
-            <a
-              href="#"
-              className="relative hover:text-primary block capitalize transition"
-            >
-              voucher
-            </a>
-          </div>
-          <div className="space-y-1 pl-8 pt-4">
-            <a
-              href="#"
-              className="relative hover:text-primary block font-medium capitalize transition"
-            >
-              <span className="absolute -left-8 top-0 text-base">
-                <i className="fa-regular fa-heart" />
-              </span>
-              My wishlist
-            </a>
-          </div>
-          <div className="space-y-1 pl-8 pt-4">
-            <a
-              href="#"
-              className="relative hover:text-primary block font-medium capitalize transition"
-            >
-              <span className="absolute -left-8 top-0 text-base">
-                <i className="fa-regular fa-arrow-right-from-bracket" />
-              </span>
-              Logout
-            </a>
-          </div>
-        </div>
+        {/* side bar profile */}
+        <SideBarProfile/>
       </div>
-      {/* ./sidebar */}
+
       {/* info */}
       <div className="col-span-9 grid grid-cols-3 gap-4">
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">

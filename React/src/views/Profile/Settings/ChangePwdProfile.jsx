@@ -3,9 +3,9 @@ import {useState} from "react";
 
 
 function ChangePwdProfile(){
-  const [currentPassword, SetcurrentPassword] = useState([]);
-  const [newPassword, SetnewPassword] = useState([]);
-  const [confirmNewPassword, SetconfirmNewPassword] = useState([]);
+  const [currentPassword, SetcurrentPassword] = useState('');
+  const [newPassword, SetnewPassword] = useState('');
+  const [confirmNewPassword, SetconfirmNewPassword] = useState('');
 
   async function handleChangePassword(e){
     e.preventDefault();
@@ -14,7 +14,6 @@ function ChangePwdProfile(){
       'newPassword': newPassword,
       'confirmNewPassword': confirmNewPassword
     }
-    console.log(formatData);
   }
   return(
     <>

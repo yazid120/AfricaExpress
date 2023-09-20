@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Children,Suspense } from "react";
-import { useNavigate } from "react-router-dom";
 import { lazy } from 'react';
 import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet,Navigate } from "react-router-dom";
 import App from "./App";
@@ -21,6 +20,7 @@ const ChangePwdProfile = React.lazy(()=> import("./views/Profile/Settings/Change
 const OrderHistory = React.lazy(()=> import("./views/Profile/Settings/OrderHistory"));
 const ManageAddress = React.lazy(()=> import("./views/Profile/Settings/ManageAddress"));
 const ProfileInformation = React.lazy(()=> import("./views/Profile/Settings/ProfileInformation"));
+const ContactDetails = React.lazy(()=>import("./views/Profile/components/ContactDetails"));
 
 import NotFound_404 from "./views/404_NotFound";
 
@@ -46,15 +46,22 @@ function Guest_layout(){
   )
 }
 
-function Admin_layout(){
-  const navigate = useNavigate();
-  const Admin_auth = localStorage.getItem('admin_id');
+function Auth_layout(){
+  const User_auth = localStorage.getItem('user_id');
+  return(
+    <>
+    <NavBar/>
+    {User_auth ?
+      <Outlet/>:
+      <Navigate to={{pathname:'/login'}}/>
+    }
+    <Footer/>
+    </>
+  )
+}
 
-  // useEffect(()=>{
-  //   if(!Admin_auth){
-  //     navigate('/admin/login')
-  //   }
-  // },[Admin_auth,navigate]);
+function Admin_layout(){
+  const Admin_auth = localStorage.getItem('admin_id');
 
  return(
      Admin_auth ? <Admin/>  : <Outlet/>
@@ -73,15 +80,18 @@ const Routing = function(){
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
-    <Route path="/profile" element=
-    {userAuth ? <Profile/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
-     <Route path="/profile/Change_password" element=
-    {userAuth ? <ChangePwdProfile/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
-
     <Route path="/cart" element={userAuth ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
-    <Route path="/Wishlist" element={<Wishlist/>}/>
+    <Route path="/Wishlist" element={userAuth ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
   </Route>
 
+<Route path="/profile" element={<Auth_layout/>}>
+   <Route index element={<Profile/>}/>
+   <Route path="/profile/Change_password" element={<ChangePwdProfile/>}/>
+   <Route path="/profile/OrderHistory" element={<OrderHistory/>}/>
+   <Route path="/profile/ManageAddress" element={<ManageAddress/>}/>
+   <Route path="/profile/ProfileInformation" element={<ProfileInformation/>}/>
+   <Route path="/profile/ProfileInformation/ContactDetails" element={<ContactDetails/>}/>
+</Route>
 
     {/* Admin Layout routes */}
   <Route path="/admin" element={<Admin_layout/>}>
@@ -92,7 +102,7 @@ const Routing = function(){
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>
 
-    
+
     <Route path="/admin/product/category/show" element={<CategorieProdAdminShow/>}/>
     <Route path="/admin/product/category/create" element={<CategorieProdAdminCreate/>}/>
     <Route path="/admin/product/category/update" element={<CategorieProdAdminUpdate/>}/>

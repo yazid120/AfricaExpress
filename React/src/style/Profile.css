@@ -1,0 +1,100 @@
+
+
+/* profile information */
+.a-section{
+    background-color: #ddd;
+    padding: 1.5rem;
+    border-radius: 3px;
+    margin-bottom: 0.2rem;
+}
+.a-section-contact{
+    -webkit-box-sizing: border-box;
+    -webkit-box-direction: normal;
+    display: block;
+    box-sizing: border-box;
+    background-color: rgb(235, 232, 232);
+    padding: 1.5rem;
+    margin-bottom: 0.2rem;
+    border-radius: 4px;
+    border: 1px #6A6A6A solid;
+}
+.name-edit-icon{
+    width: 15px;
+    margin-left: 5px;
+}
+.name-edit-section-left{
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+}
+.manage-profiles-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  .manage-profiles-form h2 {
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    display: block;
+    font-weight: bold;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .text_side_contact{
+    font-size: 12px;
+  }
+  .wrapper_mobileNumber{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .save_updateProfile{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  }
+  .save_updateProfile:hover{
+    background-color: #0056b3;
+  }
+
+
+/* Contact details */
+.box_wrappe_element_contact{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: rgb(239, 239, 239);
+    border: 1px solid #6A6A6A;
+    border-radius: 5px;
+    padding: 1.5rem;
+    width: 30%;
+}
+.btn-contact-details{
+    border-radius: 4px;
+    padding: 0.4rem;
+}
+.phone-input{
+    width: 60%;
+}
+.notice_contact-num{
+    font-size: 13px;
+    color: #4c4c4c;
+}
