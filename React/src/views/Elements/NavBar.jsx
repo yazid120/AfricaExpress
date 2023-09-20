@@ -12,11 +12,7 @@ let NavBar = function(){
   const userAuth = localStorage.getItem('user_id');
 
 
-
-  const mystyle={
-    width:'100%',
-    justifyContent:'space-between'
-  }
+  const mystyle={width:'auto', gap:'1rem'}
   return(
   <>
     <nav className="bg-gray-800">
@@ -25,15 +21,14 @@ let NavBar = function(){
           <div className="flex items-center">
             <a href="/" className="text-white">Logo</a>
           </div>
-          <div className="hidden md:block">
-
-            <div className="ml-10 flex items-baseline space-x-4" style={mystyle}>
-            <div style={mystyle}>
+          <div style={mystyle} className="navigation_items">
               <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
               <a href="/about" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
               <a href="/services" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
               <a href="/contact" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-            </div>
+          </div>
+          <div className="hidden md:block">
+            <div className="flex items-baseline space-x-4" style={mystyle}>
 
         <div className="flex items-center space-x-4">
         {/* Cart item */}

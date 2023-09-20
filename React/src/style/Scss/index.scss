@@ -1,0 +1,40 @@
+$color_1: #0000;
+$font-family_1: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+$background-color_1: #989e9d;
+
+/* product wrapp box style */
+&:root {
+	font-family: $font-family_1;
+	line-height: 1.5;
+	font-weight: 400;
+	background-color: $background-color_1;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+.product_el_wrapp {
+	-webkit-box-sizing: border-box;
+	-webkit-box-direction: normal;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	.h3 {
+		color: $color_1;
+	}
+}
+.navigation_items {
+	-webkit-box-sizing: border-box;
+	-webkit-box-direction: normal;
+	box-sizing: border-box;
+	display: flex;
+	gap: 2rem;
+}
+footer {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-top: 2rem;
+}
