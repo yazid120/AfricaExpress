@@ -33,6 +33,15 @@
 }
 
 
+.navigation_items{
+    -webkit-box-sizing: border-box;
+    -webkit-box-direction: normal;
+    box-sizing: border-box;
+    display: flex;
+    gap: 2rem;
+}
+
+
 footer{
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
