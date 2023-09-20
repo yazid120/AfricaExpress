@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Children,Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 import { lazy } from 'react';
 import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet,Navigate } from "react-router-dom";
 import App from "./App";
@@ -20,13 +21,14 @@ const ChangePwdProfile = React.lazy(()=> import("./views/Profile/components/Chan
 
 import NotFound_404 from "./views/404_NotFound";
 
-
-import { useNavigate } from "react-router-dom";
 {/*** Admin layouts components ***/}
 const Admin = React.lazy( ()=> import("./views/admin/admin"));
 const LoginAdmin = React.lazy( ()=> import("./views/admin/login_admin"));
 const SignupAdmin = React.lazy( ()=> import("./views/admin/Signup_admin"));
-const CategorieProdAdmin = React.lazy( ()=> import("./views/admin/Categories_admin"));
+const CategorieProdAdminCreate = React.lazy( ()=> import("./views/admin/Category/Categories_admin_create"));
+const CategorieProdAdminShow = React.lazy( ()=> import("./views/admin/Category/Categories_admin_show"));
+const CategorieProdAdminUpdate = React.lazy( ()=> import("./views/admin/Category/Categories_admin_update"));
+
 const ProductAdminCreate = React.lazy( ()=> import("./views/admin/Product/Product_admin_create"));
 const ProductAdminShow = React.lazy( ()=> import("./views/admin/Product/Product_admin_show"));
 const ProductAdminUpdate = React.lazy( ()=> import("./views/admin/Product/Product_admin_update"));
@@ -86,7 +88,10 @@ const Routing = function(){
     <Route path="/admin/product/create" element={<ProductAdminCreate/>}/>
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>
-    <Route path="/admin/product/category" element={<CategorieProdAdmin/>}/>
+    
+    <Route path="/admin/product/category/show" element={<CategorieProdAdminShow/>}/>
+    <Route path="/admin/product/category/create" element={<CategorieProdAdminCreate/>}/>
+    <Route path="/admin/product/category/update" element={<CategorieProdAdminUpdate/>}/>
     </Route>
 
     {/* 404 page not found route */}

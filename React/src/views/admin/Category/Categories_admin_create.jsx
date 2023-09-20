@@ -1,10 +1,10 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import axios from "axios";
-import Navbar_admin from "./Dashboard/partials/Navbar_admin";
+import Navbar_admin from "../Dashboard/partials/Navbar_admin";
 
 
-function CategorieProdAdmin(){
+function CategorieProdAdminCreate(){
   const [nameCategory,SetNameCategory] = useState('');
   const [descriptionCategory,SetdescriptionCategory] = useState('');
 
@@ -72,4 +72,4 @@ function CategorieProdAdmin(){
     </>
   )
 }
-export default CategorieProdAdmin;
+export default CategorieProdAdminCreate;

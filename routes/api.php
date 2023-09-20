@@ -50,4 +50,4 @@ Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
 Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']);
 
 Route::get('/admin/product/category/index', [CategoryController::class, 'index']);
-Route::post('/admin/product/category', [CategoryController::class, 'create']);
+Route::post('/admin/product/category/create', [CategoryController::class, 'create']);

@@ -33,9 +33,21 @@
 }
 
 
-
 footer{
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin-top: 2rem;
+}
+
+.description-cell {
+  max-width: 580px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+.CategoryName-cell{
+  max-width: 120px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }

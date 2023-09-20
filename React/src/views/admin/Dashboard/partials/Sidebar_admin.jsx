@@ -52,10 +52,14 @@ export default function Sidebar_admin(){
             </button>
             <ul id="dropdown-crud">
               <li className="mb-2">
-                <a href="/admin/products" className="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 bg-gray-100 dark:bg-gray-700">Products</a>
+                <a href="http://localhost:5000/admin/product/show" className="text-base text-gray-900 rounded-lg flex items-center p-2 group
+                 hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 bg-gray-100 
+                 dark:bg-gray-700">Products</a>
               </li>
               <li className="mb-2">
-                <a href="/admin/products/categories" className="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 bg-gray-100 dark:bg-gray-700">Categories</a>
+                <a href="/admin/products/categories" className="text-base text-gray-900 rounded-lg flex items-center p-2 group 
+                hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 
+                bg-gray-100 dark:bg-gray-700">Categories</a>
               </li>
               <li>
                 <a href="/admin/users" className="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 bg-gray-100 dark:bg-gray-700">Users</a>

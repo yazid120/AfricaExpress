@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
+import {useParams} from "react-router-dom";
+import axios from "axios";
+
 
 function GetProductArticle(link_api,SetproductID){
   useEffect(()=>{
-    SetproductID(
     axios.get(link_api).then(response=>{
-       console.log(response.data);
+    SetproductID(response.data);
     })
-    )
-  })
+    
+  },[])
 }
 
-function ProductArticle({id}){
+function ProductArticle(){
+  const {id} = useParams();
+  const [ProductArticle, SetProductArticle] = useState([]);
+  const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle); 
+  
+  console.log(ProductArticle);
   return(
     <>
   {/* breadcrumb */}

@@ -10,7 +10,8 @@ use Illuminate\Contracts\View\View;
 class CategoryController extends Controller
 {
     public function index(){
-        return Category::all(); 
+        $categories = Category::all(); 
+        return response()->json($categories);
     }
 
     public function create(Request $request)
@@ -31,11 +32,21 @@ class CategoryController extends Controller
         ],201);
     }
 
-    public function update(){
+    public function update(Request $request, $id){
+      $request_validation = $request->validate([
+        'name'=>'required|min:6',
+      ]);
 
+      $category = Category::findOrFail($id);    
+
+      # update category product
+      $category->update($request_validation); 
+
+      return response()->json(['status'=>'ok', 'message'=>'Category updated successfuly !!']);
     }
+
     public function delete($id){
-        $category = Category::find($id); 
+        $category = Category::findOrFail($id); 
         if(!$category){
             return response()->json([
                 'status'=>'error',
@@ -45,7 +56,7 @@ class CategoryController extends Controller
         # delete category product
         $category->delete();
         return response()->json([
-            'status'=>'success',
+            'status'=>'ok',
             'message'=>'Category product deleted successfuly',
             'category_product'=>$category
         ]);

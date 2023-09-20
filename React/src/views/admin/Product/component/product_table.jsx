@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const productData = async function(link,SetData){
@@ -22,7 +23,7 @@ function ProductTable(){
   const productsElements = productData('http://localhost:8000/api/product',Setproductelement);
 
   // products pagination
-  const ProductPerPage = 2;
+  const ProductPerPage = 4;
   const pageCount = Math.ceil(productelement.length / ProductPerPage);
   const offset = pageNumber * ProductPerPage;
   const currentPageData = productelement.slice(offset,ProductPerPage+offset);
@@ -31,17 +32,17 @@ function ProductTable(){
     SetPageNumber(selected);
   }
 
-  // console.log(pageNumber);
-  // console.log('offset', offset)
-
   return(
     <>
     <div style={{
   position:'relative',
   top:'4.3rem'
 }}>
+  <div className='flex justify-between p-4'>
       <h1 className="text-2xl font-bold mb-4">Product List</h1>
-      <table className="min-w-full divide-y divide-gray-200">
+      <Link className='rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/product/create">+ add new product</Link>
+  </div>
+      <table className="min-w-full w-full divide-y divide-gray-200">
         <thead>
           <tr className='bg-sky-600'>
             <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
@@ -80,10 +81,11 @@ function ProductTable(){
               <td className="px-6 py-4 whitespace-nowrap">{product.image}</td>
               <td className="px-6 py-4 whitespace-nowrap">{product.quantity}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button>update</button>
+                <Link className="rounded flex items-center justify-center p-2" style={{backgroundColor:'orange'}}
+                to='http://localhost:5000/admin/product/update'>update</Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button>delete</button>
+                <button className="rounded flex items-center justify-center p-2" style={{backgroundColor:'red'}}>delete</button>
               </td>
             </tr>
           ))}
