@@ -15,6 +15,7 @@ import ProductArticle from "./views/Product/Part/Product_article";
 import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
 
+{/*** Profile layouts components/pages ***/}
 const Profile = React.lazy(()=> import("./views/Profile/Profile"));
 const ChangePwdProfile = React.lazy(()=> import("./views/Profile/Settings/ChangePwdProfile"));
 const OrderHistory = React.lazy(()=> import("./views/Profile/Settings/OrderHistory"));
@@ -24,10 +25,14 @@ const ContactDetails = React.lazy(()=>import("./views/Profile/components/Contact
 
 import NotFound_404 from "./views/404_NotFound";
 
-{/*** Admin layouts components ***/}
+{/*** Admin layouts components/pages ***/}
 const Admin = React.lazy( ()=> import("./views/admin/admin"));
 const LoginAdmin = React.lazy( ()=> import("./views/admin/login_admin"));
 const SignupAdmin = React.lazy( ()=> import("./views/admin/Signup_admin"));
+const UserAdminShow = React.lazy( ()=> import("./views/admin/User/user_admin_show"));
+const UserAdminCreate = React.lazy( ()=> import("./views/admin/User/user_admin_create"));
+const UserAdminUpdate = React.lazy( ()=> import("./views/admin/User/user_admin_update"));
+
 const CategorieProdAdminCreate = React.lazy( ()=> import("./views/admin/Category/Categories_admin_create"));
 const CategorieProdAdminShow = React.lazy( ()=> import("./views/admin/Category/Categories_admin_show"));
 const CategorieProdAdminUpdate = React.lazy( ()=> import("./views/admin/Category/Categories_admin_update"));
@@ -66,7 +71,6 @@ function Auth_layout(){
 
 function Admin_layout(){
   const Admin_auth = localStorage.getItem('admin_id');
-
  return(
      Admin_auth ? <Admin/>  : <Outlet/>
   )
@@ -102,6 +106,9 @@ const Routing = function(){
     <Route index element={<Admin/>}/>
     <Route path="/admin/login" element={<LoginAdmin/>}/>
     <Route path="/admin/signup" element={<SignupAdmin/>}/>
+    <Route path="/admin/user/add" element={<UserAdminCreate/>}/>
+    <Route path="/admin/user/update/:id" element={<UserAdminUpdate/>}/>
+    <Route path="/admin/user/show" element={<UserAdminShow/>}/>
     <Route path="/admin/product/create" element={<ProductAdminCreate/>}/>
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>

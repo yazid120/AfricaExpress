@@ -34,10 +34,7 @@ function ProductTable(){
 
   return(
     <>
-    <div style={{
-  position:'relative',
-  top:'4.3rem'
-}}>
+    <div style={{position:'relative',top:'4.3rem'}}>
   <div className='flex justify-between p-4'>
       <h1 className="text-2xl font-bold mb-4">Product List</h1>
       <Link className='border_btn text-s text-white font-semi-bold rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/product/create">+ add new product</Link>
@@ -81,12 +78,12 @@ function ProductTable(){
               <td className="px-6 py-4 whitespace-nowrap">{product.image}</td>
               <td className="px-6 py-4 whitespace-nowrap">{product.quantity}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Link className="border_btn rounded flex items-center justify-center p-2" style={{backgroundColor:'orange'}}
+                <Link className="border_btn rounded flex items-center justify-center p-2" style={{backgroundColor:'#ffa5008a'}}
                 to='http://localhost:5000/admin/product/update'>update</Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button className="border_btn rounded flex items-center justify-center p-2"
-                 style={{backgroundColor:'red'}}>delete</button>
+                 style={{backgroundColor:'#ff000096'}}>delete</button>
               </td>
             </tr>
           ))}

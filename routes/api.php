@@ -10,6 +10,7 @@ use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\BrandsController;
 use App\Models\Category;
+use Illuminate\Foundation\Auth\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Users Api Controller
-Route::post('/user',[UsersController::class, 'store']);
 
 //user Authentication Api Controller
 Route::post('/signup', [AuthController::class,'signup']);
@@ -35,6 +34,12 @@ Route::post('/login', [AuthController::class,'login']);
 //Profile user Api Controllers
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
 
+//Users Api Controller
+Route::get('/admin/user/index/{id}', [UsersController::class, 'index']);
+Route::get('/admin/user/show',[UsersController::class, 'show']);
+Route::post('/admin/user/create', [UsersController::class, 'create']);
+Route::get('/admin/user/update/{id}', [UsersController::class, 'update']);
+Route::put('/admin/user/update/{id}', [UsersController::class, 'update']);
 
 //Product Api Controller
 Route::get('/product/{id}', [ProductsController::class, 'index']);
@@ -45,9 +50,6 @@ Route::get('/admin/product/create', [ProductsController::class, 'create']);
 
 Route::get('/product/brands/index', [BrandsController::class, 'index']);
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
-
-
-
 
 //Admin Authentications Api Controller
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);

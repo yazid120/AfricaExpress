@@ -103,7 +103,7 @@ try{
           </div>
 
           <div className="product__quantity">
-            <label htmlFor="product_price" className="block">Product quantity</label>
+            <label htmlFor="product_quantity" className="block">Product quantity</label>
             <input
               type="number"
               id="product_quantity"

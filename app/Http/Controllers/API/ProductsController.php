@@ -18,7 +18,12 @@ class ProductsController extends Controller
     ->select('products.*', 'product_images.*')
     ->where('products.id',$request->id)
     ->get();
-    return response()->json($product);
+
+    if($product){
+      return response()->json($product);
+    }else{
+      return response()->json(['product not found !!']);
+    }
     }
 
     public function show(){
@@ -33,8 +38,8 @@ class ProductsController extends Controller
     public function ProductArticleImages(){
       $ProductArticleimg = DB::table('products')
        ->join('product_images','products.id','=','product_images.product_id')
-       ->get(); 
-      return response()->json($ProductArticleimg); 
+       ->get();
+      return response()->json($ProductArticleimg);
     }
 
     #Create product admin
@@ -49,7 +54,7 @@ class ProductsController extends Controller
 
        $product = product::create([
         'name' => 'Logitech G502 HERO Wired Gaming Mouse',
-        'price_unit' => '49.99', 
+        'price_unit' => '49.99',
         'image' => 'Logitech_G502_Hero.jpg',
         'quantity' => 8,
        ]);
