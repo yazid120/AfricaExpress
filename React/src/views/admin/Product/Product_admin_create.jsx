@@ -2,6 +2,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import Navbar_admin from "../Dashboard/partials/Navbar_admin";
+import '../../../style/admin.css';
 
 const Getcategories = async function (link, SetProductAdd){
   useEffect(()=>{
@@ -54,10 +55,7 @@ try{
     <>
     <Navbar_admin/>
 
-<div style={{
-  position:'relative',
-  top:'4.3rem'
-}}>
+<div style={{position:'relative',top:'4.3rem'}}>
   <div className="wrapper mx-auto max-w-md p-4">
     <div className="heading text-2xl font-bold mb-4">Add Product</div>
     <div className="product">

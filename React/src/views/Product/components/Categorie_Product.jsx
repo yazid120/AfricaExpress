@@ -2,17 +2,21 @@ import React from "react";
 import {useEffect,useState} from "react";
 import axios from "axios";
 
-const GetProductCategories = async function(link,SetCategories){
-   useEffect(()=>{
-    axios.get(link).then(response=>{
-      SetCategories(response.data);
-    })
-   },[]);
+function ExtractData(link_api, SetDataExtracter){
+  useEffect(()=>{
+    axios.get(link_api).then(response=>{
+      SetDataExtracter(response.data);
+    }).catch(error=> console.error(error));
+  },[]);
 }
 
 function CategorieProduct(){
   const [Categories, SetCategories] = useState([]);
-  const productCategories = GetProductCategories('http://127.0.0.1:8000/api/admin/product/category/index',SetCategories);
+  const [brands, SetBrands] = useState([]);
+
+  const productCategories = ExtractData('http://127.0.0.1:8000/api/admin/product/category/index',SetCategories);
+  const productBrands = ExtractData("http://127.0.0.1:8000/api/product/brands/index", SetBrands);
+
   return(
     <>
       {/* ./sidebar */}
@@ -42,86 +46,34 @@ function CategorieProduct(){
             }
           </div>
         </div>
+
         <div className="pt-4">
           <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium">
             Brands
           </h3>
           <div className="space-y-2">
-            <div className="flex items-center">
-              <input
+
+              {
+              brands.map((brand)=>(
+              <>
+              <div className="flex items-center" key={brand.id}>
+                <input
                 type="checkbox"
                 name="brand-1"
                 id="brand-1"
                 className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="brand-1"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Cooking Color
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(15)</div>
-            </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="brand-2"
-                id="brand-2"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="brand-2"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Magniflex
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(9)</div>
-            </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="brand-3"
-                id="brand-3"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="brand-3"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Ashley
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(21)</div>
-            </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="brand-4"
-                id="brand-4"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="brand-4"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                M&amp;D
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(10)</div>
-            </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="brand-5"
-                id="brand-5"
-                className="text-primary focus:ring-0 rounded-sm cursor-pointer"
-              />
-              <label
-                htmlFor="brand-5"
-                className="text-gray-600 ml-3 cusror-pointer"
-              >
-                Olympic
-              </label>
-              <div className="ml-auto text-gray-600 text-sm">(10)</div>
-            </div>
+                />
+                <label htmlFor="brand-1" className="text-gray-600 ml-3 cusror-pointer"
+                 >{brand.brand_name}
+                </label>
+               <div className="ml-auto text-gray-600 text-sm">(15)</div>
+              </div>
+              </>
+                ))
+              }
+
+
+
           </div>
         </div>
         <div className="pt-4">

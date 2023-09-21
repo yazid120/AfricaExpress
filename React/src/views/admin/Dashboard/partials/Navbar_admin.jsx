@@ -1,11 +1,12 @@
 import React from "react"
+import "../../../../style/admin.css";
 
 
 
 function Navbar_admin(){
   const Logout = (e)=>{
     e.preventDefault();
-    localStorage.removeItem('admin_id'); 
+    localStorage.removeItem('admin_id');
   }
     return(
         <>
@@ -18,7 +19,7 @@ function Navbar_admin(){
           <svg id="toggleSidebarMobileClose" className="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
         </button>
         <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
-        
+
         <form action="#" method="GET" className="hidden lg:block lg:pl-3.5">
           <label htmlFor="topbar-search" className="sr-only">Search</label>
           <div className="relative mt-1 lg:w-96">
@@ -36,13 +37,13 @@ function Navbar_admin(){
         {/* Search icon */}
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
         </button>
-         {/* Notifications */}  
+         {/* Notifications */}
         <button type="button" data-dropdown-toggle="notification-dropdown" className="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
           <span className="sr-only">View notifications</span>
-        
+
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
         </button>
-     
+
         <div className="z-20 z-50 hidden max-w-sm my-4 overflow-hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg dark:divide-gray-600 dark:bg-gray-700" id="notification-dropdown">
           <div className="block px-4 py-2 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             Notifications
@@ -116,7 +117,7 @@ function Navbar_admin(){
             </div>
           </a>
         </div>
-  
+
         <button type="button" data-dropdown-toggle="apps-dropdown" className="hidden p-2 text-gray-500 rounded-lg sm:flex hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
           <span className="sr-only">View notifications</span>
 
@@ -175,7 +176,7 @@ function Navbar_admin(){
           <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
 
-        <div className="flex items-center ml-3">
+        <div className="flex items-center ml-3 gap-8	">
           <div>
             <button type="button" className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button-2" aria-expanded="false" data-dropdown-toggle="dropdown-2">
               <span className="sr-only">Open user menu</span>
@@ -184,7 +185,7 @@ function Navbar_admin(){
           </div>
 
           <div>
-            <button className="cursor-pointer bg-black p-2" onClick={Logout}>logout</button>
+            <button className="logout-btn cursor-pointer p-2 text-white rounded" onClick={Logout}>logout</button>
           </div>
 
           <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-2">
@@ -216,7 +217,7 @@ function Navbar_admin(){
     </div>
   </div>
 </nav>
-        
+
     </>
     )
 }

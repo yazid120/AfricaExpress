@@ -36,6 +36,10 @@ const ProductAdminCreate = React.lazy( ()=> import("./views/admin/Product/Produc
 const ProductAdminShow = React.lazy( ()=> import("./views/admin/Product/Product_admin_show"));
 const ProductAdminUpdate = React.lazy( ()=> import("./views/admin/Product/Product_admin_update"));
 
+const BrandAdminShow = React.lazy( ()=> import("./views/admin/brands/brands_admin_show"));
+const BrandsAdminAdd = React.lazy( ()=> import("./views/admin/brands/brands_admin_create"));
+
+
 function Guest_layout(){
   return(
     <>
@@ -102,10 +106,12 @@ const Routing = function(){
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>
 
-
     <Route path="/admin/product/category/show" element={<CategorieProdAdminShow/>}/>
     <Route path="/admin/product/category/create" element={<CategorieProdAdminCreate/>}/>
     <Route path="/admin/product/category/update" element={<CategorieProdAdminUpdate/>}/>
+
+    <Route path="/admin/brand/show" element={<BrandAdminShow/>}/>
+    <Route path="/admin/brand/add" element={<BrandsAdminAdd/>}/>
 
   </Route>
 

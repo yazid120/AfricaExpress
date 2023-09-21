@@ -1,8 +1,8 @@
-import React from "react"; 
+import React from "react";
 
 function Dashboard_admin(){
     return(
-<>
+    <>
       <div className="px-4 pt-6">
         <div className="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">
           {/* Main widget */}
