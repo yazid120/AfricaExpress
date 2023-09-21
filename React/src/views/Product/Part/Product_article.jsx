@@ -15,9 +15,29 @@ function GetProductArticle(link_api,SetproductID){
 function ProductArticle(){
   const {id} = useParams();
   const [ProductArticle, SetProductArticle] = useState([]);
+
+  const [article, SetArticle] = useState('');
+  const [articleName, SetarticleName] = useState(''); 
+  const [articlePrice, SetarticlePrice] = useState(''); 
+  const [articleQteAv, SetarticleQteAv] = useState(''); 
   const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle); 
+
+  const imgArticleUri = '../../src/assets/images/Products/articles/'; 
+  const imgArticleMainUri = '../../src/assets/images/Products/';
+
+  const setValueArticle =(value, SetValue)=>{
+    SetArticle(value); 
+  }
   
-  console.log(ProductArticle);
+  useEffect(()=>{
+    if (ProductArticle.length > 0) {
+      setValueArticle(ProductArticle[0].image);
+    }
+  }, [ProductArticle]); 
+
+  console.log(article);
+
+
   return(
     <>
   {/* breadcrumb */}
@@ -34,42 +54,29 @@ function ProductArticle(){
   {/* product-detail */}
   <div className="container grid grid-cols-2 gap-6">
     <div>
-      <img
-        src="../assets/images/products/product1.jpg"
+      <img 
+        src={imgArticleMainUri+article}
         alt="product"
         className="w-full"
       />
+      {
+      ProductArticle.map((article, key)=>(
+      <>
+      
       <div className="grid grid-cols-5 gap-4 mt-4">
         <img
-          src="../assets/images/products/product2.jpg"
+          src={imgArticleUri+article.image_uri}
           alt="product2"
           className="w-full cursor-pointer border border-primary"
         />
-        <img
-          src="../assets/images/products/product3.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-        />
-        <img
-          src="../assets/images/products/product4.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-        />
-        <img
-          src="../assets/images/products/product5.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-        />
-        <img
-          src="../assets/images/products/product6.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-        />
+        
       </div>
+      </>))
+      }
     </div>
-    <div>
+    <div >
       <h2 className="text-3xl font-medium uppercase mb-2">
-        Italian L Shape Sofa
+        product name
       </h2>
       <div className="flex items-center mb-4">
         <div className="flex gap-1 text-sm text-yellow-400">
@@ -111,7 +118,7 @@ function ProductArticle(){
       </div>
       <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
         <p className="text-xl text-primary font-semibold">$45.00</p>
-        <p className="text-base text-gray-400 line-through">$55.00</p>
+        <p className="text-base text-black line-through">$55.00</p>
       </div>
       <p className="mt-4 text-gray-600">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius eum
@@ -155,7 +162,7 @@ function ProductArticle(){
               htmlFor="size-l"
               className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
             >
-              L
+              L   
             </label>
           </div>
           <div className="size-selector">
@@ -174,7 +181,9 @@ function ProductArticle(){
           Color
         </h3>
         <div className="flex items-center gap-2">
-          <div className="color-selector">
+          <div className="color-selector   </>
+    ))
+}">
             <input type="radio" name="color" id="red" className="hidden" />
             <label
               htmlFor="red"
@@ -248,8 +257,9 @@ function ProductArticle(){
           <i className="fa-brands fa-instagram" />
         </a>
       </div>
-    </div>
+    </div> 
   </div>
+ 
   {/* ./product-detail */}
   {/* description */}
   <div className="container pb-16">

@@ -39,10 +39,12 @@ Route::get('/profile/{id}', [ProfileController::class, 'index']);
 //Product Api Controller
 Route::get('/product/{id}', [ProductsController::class, 'index']);
 Route::get('/product',[ProductsController::class, 'show']);
+Route::get('/product/article/images', [ProductsController::class, 'ProductArticleImages']); 
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
 Route::get('/admin/product/create', [ProductsController::class, 'create']);
 
 Route::get('/product/brands/index', [BrandsController::class, 'index']); 
+
 
 
 //Admin Authentications Api Controller

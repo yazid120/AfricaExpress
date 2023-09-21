@@ -13,8 +13,12 @@ use App\Models\Category;
 class ProductsController extends Controller
 {
     public function index(Request $request){
-      $product_article = product::all()->where('id',$request->id)->first();
-      return response()->json($product_article);
+    $product = DB::table('products')
+    ->join('product_images', 'products.id', '=', 'product_images.product_id')
+    ->select('products.*', 'product_images.*')
+    ->where('products.id',$request->id)
+    ->get();
+    return response()->json($product);
     }
 
     public function show(){
@@ -24,6 +28,13 @@ class ProductsController extends Controller
 
     public function ProductCategorieFilter(){
 
+    }
+
+    public function ProductArticleImages(){
+      $ProductArticleimg = DB::table('products')
+       ->join('product_images','products.id','=','product_images.product_id')
+       ->get(); 
+      return response()->json($ProductArticleimg); 
     }
 
     #Create product admin
