@@ -28,6 +28,7 @@ let Product = function(){
 
 
    const api_link = "http://127.0.0.1:8000/api/product";
+
    useEffect(() => {
     fetch(api_link)
         .then(response => response.json())
@@ -57,7 +58,7 @@ return(
         data-drawer-show="drawer-example"
         aria-controls="drawer-example"
       >
-        <ion-icon name="grid-outline" />
+      <ion-icon name="grid-outline" />
       </button>
     </div>
 

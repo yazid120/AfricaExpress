@@ -44,16 +44,16 @@ function ShopProduct({products,SearchProdFilter}){
       return val;
      }
     }).map(product=>(
-     <li key={product.id} className="product_el_wrapp bg-white rounded-lg p-4 shadow-md cursor-pointer"
+     <li key={product.id} className="product_el_wrapp bg-white w-full rounded-lg p-4 shadow-md cursor-pointer"
      onClick={()=>HandleProductArticle(product.id)}>
-      <img src={image_path_uri+product.image} alt={product.name} className="h-auto p-8 rounded-t-lg" />
-      <h3 className="text-xl font-semibold mt-2 taxt-black" value={product.name}>{product.name}</h3>
-    <p className="text-green-600 font-semibold"><span className='text-black'>Price: </span>{product.price_unit}$</p>
+      <img src={image_path_uri+product.image} alt={product.name} className="h-auto p-8 rounded-t-lg h-48" />
+      <h3 className="text-l text-center font-semibold mt-2 taxt-black" value={product.name}>{product.name}</h3>
+    <p className="text-green-600 font-semibold"><span className='text-black font-bold'>price: </span>{product.price_unit}$</p>
     <p className="text-blue-600 font-semibold"><span className='text-black'>Quantity available:
     </span>{product.quantity}</p>
     <div className='mt-5'>
-      <button className='bg-blue-500 text-white px-4 py-2 rounded'
-      onClick={AddToCart}>Add to cart</button>
+      {/* <button className='bg-blue-500 text-white px-4 py-2 rounded'
+      onClick={AddToCart}>Add to cart</button> */}
     </div>
    </li>
   ))

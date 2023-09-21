@@ -20,6 +20,7 @@ function ProfileInformation(){
   }
   return(
     <>
+    <EditProfileName/>
     <div className="manage-profiles-container max-w-md mx-auto mt-4">
       <h2 className="text-2xl font-bold mb-2">Manage Your Profiles</h2>
 
@@ -34,6 +35,7 @@ function ProfileInformation(){
                     <img alt="Link to edit profile name" src="https://m.media-amazon.com/images/G/01/Beerus-MY/pencil.png"
                         className="name-edit-icon" id="name-edit-pencil-image"/>
                   </a>
+
                 </span>
                         </div>
                     </div>
@@ -81,17 +83,6 @@ function ProfileInformation(){
           </span>
           </div>
             <p className="font-bold text-gray-600 text-xm" id="">Not set</p>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="ZipCode">Zip code:</label>
-          <input
-            type="password"
-            id="ZipCode"
-            name="ZipCode"
-            value={PostalCode}
-            onChange={(e) => SetPostalCode(e.target.value)}
-          />
         </div>
         <button className="save_updateProfile font-bold" type="submit">Update Profile</button>
       </form>

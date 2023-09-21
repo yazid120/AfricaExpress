@@ -3,6 +3,7 @@ import React from "react";
 function EditProfileName(name, newName){
   return(
     <>
+    <div>
      <div className="wrapper_background_Modif">
       <div className="profile_name_mod_container">
        <header className="">
@@ -24,6 +25,7 @@ function EditProfileName(name, newName){
        </div>
       </div>
      </div>
+    </div>
     </>
   )
 }

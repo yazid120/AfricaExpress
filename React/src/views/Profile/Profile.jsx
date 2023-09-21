@@ -21,12 +21,12 @@ let Profile = function(){
       </span>
       <p className="text-gray-600 font-medium">Account</p>
     </div>
-    {/* ./breadcrumb */}
+
     {/* account wrapper */}
     <div className="container grid grid-cols-12 items-start gap-6 pt-4 pb-16">
       {/* sidebar */}
       <div className="col-span-3">
-        <div className="px-4 py-3 shadow flex items-center gap-4">
+        <div className="px-4 py-3 shadow flex items-center gap-4 rounded">
           <div className="flex-shrink-0">
             <img
               src="../src/assets/images/Profile/default/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.webp"
@@ -51,13 +51,13 @@ let Profile = function(){
             <h3 className="font-medium text-gray-800 text-lg">
               Personal Profile inforamtion
             </h3>
-            <a href="#" className="text-primary">
+            <a href="/profile/ProfileInformation" className="text-primary">
               Edit
             </a>
           </div>
           <div className="space-y-1">
-            <h4 className="text-gray-700 font-medium">John Doe</h4>
-            <p className="text-gray-800">example@mail.com</p>
+            <h4 className="text-gray-700 font-medium">{user.name}</h4>
+            <p className="text-gray-800">{user.email}</p>
             <p className="text-gray-800">0811 8877 988</p>
           </div>
         </div>
@@ -74,7 +74,6 @@ let Profile = function(){
             <h4 className="text-gray-700 font-medium">John Doe</h4>
             <p className="text-gray-800">Medan, North Sumatera</p>
             <p className="text-gray-800">20371</p>
-            <p className="text-gray-800">0811 8877 988</p>
           </div>
         </div>
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">
@@ -88,7 +87,6 @@ let Profile = function(){
             <h4 className="text-gray-700 font-medium">John Doe</h4>
             <p className="text-gray-800">Medan, North Sumatera</p>
             <p className="text-gray-800">20317</p>
-            <p className="text-gray-800">0811 8877 988</p>
           </div>
         </div>
       </div>
