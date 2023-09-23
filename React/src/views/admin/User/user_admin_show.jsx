@@ -3,6 +3,8 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar_admin from "../Dashboard/partials/Navbar_admin";
+import DelteConfirmatonPop from "../component/pop/delete_confirmation";
+import UserAdminDelete from "./user_admin_delete";
 
 const userData = async function(link,SetData){
   useEffect(()=>{
@@ -13,14 +15,33 @@ const userData = async function(link,SetData){
 }
 function UserAdminShow(){
   const [UserList, SetUserList] = useState([]);
+  const [DelteConfirmatonPopVisible, SetDelteConfirmatonPopVisible] = useState(false); 
   const usersList = userData('http://localhost:8000/api/admin/user/show', SetUserList);
+
+  const HandleDeleteClick =()=>{
+    SetDelteConfirmatonPopVisible(true);
+  }
+  const HandleCancelSub =()=>{
+    SetDelteConfirmatonPopVisible(false); 
+  }
+  
+  const HandleConfirmSub = (UserID)=>{
+    location.href = `http://localhost:5000/admin/user/delete/${UserID}`;
+  }
+
   async function HandleUpdateUserAdmin(UserID){
     location.href = `http://localhost:5000/admin/user/update/${UserID}`;
   }
   return(
     <>
     <Navbar_admin/>
+   
       <div style={{position:'relative',top:'4.3rem'}}>
+      {
+      DelteConfirmatonPopVisible && (<DelteConfirmatonPop 
+        onCancel={HandleCancelSub} 
+        onConfirm={()=>HandleConfirmSub}/>)
+    }
   <div className='flex justify-between p-4'>
       <h1 className="text-2xl font-bold mb-4">Client List</h1>
       <Link className='border_btn text-s text-white font-semi-bold rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/user/add">+ add new user account</Link>
@@ -62,7 +83,7 @@ function UserAdminShow(){
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button className="border_btn rounded flex items-center justify-center p-2"
-                 style={{backgroundColor:'#ff000096'}}>delete</button>
+                 style={{backgroundColor:'#ff000096'}} onClick={HandleDeleteClick}>delete</button>
               </td>
             </tr>
           ))}

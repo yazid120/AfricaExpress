@@ -32,6 +32,7 @@ const SignupAdmin = React.lazy( ()=> import("./views/admin/Signup_admin"));
 const UserAdminShow = React.lazy( ()=> import("./views/admin/User/user_admin_show"));
 const UserAdminCreate = React.lazy( ()=> import("./views/admin/User/user_admin_create"));
 const UserAdminUpdate = React.lazy( ()=> import("./views/admin/User/user_admin_update"));
+const UserAdminDelete = React.lazy( ()=>import("./views/admin/User/user_admin_delete")); 
 
 const CategorieProdAdminCreate = React.lazy( ()=> import("./views/admin/Category/Categories_admin_create"));
 const CategorieProdAdminShow = React.lazy( ()=> import("./views/admin/Category/Categories_admin_show"));
@@ -109,6 +110,7 @@ const Routing = function(){
     <Route path="/admin/user/add" element={<UserAdminCreate/>}/>
     <Route path="/admin/user/update/:id" element={<UserAdminUpdate/>}/>
     <Route path="/admin/user/show" element={<UserAdminShow/>}/>
+    <Route path="/admin/user/delete/:id" element={<UserAdminDelete/>}/>
     
     <Route path="/admin/product/create" element={<ProductAdminCreate/>}/>
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>

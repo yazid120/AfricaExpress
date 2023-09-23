@@ -59,18 +59,38 @@ public function create(Request $request){
 
 public function update(Request $request, $id){
    $validation = $request->validate([
-    'name'=>'required|string|min:3|max:55',
-    'email'=>'required|string|email|max:200|unique:user,email'
+    'name'=>'string|min:3|max:55',
+    'email'=>'string|email|max:200'
    ]);
 
-//    $user_valid = User::find($id);
-//    if(is_null($user_valid)){
-//     return response()->json(['unvalid user']);
-//    }
-   return response()->json(['user update']);
+   if(!$validation){
+    return response()->json([
+        'status'=>'error',
+        'message'=>'error validation'
+    ],404);
+  }
+
+    $user_valid = User::findOrFail($id);
+    if(is_null($user_valid)){
+     return response()->json([
+      'status'=>'error',
+      'message'=>'unvalid user']);
+    }else{
+      $user = User::where('id',$id)
+      ->update([
+        'name'=> $request->name, 
+        'email'=>$request->email
+      ]);
+      return response()->json([
+        'status'=>'ok',
+        'message'=>'user updated successfuly',
+        'user'=>$user]);
+    }
+   
 }
 public function delete($id){
-
+    $user = User::findOrFail($id); 
+    return response()->json($user); 
 }
 
 

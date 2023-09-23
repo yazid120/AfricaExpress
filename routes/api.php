@@ -38,8 +38,9 @@ Route::get('/profile/{id}', [ProfileController::class, 'index']);
 Route::get('/admin/user/index/{id}', [UsersController::class, 'index']);
 Route::get('/admin/user/show',[UsersController::class, 'show']);
 Route::post('/admin/user/create', [UsersController::class, 'create']);
-Route::get('/admin/user/update/{id}', [UsersController::class, 'update']);
 Route::put('/admin/user/update/{id}', [UsersController::class, 'update']);
+Route::delete('/admin/user/delete/{id}', [UsersController::class, 'delete']); 
+Route::get('/admin/user/delete/{id}', [UsersController::class, 'delete']); 
 
 //Product Api Controller
 Route::get('/product/{id}', [ProductsController::class, 'index']);
