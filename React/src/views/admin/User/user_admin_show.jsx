@@ -15,18 +15,26 @@ const userData = async function(link,SetData){
 }
 function UserAdminShow(){
   const [UserList, SetUserList] = useState([]);
-  const [DelteConfirmatonPopVisible, SetDelteConfirmatonPopVisible] = useState(false); 
+  const [DelteConfirmatonPopVisible, SetDelteConfirmatonPopVisible] = useState(false);
   const usersList = userData('http://localhost:8000/api/admin/user/show', SetUserList);
+  const [userId, SetuserId] = useState([]);
 
-  const HandleDeleteClick =()=>{
+  const HandleDeleteClick =(useridData)=>{
     SetDelteConfirmatonPopVisible(true);
+    SetuserId(useridData);
   }
+
   const HandleCancelSub =()=>{
-    SetDelteConfirmatonPopVisible(false); 
+    SetDelteConfirmatonPopVisible(false);
   }
-  
-  const HandleConfirmSub = (UserID)=>{
-    location.href = `http://localhost:5000/admin/user/delete/${UserID}`;
+
+  const HandleConfirmSub = ()=>{
+    if(userData !== null || userData.length > 0){
+      location.href = `http://localhost:5000/admin/user/delete/${userId}`;
+    }
+    else{
+      location.href = `http://localhost:5000/admin/user/show?error=Invalid_id`;
+    }
   }
 
   async function HandleUpdateUserAdmin(UserID){
@@ -35,12 +43,12 @@ function UserAdminShow(){
   return(
     <>
     <Navbar_admin/>
-   
+
       <div style={{position:'relative',top:'4.3rem'}}>
       {
-      DelteConfirmatonPopVisible && (<DelteConfirmatonPop 
-        onCancel={HandleCancelSub} 
-        onConfirm={()=>HandleConfirmSub}/>)
+      DelteConfirmatonPopVisible && (<DelteConfirmatonPop
+        onCancel={HandleCancelSub}
+        onConfirm={HandleConfirmSub}/>)
     }
   <div className='flex justify-between p-4'>
       <h1 className="text-2xl font-bold mb-4">Client List</h1>
@@ -83,7 +91,7 @@ function UserAdminShow(){
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button className="border_btn rounded flex items-center justify-center p-2"
-                 style={{backgroundColor:'#ff000096'}} onClick={HandleDeleteClick}>delete</button>
+                 style={{backgroundColor:'#ff000096'}} onClick={()=>HandleDeleteClick(user.id)}>delete</button>
               </td>
             </tr>
           ))}

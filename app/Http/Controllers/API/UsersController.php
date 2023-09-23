@@ -78,7 +78,7 @@ public function update(Request $request, $id){
     }else{
       $user = User::where('id',$id)
       ->update([
-        'name'=> $request->name, 
+        'name'=> $request->name,
         'email'=>$request->email
       ]);
       return response()->json([
@@ -86,11 +86,24 @@ public function update(Request $request, $id){
         'message'=>'user updated successfuly',
         'user'=>$user]);
     }
-   
+
 }
 public function delete($id){
-    $user = User::findOrFail($id); 
-    return response()->json($user); 
+    $user_valid = User::findOrFail($id);
+
+    if(is_null($user_valid)){
+        return response()->json([
+            'status'=>'error',
+            'message'=>'user not found !!',
+        ]);
+    }else{
+        $user = User::where('id', $id)
+        ->delete();
+        return response()->json([
+            'status'=>'ok',
+            'message'=>'user account deleted successfuly'
+        ]);
+    }
 }
 
 
