@@ -8,7 +8,7 @@ function GetProductArticle(link_api,SetproductID){
     axios.get(link_api).then(response=>{
     SetproductID(response.data);
     })
-    
+
   },[])
 }
 
@@ -17,25 +17,23 @@ function ProductArticle(){
   const [ProductArticle, SetProductArticle] = useState([]);
 
   const [article, SetArticle] = useState('');
-  const [articleName, SetarticleName] = useState(''); 
-  const [articlePrice, SetarticlePrice] = useState(''); 
-  const [articleQteAv, SetarticleQteAv] = useState(''); 
-  const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle); 
+  const [articleName, SetarticleName] = useState('');
+  const [articlePrice, SetarticlePrice] = useState('');
+  const [articleQteAv, SetarticleQteAv] = useState('');
+  const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle);
 
-  const imgArticleUri = '../../src/assets/images/Products/articles/'; 
+  const imgArticleUri = '../../src/assets/images/Products/articles/';
   const imgArticleMainUri = '../../src/assets/images/Products/';
 
   const setValueArticle =(value, SetValue)=>{
-    SetArticle(value); 
+    SetArticle(value);
   }
-  
+
   useEffect(()=>{
     if (ProductArticle.length > 0) {
       setValueArticle(ProductArticle[0].image);
     }
   }, [ProductArticle]); 
-
-  console.log(article);
 
 
   return(
@@ -54,7 +52,7 @@ function ProductArticle(){
   {/* product-detail */}
   <div className="container grid grid-cols-2 gap-6">
     <div>
-      <img 
+      <img
         src={imgArticleMainUri+article}
         alt="product"
         className="w-full"
@@ -62,14 +60,14 @@ function ProductArticle(){
       {
       ProductArticle.map((article, key)=>(
       <>
-      
+
       <div className="grid grid-cols-5 gap-4 mt-4">
         <img
           src={imgArticleUri+article.image_uri}
           alt="product2"
           className="w-full cursor-pointer border border-primary"
         />
-        
+
       </div>
       </>))
       }
@@ -162,7 +160,7 @@ function ProductArticle(){
               htmlFor="size-l"
               className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
             >
-              L   
+              L
             </label>
           </div>
           <div className="size-selector">
@@ -257,9 +255,9 @@ function ProductArticle(){
           <i className="fa-brands fa-instagram" />
         </a>
       </div>
-    </div> 
+    </div>
   </div>
- 
+
   {/* ./product-detail */}
   {/* description */}
   <div className="container pb-16">

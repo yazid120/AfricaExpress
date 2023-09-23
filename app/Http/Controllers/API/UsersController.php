@@ -59,11 +59,17 @@ public function create(Request $request){
 
 public function update(Request $request, $id){
    $validation = $request->validate([
-
+    'name'=>'required|string|min:3|max:55',
+    'email'=>'required|string|email|max:200|unique:user,email'
    ]);
-   $user = User::findOrFail($id);
+
+//    $user_valid = User::find($id);
+//    if(is_null($user_valid)){
+//     return response()->json(['unvalid user']);
+//    }
+   return response()->json(['user update']);
 }
-public function delete(){
+public function delete($id){
 
 }
 

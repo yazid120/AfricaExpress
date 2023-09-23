@@ -16,3 +16,34 @@
 .logout-btn:hover{
     background-color: #191f29;
 }
+
+/* CSS for active button */
+.active-button {
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White text */
+    cursor: pointer;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.25rem;
+    color: #ffffff;
+  }
+  .active-button:hover{
+    background-color: #1d8aff;
+  }
+
+  /* CSS for disabled button */
+  .disabled-button {
+    background-color: #ccc; /* Grey color */
+    color: #666; /* Dark grey text */
+    cursor: not-allowed;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.25rem;
+  }
+  .disabled-button:hover{
+    background-color: rgb(223, 223, 223);
+  }

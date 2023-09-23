@@ -109,6 +109,7 @@ const Routing = function(){
     <Route path="/admin/user/add" element={<UserAdminCreate/>}/>
     <Route path="/admin/user/update/:id" element={<UserAdminUpdate/>}/>
     <Route path="/admin/user/show" element={<UserAdminShow/>}/>
+    
     <Route path="/admin/product/create" element={<ProductAdminCreate/>}/>
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>

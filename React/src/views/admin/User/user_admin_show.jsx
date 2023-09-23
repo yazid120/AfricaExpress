@@ -15,7 +15,7 @@ function UserAdminShow(){
   const [UserList, SetUserList] = useState([]);
   const usersList = userData('http://localhost:8000/api/admin/user/show', SetUserList);
   async function HandleUpdateUserAdmin(UserID){
-    location.href = `http://localhost:5000/admin/product/update/${UserID}`;
+    location.href = `http://localhost:5000/admin/user/update/${UserID}`;
   }
   return(
     <>
