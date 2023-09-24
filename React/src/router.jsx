@@ -4,8 +4,8 @@ import { lazy } from 'react';
 import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet,Navigate } from "react-router-dom";
 import App from "./App";
 import GuestLayout from "./components/GuestLayout";
-import Footer from './views/Elements/Footer';
-import NavBar from './views/Elements/NavBar';
+import Footer from './views/Partials/Footer';
+import NavBar from './views/Partials/NavBar';
 import Main from "./main";
 import Home from "./views/home";
 import Login from "./views/Auth/login";
@@ -32,7 +32,7 @@ const SignupAdmin = React.lazy( ()=> import("./views/admin/Signup_admin"));
 const UserAdminShow = React.lazy( ()=> import("./views/admin/User/user_admin_show"));
 const UserAdminCreate = React.lazy( ()=> import("./views/admin/User/user_admin_create"));
 const UserAdminUpdate = React.lazy( ()=> import("./views/admin/User/user_admin_update"));
-const UserAdminDelete = React.lazy( ()=>import("./views/admin/User/user_admin_delete")); 
+const UserAdminDelete = React.lazy( ()=>import("./views/admin/User/user_admin_delete"));
 
 const CategorieProdAdminCreate = React.lazy( ()=> import("./views/admin/Category/Categories_admin_create"));
 const CategorieProdAdminShow = React.lazy( ()=> import("./views/admin/Category/Categories_admin_show"));
@@ -111,7 +111,7 @@ const Routing = function(){
     <Route path="/admin/user/update/:id" element={<UserAdminUpdate/>}/>
     <Route path="/admin/user/show" element={<UserAdminShow/>}/>
     <Route path="/admin/user/delete/:id" element={<UserAdminDelete/>}/>
-    
+
     <Route path="/admin/product/create" element={<ProductAdminCreate/>}/>
     <Route path="/admin/product/show" element={<ProductAdminShow/>}/>
     <Route path="/admin/product/update" element={<ProductAdminUpdate/>}/>

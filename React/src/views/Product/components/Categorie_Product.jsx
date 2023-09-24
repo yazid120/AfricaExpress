@@ -15,12 +15,12 @@ function CategorieProduct({HandleCategoriasation}){
   const [brands, SetBrands] = useState([]);
   const productCategories = ExtractData('http://127.0.0.1:8000/api/admin/product/category/index',SetCategories);
   const productBrands = ExtractData("http://127.0.0.1:8000/api/product/brands/index", SetBrands);
-  
+
 
   return(
     <>
       {/* ./sidebar */}
-    <div className="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hiddenb hidden md:block">
+    <div className="sideBar_product col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hiddenb hidden md:block">
       <div className="divide-y divide-gray-200 space-y-5">
         <div>
           <h3 className="text-xl text-gray-800 m-4 uppercase font-medium">

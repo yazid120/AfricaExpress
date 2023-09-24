@@ -49,14 +49,34 @@ footer{
 }
 
 .description-cell {
-  max-width: 580px; 
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  max-width: 580px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .CategoryName-cell{
-  max-width: 120px; 
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sideBar_product{
+    -webkit-box-sizing: border-box;
+    -webkit-box-direction: normal;
+    box-sizing: border-box;
+    border: 1px solid #686868e5;
+}
+
+.item_ice{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.item_ice_text{
+    color: #f0f8ff85;
+}
+.logout{
+    border: 1px solid #f0f8ff12;
 }
