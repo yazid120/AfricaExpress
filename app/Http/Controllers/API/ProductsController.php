@@ -14,8 +14,8 @@ class ProductsController extends Controller
 {
     public function index(Request $request){
     $product = DB::table('products')
-    ->join('product_images', 'products.id', '=', 'product_images.product_id')
-    ->select('products.*', 'product_images.*')
+    ->join('brands', 'products.brand_id', '=', 'brands.id')
+    ->select('products.*', 'brands.brand_name')
     ->where('products.id',$request->id)
     ->get();
 
@@ -24,10 +24,28 @@ class ProductsController extends Controller
     }else{
       return response()->json(['product not found !!']);
     }
+
+    }
+    public function imageProductIndex(Request $request){
+     $product_images = DB::table('products')
+    ->join('product_images', 'products.id', '=', 'product_images.product_id')
+    ->select('products.*', 'product_images.image_uri')
+    ->where('products.id',$request->id)
+    ->pluck('image_uri')
+    ->all();
+      if($product_images){
+        return response()->json($product_images);
+      }else{
+        return response()->json(['product not found !!']);
+      }
     }
 
     public function show(){
-     $product = DB::table('products')->orderBy('id','desc')->get();
+     $product = DB::table('products')
+     ->join('brands','brands.id','=','products.brand_id')
+     ->select('products.*','brands.brand_name')
+     ->orderBy('products.id','desc')
+     ->get();
      return response()->json($product);
     }
 

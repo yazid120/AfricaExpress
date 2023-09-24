@@ -27,14 +27,12 @@ export default function Sidebar_admin(){
               </div>
             </form>
           </li>
-
           <li>
             <button type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-layouts" data-collapse-toggle="dropdown-layouts">
             <svg className="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
             <span className="ml-3" sidebar-toggle-item="true">Dashboard</span>
             </button>
           </li>
-
           <li>
             <button type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-layouts" data-collapse-toggle="dropdown-layouts">
               <svg className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -69,7 +67,7 @@ export default function Sidebar_admin(){
                 <BiCategoryAlt/> Categories</a>
               </li>
               <li className="mb-2">
-                <a href="http://localhost:5000/admin/product/show" className="crud_link text-base text-gray-900 rounded-lg flex items-center p-2 group
+                <a href="http://localhost:5000/admin/brand/show" className="crud_link text-base text-gray-900 rounded-lg flex items-center p-2 group
                  hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 bg-gray-100
                  dark:bg-gray-700"><MdOutlineBrandingWatermark/>Brands</a>
               </li>

@@ -10,12 +10,12 @@ function ExtractData(link_api, SetDataExtracter){
   },[]);
 }
 
-function CategorieProduct(){
+function CategorieProduct({HandleCategoriasation}){
   const [Categories, SetCategories] = useState([]);
   const [brands, SetBrands] = useState([]);
-
   const productCategories = ExtractData('http://127.0.0.1:8000/api/admin/product/category/index',SetCategories);
   const productBrands = ExtractData("http://127.0.0.1:8000/api/product/brands/index", SetBrands);
+  
 
   return(
     <>
@@ -34,7 +34,9 @@ function CategorieProduct(){
                   type="checkbox"
                   name={Category.cat_name}
                   id={Category.id}
-                  className="text-primary focus:ring-0 rounded-sm cursor-pointer"/>
+                  className="text-primary focus:ring-0 rounded-sm cursor-pointer"
+                  value={Category.cat_name}
+                  onClick={(event)=>HandleCategoriasation(event.target.value)}/>
 
                   <label htmlFor={Category.id}
                   className="text-gray-600 ml-3 cusror-pointer">
@@ -71,9 +73,6 @@ function CategorieProduct(){
               </>
                 ))
               }
-
-
-
           </div>
         </div>
         <div className="pt-4">

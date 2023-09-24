@@ -41,7 +41,8 @@ class BrandsSeeder extends Seeder
             ['brand_name'=>'Lindt','created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['brand_name'=>'Ferrero','created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['brand_name'=>'Toblerone','created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-        ]; 
+            ['brand_name'=>'Nespresso','created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+        ];
 
         foreach($Brands as $Brand){
             DB::table('brands')->insert($Brand);

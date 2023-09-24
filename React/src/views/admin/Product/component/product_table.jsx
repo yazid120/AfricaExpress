@@ -27,6 +27,7 @@ function ProductTable(){
   const pageCount = Math.ceil(productelement.length / ProductPerPage);
   const offset = pageNumber * ProductPerPage;
   const currentPageData = productelement.slice(offset,ProductPerPage+offset);
+  console.log(currentPageData);
 
   const HandlePageNumber = ({selected})=>{
     SetPageNumber(selected);
@@ -49,9 +50,6 @@ function ProductTable(){
               Name
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
-            categorie product
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
             price per unite
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
@@ -59,6 +57,12 @@ function ProductTable(){
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
             quantity available
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
+            brand
+            </th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
+              creation date
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
             update
@@ -73,10 +77,11 @@ function ProductTable(){
             <tr key={product.id}>
               <td className="px-6 py-4 whitespace-nowrap">{product.id}</td>
               <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{product.categorie_prod}</td>
               <td className="px-6 py-4 whitespace-nowrap">{product.price_unit}</td>
               <td className="px-6 py-4 whitespace-nowrap">{product.image}</td>
               <td className="px-6 py-4 whitespace-nowrap">{product.quantity}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{product.brand_name}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{product.created_at}</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link className="border_btn rounded flex items-center justify-center p-2" style={{backgroundColor:'#ffa5008a'}}
                 to='http://localhost:5000/admin/product/update'>update</Link>

@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar_admin from "../Dashboard/partials/Navbar_admin";
 import '../../../style/admin.css';
 
-const Getcategories = async function (link, SetProductAdd){
+const GetData = async function (link, SetProductAdd){
   useEffect(()=>{
    axios.get(link).then(response=>{
     SetProductAdd(response.data);
@@ -14,6 +14,7 @@ const Getcategories = async function (link, SetProductAdd){
 
 function ProductAdmin(){
   const [Categories, SetCategories] = useState([]);
+  const [Brands, SetBrands] = useState([]);
   const [productAdd, SetProductAdd] = useState([]);
   {/* Admin Product creat States */}
   const [productImage, SetProductImage] = useState(null);
@@ -28,7 +29,8 @@ function ProductAdmin(){
     SetProductImage(file);
   };
   {/** extract Categories product api **/}
-  const Categories_product = Getcategories('http://localhost:8000/api/admin/product/category/index',SetCategories);
+  const Categories_product = GetData('http://localhost:8000/api/admin/product/category/index',SetCategories);
+  const Brands_product = GetData('http://localhost:8000/api/product/brands/show', SetBrands);
 
   async function HandleAddProduct(e){
     e.preventDefault();
@@ -114,18 +116,30 @@ try{
             />
           </div>
 
-          <div className="product__categories">
-            <label className="block">Category</label>
+          <div className="__product__categories_brands">
+            <label className="block" htmlFor="categories_selection">Category</label>
             <div className="categories space-x-4">
               <select className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700
               dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-              dark:focus:border-blue-500"
+              dark:focus:border-blue-500" name="categories_selection"
               onChange={(e)=>SetProductCategory(e.target.value)}>
               {
                 Categories.map((categorie, key)=>(
                   <option key={key} id={categorie.id} name="product_category">{categorie.cat_name}</option>
                 ))
               }
+              </select>
+            </div>
+             <label className="block" htmlFor="brands_selection">Brand</label>
+            <div className="brands space-x-4">
+            <select className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700
+              dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+              dark:focus:border-blue-500" name="brands_selection">
+                {
+                  Brands.map((Brands, key)=>(
+                    <option key={key} id={Brands.id} name="product_category">{Brands.brand_name}</option>
+                  ))
+                }
               </select>
             </div>
           </div>

@@ -18,11 +18,6 @@ let exist_cart = (cart_id)=>{
   }
 }
 
-let AddToCart = (e)=>{
-  //e.preventDefault();
-  console.log('add product');
-}
-
 function ShopProduct({products,SearchProdFilter}){
   const [productelement, Setproductelement] = useState([]);
   const image_path_uri = '../src/assets/images/Products/';
@@ -35,8 +30,7 @@ function ShopProduct({products,SearchProdFilter}){
     <>
     <div className="">
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 m-4">
-
-  {
+    {
     products.filter((val)=>{
      if(SearchProdFilter == ''){
       return val;
@@ -52,8 +46,6 @@ function ShopProduct({products,SearchProdFilter}){
     <p className="text-blue-600 font-semibold"><span className='text-black'>Quantity available:
     </span>{product.quantity}</p>
     <div className='mt-5'>
-      {/* <button className='bg-blue-500 text-white px-4 py-2 rounded'
-      onClick={AddToCart}>Add to cart</button> */}
     </div>
    </li>
   ))

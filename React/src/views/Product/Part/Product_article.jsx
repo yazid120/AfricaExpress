@@ -8,19 +8,20 @@ function GetProductArticle(link_api,SetproductID){
     axios.get(link_api).then(response=>{
     SetproductID(response.data);
     })
-
   },[])
 }
 
 function ProductArticle(){
   const {id} = useParams();
   const [ProductArticle, SetProductArticle] = useState([]);
+  const [ProductArticleImages, SetProductArticleImages] = useState([]);
 
   const [article, SetArticle] = useState('');
   const [articleName, SetarticleName] = useState('');
   const [articlePrice, SetarticlePrice] = useState('');
   const [articleQteAv, SetarticleQteAv] = useState('');
   const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle);
+  const GetProductImages = GetProductArticle(`http://localhost:8000/api/product/image/${id}`,SetProductArticleImages);
 
   const imgArticleUri = '../../src/assets/images/Products/articles/';
   const imgArticleMainUri = '../../src/assets/images/Products/';
@@ -33,9 +34,10 @@ function ProductArticle(){
     if (ProductArticle.length > 0) {
       setValueArticle(ProductArticle[0].image);
     }
-  }, [ProductArticle]); 
+  }, [ProductArticle]);
 
-
+  if(ProductArticleImages.length>0)
+  console.log(ProductArticleImages)
   return(
     <>
   {/* breadcrumb */}
@@ -57,24 +59,27 @@ function ProductArticle(){
         alt="product"
         className="w-full"
       />
+      <div className="grid grid-cols-5 gap-4 mt-4" >
       {
-      ProductArticle.map((article, key)=>(
+      ProductArticleImages.map((article, key)=>(
       <>
-
-      <div className="grid grid-cols-5 gap-4 mt-4">
+      <div key={key}>
         <img
-          src={imgArticleUri+article.image_uri}
+          src={imgArticleUri+article}
           alt="product2"
-          className="w-full cursor-pointer border border-primary"
+          className="w-full h-full cursor-pointer border border-primary"
         />
-
       </div>
-      </>))
-      }
+      </>
+      ))
+      }</div>
     </div>
-    <div >
+
+    {
+      ProductArticle.map((article, key)=>(
+    <div key={key}>
       <h2 className="text-3xl font-medium uppercase mb-2">
-        product name
+        {article.name}
       </h2>
       <div className="flex items-center mb-4">
         <div className="flex gap-1 text-sm text-yellow-400">
@@ -103,7 +108,7 @@ function ProductArticle(){
         </p>
         <p className="space-x-2">
           <span className="text-gray-800 font-semibold">Brand: </span>
-          <span className="text-gray-600">Apex</span>
+          <span className="text-gray-600">{article.brand_name}</span>
         </p>
         <p className="space-x-2">
           <span className="text-gray-800 font-semibold">Category: </span>
@@ -115,14 +120,12 @@ function ProductArticle(){
         </p>
       </div>
       <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-        <p className="text-xl text-primary font-semibold">$45.00</p>
+        <p className="text-xl text-primary font-semibold">{article.price_unit}</p>
         <p className="text-base text-black line-through">$55.00</p>
       </div>
+      <label className="" htmlFor="">description</label>
       <p className="mt-4 text-gray-600">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos eius eum
-        reprehenderit dolore vel mollitia optio consequatur hic asperiores
-        inventore suscipit, velit consequuntur, voluptate doloremque iure
-        necessitatibus adipisci magnam porro.
+        {article.product_description}
       </p>
       <div className="pt-4">
         <h3 className="text-sm text-gray-800 uppercase mb-1">Size</h3>
@@ -179,9 +182,7 @@ function ProductArticle(){
           Color
         </h3>
         <div className="flex items-center gap-2">
-          <div className="color-selector   </>
-    ))
-}">
+          <div className="color-selector">
             <input type="radio" name="color" id="red" className="hidden" />
             <label
               htmlFor="red"
@@ -224,13 +225,15 @@ function ProductArticle(){
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
         <a
           href="#"
-          className="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition"
+          className="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex
+          items-center gap-2 hover:bg-transparent hover:text-primary transition"
         >
           <i className="fa-solid fa-bag-shopping" /> Add to cart
         </a>
         <a
           href="#"
-          className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
+          className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex
+          items-center gap-2 hover:text-primary transition"
         >
           <i className="fa-solid fa-heart" /> Wishlist
         </a>
@@ -238,24 +241,29 @@ function ProductArticle(){
       <div className="flex gap-3 mt-4">
         <a
           href="#"
-          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
+          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex
+          items-center justify-center"
         >
           <i className="fa-brands fa-facebook-f" />
         </a>
         <a
           href="#"
-          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
+          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex
+          items-center justify-center"
         >
           <i className="fa-brands fa-twitter" />
         </a>
         <a
           href="#"
-          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center"
+          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex
+          items-center justify-center"
         >
           <i className="fa-brands fa-instagram" />
         </a>
       </div>
     </div>
+    ))
+    }
   </div>
 
   {/* ./product-detail */}

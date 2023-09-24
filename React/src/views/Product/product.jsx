@@ -9,7 +9,7 @@ import SearchBarProduct from './components/Search_Bar_product';
 
 let Product = function(){
   const [products,SetProduct] = useState([]);
-  const [CategoryFilter, SetCategoryFilter] = useState('all');
+  const [CategoryFilter, SetCategoryFilter] = useState('');
   const [SearchProdFilter, SetSearchProdFilter] = useState('');
   const [pageNumber, SetPageNumber] = useState(0);
 
@@ -23,6 +23,7 @@ let Product = function(){
      SetPageNumber(selected);
    }
 
+   console.log(CategoryFilter)
   const user_id = localStorage.getItem('user_id') ?? 'null';
   const cart_id = localStorage.getItem('cart_id') ?? 'null';
 
@@ -40,12 +41,10 @@ return(
 <>
   {/* shop wrapper */}
   <div className="container grid md:grid-cols-4 grid-cols-2 gap-6 p-4 pl-0 pb-16 items-start"
-  style={{
-    maxWidth:'100%'
-  }}>
+  style={{ maxWidth:'100%' }}>
 
     {/* sidebar Categotie products */}
-    <CategorieProduct/>
+    <CategorieProduct HandleCategoriasation={SetCategoryFilter}/>
 
     {/* drawer init and toggle */}
     <div className="text-center md:hidden">
@@ -77,6 +76,7 @@ return(
         </select>
       {/* Product search bar */}
       <SearchBarProduct HandleFilter={SetSearchProdFilter} SearchProdFilter/>
+
         <div className="flex gap-2 ml-auto">
           <div className="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer">
             <i className="fa-solid fa-grip-vertical" />
@@ -88,6 +88,7 @@ return(
       </div>
       {/*** Search Product Filter ***/}
       <ShopProduct products={currentPageData} SearchProdFilter={SearchProdFilter}/>
+
       {/* Product Pagination */}
   <div className="mt-4 pl-12 pr-12	">
     <ReactPaginate

@@ -39,11 +39,12 @@ Route::get('/admin/user/index/{id}', [UsersController::class, 'index']);
 Route::get('/admin/user/show',[UsersController::class, 'show']);
 Route::post('/admin/user/create', [UsersController::class, 'create']);
 Route::put('/admin/user/update/{id}', [UsersController::class, 'update']);
-Route::delete('/admin/user/delete/{id}', [UsersController::class, 'delete']); 
-Route::get('/admin/user/delete/{id}', [UsersController::class, 'delete']); 
+Route::delete('/admin/user/delete/{id}', [UsersController::class, 'delete']);
+Route::get('/admin/user/delete/{id}', [UsersController::class, 'delete']);
 
 //Product Api Controller
 Route::get('/product/{id}', [ProductsController::class, 'index']);
+Route::get('/product/image/{id}', [ProductsController::class, 'imageProductIndex']);
 Route::get('/product',[ProductsController::class, 'show']);
 Route::get('/product/article/images', [ProductsController::class, 'ProductArticleImages']);
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
