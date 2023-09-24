@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
 use App\Models\Cart;
+use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
@@ -47,9 +47,13 @@ class User extends Authenticatable
         // 'password' => 'hashed',
     ];
 
-
     // user cart relation
-    public function User_Cart(): hasOne{
-        return $this->hasOne(Cart::class);
+    public function UserCart(): HasOne{
+        return $this->HasOne(Cart::class);
     }
+    // user wishlist relation
+    public function UserWishlist(): HasOne{
+        return $this->hasOne(Wishlist::class);
+    }
+
 }

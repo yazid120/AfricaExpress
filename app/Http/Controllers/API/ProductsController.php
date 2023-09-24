@@ -15,7 +15,9 @@ class ProductsController extends Controller
     public function index(Request $request){
     $product = DB::table('products')
     ->join('brands', 'products.brand_id', '=', 'brands.id')
-    ->select('products.*', 'brands.brand_name')
+    ->join('product_categorie', 'products.id', '=', 'product_categorie.product_id')
+    ->join('categories', 'product_categorie.categorie_id','=','categories.id')
+    ->select('products.*', 'brands.brand_name','categories.cat_name')
     ->where('products.id',$request->id)
     ->get();
 

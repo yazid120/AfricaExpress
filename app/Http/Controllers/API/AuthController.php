@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Wishlist;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,17 +36,21 @@ class AuthController extends Controller
       'password'=> md5($request-> password)
     ]);
 
-    // add a cart id to user
+    // add a cart id to user (personal)
     $cart= Cart::create([
       'user_id'=>$user->id
     ]);
+    // add a wishlist to user (personal)
+    $wishlist= Wishlist::create([
+       'user_id'=>$user->id
+    ]);
 
-
-      return response()->json([
+    return response()->json([
         'message'=>'User registrated Successfuly',
         'status'=>'ok',
         'user'=>$user,
-        'cart'=>$cart
+        'cart'=>$cart,
+        'wishlist'=>$wishlist
       ],201);
     }
 
@@ -69,15 +74,19 @@ class AuthController extends Controller
     if(!is_null($email_status)){
     #correct email address
         if(!is_null($password_status)){
-        # if the user exist we will create his cart 
-          $cart_status = Cart::where('user_id', $password_status->id)->first(); 
-          
+        # if the user exist we will create his cart
+          $cart_status = Cart::where('user_id', $password_status->id)->first();
+          $wishlist_status = Wishlist::where('user_id', $password_status->id)->first();
+
         #correct password
           if(md5($request->password) === $password_status->password){
             if(!is_null($cart_status)){
             #matched pwd and login successful
-            return response()->json(['status'=>'success','message'=>'user logged in successfuly','user_id'=>$password_status->id,
-            'cart_id'=>$cart_status->id]);
+            return response()->json(['status'=>'success','message'=>'user logged in successfuly',
+            'user_id'=>$password_status->id,
+            'cart_id'=>$cart_status->id,
+            'wishlist_id'=>$wishlist_status->id
+        ]);
             }else{
             return response()->json(['status'=>'error', 'message'=>'cart not created properly']);
             }

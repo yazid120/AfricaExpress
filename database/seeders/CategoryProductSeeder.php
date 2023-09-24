@@ -59,6 +59,13 @@ class CategoryProductSeeder extends Seeder
                 system. Whether you're building a custom PC, upgrading an existing one, or simply troubleshooting
                 issues, understanding these components is crucial. Each element plays a unique role in the overall
             performance and functionality of your PC.", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ["cat_name"=>"Wearable Technology",
+                "description"=>"Wearable technology, often referred to as 'wearables,' represents a groundbreaking
+                fusion of fashion and technology. These innovative devices are designed to be worn on the body,
+                offering users a multitude of functionalities that can enhance their daily lives. Whether you're
+                tracking your fitness goals, staying connected on the go, or even monitoring your health, wearable
+                technology has become an integral part of modern living.", 'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()],
 
         ];
 

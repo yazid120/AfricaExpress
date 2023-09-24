@@ -19,8 +19,9 @@ let Login = function(){
     axios.post(api_link,FormatData).then(response=>{
      console.log(response.data);
      if(response.data['message']=== 'user logged in successfuly' && response.data['status'] === 'success'){
-      localStorage.setItem('user_id',response.data['user_id']); 
-      localStorage.setItem('cart_id',response.data['cart_id']); 
+      localStorage.setItem('user_id',response.data['user_id']);
+      localStorage.setItem('cart_id',response.data['cart_id']);
+      localStorage.setItem('wishlist_id',response.data['wishlist_id']);
        window.location.replace('/profile');
      }
     })

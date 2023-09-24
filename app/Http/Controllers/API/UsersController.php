@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Cart;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -50,11 +52,21 @@ public function create(Request $request){
     'password'=>md5($request->password),
   ]);
 
+  // add a cart id to user (personal)
+  $cart= Cart::create([
+    'user_id'=>$user->id
+  ]);
+  // add a wishlist to user (personal)
+  $wishlist= Wishlist::create([
+     'user_id'=>$user->id
+  ]);
+
   return response()->json([
     'status'=>'ok',
     'message'=>'user create successfuly !! admin+',
+    'message-option'=>'with creating a new user acount a cart and wishlist log will be created automaticly',
     'user'=>$user
-  ]);
+  ], 201);
 }
 
 public function update(Request $request, $id){
@@ -97,6 +109,9 @@ public function delete($id){
             'message'=>'user not found !!',
         ]);
     }else{
+        // delete bout Cart & Wishlist user
+        $cart = Cart::where('user_id', $id)->delete();
+        $wishlist = Wishlist::where('user_id', $id)->delete();
         $user = User::where('id', $id)
         ->delete();
         return response()->json([

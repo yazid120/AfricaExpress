@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import {AiFillHeart} from "react-icons/ai";
+import {BsCartPlusFill} from "react-icons/bs";
 
 
 function GetProductArticle(link_api,SetproductID){
@@ -36,8 +38,6 @@ function ProductArticle(){
     }
   }, [ProductArticle]);
 
-  if(ProductArticleImages.length>0)
-  console.log(ProductArticleImages)
   return(
     <>
   {/* breadcrumb */}
@@ -52,7 +52,7 @@ function ProductArticle(){
   </div>
   {/* ./breadcrumb */}
   {/* product-detail */}
-  <div className="container grid grid-cols-2 gap-6">
+  <div className="container p-6 grid grid-cols-2 gap-6">
     <div>
       <img
         src={imgArticleMainUri+article}
@@ -112,7 +112,7 @@ function ProductArticle(){
         </p>
         <p className="space-x-2">
           <span className="text-gray-800 font-semibold">Category: </span>
-          <span className="text-gray-600">Sofa</span>
+          <span className="text-gray-600">{article.cat_name}</span>
         </p>
         <p className="space-x-2">
           <span className="text-gray-800 font-semibold">SKU: </span>
@@ -223,19 +223,13 @@ function ProductArticle(){
         </div>
       </div>
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
-        <a
-          href="#"
-          className="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex
-          items-center gap-2 hover:bg-transparent hover:text-primary transition"
-        >
-          <i className="fa-solid fa-bag-shopping" /> Add to cart
+        <a href="#" className="bg-primary border border-primary text-white bg-gray-700
+        px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-gray-500 hover:text-primary transition">
+          <BsCartPlusFill className="text-white-500 text-xl"/> Add to cart
         </a>
-        <a
-          href="#"
-          className="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex
-          items-center gap-2 hover:text-primary transition"
-        >
-          <i className="fa-solid fa-heart" /> Wishlist
+        <a href="#" className="border border-gray-300 text-gray-600 bg-gray-100 hover:bg-gray-200
+         px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition">
+          <AiFillHeart className="text-red-500 text-xl"/> Wishlist
         </a>
       </div>
       <div className="flex gap-3 mt-4">
@@ -579,10 +573,8 @@ function ProductArticle(){
             <div className="text-xs text-gray-500 ml-3">(150)</div>
           </div>
         </div>
-        <a
-          href="#"
-          className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-        >
+        <a href="#" className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b
+          hover:bg-transparent hover:text-primary transition">
           Add to cart
         </a>
       </div>
