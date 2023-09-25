@@ -8,6 +8,7 @@ import Footer from './views/Partials/Footer';
 import NavBar from './views/Partials/NavBar';
 import Main from "./main";
 import Home from "./views/home";
+import Contact from "./views/contact";
 import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import ResetPassword from "./views/Auth/ResetPassword";
@@ -85,6 +86,7 @@ const Routing = function(){
     {/* Guest Layout routes */}
   <Route path="/" element={<Guest_layout/>}>
     <Route index element={<Home/>}/>
+    <Route path="/contact" element={<Contact/>}/>
     <Route path="/product/article/:id" element={<ProductArticle/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
