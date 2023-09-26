@@ -8,6 +8,9 @@ export default {
       extend: {
         maxWidth:{
           '5/6':'90%'
+        },
+        gap: {
+          '1': '1rem',
         }
       },
     },
