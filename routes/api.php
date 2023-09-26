@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\BrandsController;
+use App\Http\Controllers\API\SubCategoryController;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 
@@ -33,6 +34,14 @@ Route::post('/signup', [AuthController::class,'signup']);
 Route::post('/login', [AuthController::class,'login']);
 //Profile user Api Controllers
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
+//Product Api Controller
+Route::get('/product/{id}', [ProductsController::class, 'index']);
+Route::get('/product/image/{id}', [ProductsController::class, 'imageProductIndex']);
+Route::get('/product',[ProductsController::class, 'show']);
+Route::get('/product/article/images', [ProductsController::class, 'ProductArticleImages']);
+
+Route::get('/product/brands/index', [BrandsController::class, 'index']);
+Route::get('/product/brands/show', [BrandsController::class, 'show']);
 
 //Users Api Controller
 Route::get('/admin/user/index/{id}', [UsersController::class, 'index']);
@@ -42,16 +51,8 @@ Route::put('/admin/user/update/{id}', [UsersController::class, 'update']);
 Route::delete('/admin/user/delete/{id}', [UsersController::class, 'delete']);
 Route::get('/admin/user/delete/{id}', [UsersController::class, 'delete']);
 
-//Product Api Controller
-Route::get('/product/{id}', [ProductsController::class, 'index']);
-Route::get('/product/image/{id}', [ProductsController::class, 'imageProductIndex']);
-Route::get('/product',[ProductsController::class, 'show']);
-Route::get('/product/article/images', [ProductsController::class, 'ProductArticleImages']);
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
 Route::get('/admin/product/create', [ProductsController::class, 'create']);
-
-Route::get('/product/brands/index', [BrandsController::class, 'index']);
-Route::get('/product/brands/show', [BrandsController::class, 'show']);
 
 //Admin Authentications Api Controller
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
@@ -59,3 +60,6 @@ Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']);
 
 Route::get('/admin/product/category/index', [CategoryController::class, 'index']);
 Route::post('/admin/product/category/create', [CategoryController::class, 'create']);
+
+Route::get('/admin/product/category/subCategory', [SubCategoryController::class, 'show']);
+Route::get('/admin/product/category/subCategory/{id}', [SubCategoryController::class, 'index']);

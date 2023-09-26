@@ -39,6 +39,8 @@ const CategorieProdAdminCreate = React.lazy( ()=> import("./views/admin/Category
 const CategorieProdAdminShow = React.lazy( ()=> import("./views/admin/Category/Categories_admin_show"));
 const CategorieProdAdminUpdate = React.lazy( ()=> import("./views/admin/Category/Categories_admin_update"));
 
+const SubCategorieProdAdminShow = React.lazy(()=>import("./views/admin/Category/Sub_category/SubCategoriesShow"));
+
 const ProductAdminCreate = React.lazy( ()=> import("./views/admin/Product/Product_admin_create"));
 const ProductAdminShow = React.lazy( ()=> import("./views/admin/Product/Product_admin_show"));
 const ProductAdminUpdate = React.lazy( ()=> import("./views/admin/Product/Product_admin_update"));
@@ -121,6 +123,8 @@ const Routing = function(){
     <Route path="/admin/product/category/show" element={<CategorieProdAdminShow/>}/>
     <Route path="/admin/product/category/create" element={<CategorieProdAdminCreate/>}/>
     <Route path="/admin/product/category/update" element={<CategorieProdAdminUpdate/>}/>
+
+    <Route path="/admin/product/category/sub-category/show" element={<SubCategorieProdAdminShow/>}/>
 
     <Route path="/admin/brand/show" element={<BrandAdminShow/>}/>
     <Route path="/admin/brand/add" element={<BrandsAdminAdd/>}/>

@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\product;
+use App\Models\SubCategory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -15,7 +18,11 @@ class Category extends Model
       'description'
     ];
 
-    public function Category(){
+    public function Category_product_relation(): BelongsToMany{
         return $this->belongsToMany(product::class);
     }
+    public function Category_SubCategory_relation(): HasMany{
+        return $this->hasMany(SubCategory::class);
+    }
+
 }

@@ -17,9 +17,9 @@ const productData = async function(link,SetData){
 function CategorieProdAdminShow(){
     const [Categories, SetCategories] = useState([]);
     const [pageNumber, SetPageNumber] = useState(0);
-    const [isConfirmationVisible, SetConfirmationVisible] = useState(false); 
+    const [isConfirmationVisible, SetConfirmationVisible] = useState(false);
     const CategoriesProduct = productData('http://localhost:8000/api/admin/product/category/index', SetCategories);
-    
+
     const HandleDeleteClick = ()=>{
       SetConfirmationVisible(true);
     }
@@ -27,10 +27,10 @@ function CategorieProdAdminShow(){
       SetConfirmationVisible(false);
     }
     const HandleConfirmDelete = ()=>{
-      SetConfirmationVisible(false); 
+      SetConfirmationVisible(false);
     }
-    
-    
+
+
     return(
         <>
         <Navbar_admin/>
@@ -38,10 +38,14 @@ function CategorieProdAdminShow(){
         <div style={{position:'relative',top:'4.3rem'}}>
   <div className='flex justify-between p-4'>
       <h1 className="text-2xl font-bold mb-4">Category List</h1>
-      <Link className='rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}} 
-      to="http://localhost:5000/admin/product/category/create">+ add new Category</Link>
+      <div className="flex gap-[2rem]">
+      <Link className='border_btn text-s text-white font-semi-bold rounded p-2 flex items-center' style={{backgroundColor:'rgba(6, 6, 6, 0.51)'}}
+      to="http://localhost:5000/admin/product/category/sub-category/show">Show all sub categories</Link>
+      <Link className='border_btn text-s text-white font-semi-bold rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}}
+      to="http://localhost:5000/admin/product/category/create">+ add new Category</Link></div>
   </div>
-      <table className="min-w-full w-full divide-y divide-gray-200">
+    <div className="flex justify-center">
+      <table className="min-w-[90%] w-[90%] divide-y divide-gray-200 rounded">
         <thead>
           <tr className='bg-sky-600'>
             <th className="px-6 py-3 text-left text-xs font-medium text-dark uppercase tracking-wider">
@@ -69,12 +73,12 @@ function CategorieProdAdminShow(){
               <td className="CategoryName-cell px-6 py-4 whitespace-nowrap">{Category.cat_name}</td>
               <td className="description-cell px-6 py-4 whitespace-nowrap">{Category.description}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Link className="rounded w-full flex items-center justify-center p-2" style={{backgroundColor:'orange'}}
+                <Link className="border_btn rounded w-full flex items-center justify-center p-2" style={{backgroundColor:'#ffa5008a'}}
                 to='http://localhost:5000/admin/product/update'>update</Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button className="rounded w-full flex items-center justify-center p-2"
-                 style={{backgroundColor:'red'}} onClick={HandleDeleteClick}>delete</button>
+                <button className="border_btn rounded w-full flex items-center justify-center p-2"
+                 style={{backgroundColor:'#ff000096'}} onClick={HandleDeleteClick}>delete</button>
                  {isConfirmationVisible && (
                     <DeleteConfirmation onCancel={HandleCancelDelete} onConfirm={HandleConfirmDelete}/>
                  )
@@ -84,6 +88,7 @@ function CategorieProdAdminShow(){
           ))}
         </tbody>
       </table>
+    </div>
       {/* pagination */}
   <div className="mt-4">
     {/*<ReactPaginate
@@ -105,4 +110,4 @@ function CategorieProdAdminShow(){
         </>
     )
 }
-export default CategorieProdAdminShow; 
+export default CategorieProdAdminShow;
