@@ -10,6 +10,8 @@ use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\BrandsController;
 use App\Http\Controllers\API\SubCategoryController;
+use App\Http\Controllers\API\WishlistController;
+use App\Http\Controllers\API\WishlistItemController;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 
@@ -29,12 +31,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-//user Authentication Api Controller
+//user Authentication Api Controllers
 Route::post('/signup', [AuthController::class,'signup']);
 Route::post('/login', [AuthController::class,'login']);
 //Profile user Api Controllers
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
-//Product Api Controller
+//Product Api Controllers
 Route::get('/product/{id}', [ProductsController::class, 'index']);
 Route::get('/product/image/{id}', [ProductsController::class, 'imageProductIndex']);
 Route::get('/product',[ProductsController::class, 'show']);
@@ -42,12 +44,18 @@ Route::get('/product/article/images', [ProductsController::class, 'ProductArticl
 
 Route::get('/product/brands/index', [BrandsController::class, 'index']);
 Route::get('/product/brands/brand-index/{id}',[BrandsController::class,'brand_index']);
+
+// Wishlists Api Controllers
+Route::get('/wishlist/show', [WishlistController::class, 'show']);
+Route::get('/wishlist/items/index', [WishlistItemController::class, 'index']);
+Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
+
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
 Route::put('/admin/brands/update/{id}' ,[BrandsController::class, 'update']);
 Route::delete('/admin/brands/delete/{id}' ,[BrandsController::class, 'delete']);
 
-//Users Api Controller
+//Users Api Controllers
 Route::get('/admin/user/index/{id}', [UsersController::class, 'index']);
 Route::get('/admin/user/show',[UsersController::class, 'show']);
 Route::post('/admin/user/create', [UsersController::class, 'create']);
@@ -58,7 +66,7 @@ Route::get('/admin/user/delete/{id}', [UsersController::class, 'delete']);
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
 Route::get('/admin/product/create', [ProductsController::class, 'create']);
 
-//Admin Authentications Api Controller
+//Admin Authentications Api Controllers
 Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
 Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']);
 

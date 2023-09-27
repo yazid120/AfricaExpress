@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('wishList_item', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('whishlist_id');
             $table->timestamps();
             // Foreign keys
             $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('whishlist_id')->references('id')->on('wishlists'); 
         });
     }
 

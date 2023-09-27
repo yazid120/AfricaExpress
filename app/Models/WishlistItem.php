@@ -10,14 +10,14 @@ use App\Models\User;
 class WishlistItem extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['product_id','user_id'];
+    protected $table = 'wishlist_item';
+    protected $fillable = ['product_id','whishlist_id'];
 
     public function product(){
         return $this->belongsTo(product::class);
     }
     public function user(){
-        return $this->belongsTo(User::class); 
+        return $this->belongsTo(User::class);
     }
 
 }
