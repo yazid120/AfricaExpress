@@ -21,7 +21,7 @@ function ProductArticle(){
   const [article, SetArticle] = useState('');
   const [articleName, SetarticleName] = useState('');
   const [articlePrice, SetarticlePrice] = useState('');
-  const [articleQteAv, SetarticleQteAv] = useState('');
+  const [articleQte, SetarticleQte] = useState(1);
   const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle);
   const GetProductImages = GetProductArticle(`http://localhost:8000/api/product/image/${id}`,SetProductArticleImages);
 
@@ -37,6 +37,36 @@ function ProductArticle(){
       setValueArticle(ProductArticle[0].image);
     }
   }, [ProductArticle]);
+
+  const HandleIncreaseQte = ()=>{
+    SetarticleQte(articleQte +1);
+  }
+  const HandleDecreaseQte = ()=>{
+    if(articleQte >1){
+      SetarticleQte(articleQte -1)
+    }
+  }
+
+  const HandleWishlist = async(e)=>{
+    e.preventDefault();
+    const whishlistID = localStorage.getItem('wishlist_id');
+    const productID = ProductArticle[0]['id'];
+    const fromData ={
+      'product_id': productID,
+      'whishlist_id': parseInt(whishlistID)
+    }
+  try{
+    axios.post('http://localhost:8000/api/wishlist/items/add',fromData)
+    .then(response=>{
+      console.log(response.data);
+    }).then((error)=>{
+      // console.error('failed fetching data', error);
+    })
+  }catch(error){
+    console.error(error);
+  }
+
+  }
 
   return(
     <>
@@ -208,16 +238,19 @@ function ProductArticle(){
           </div>
         </div>
       </div>
+      {/* quantity article */}
       <div className="mt-4">
         <h3 className="text-sm text-gray-800 uppercase mb-1">Quantity</h3>
         <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-          <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+          <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+          onClick={HandleDecreaseQte}>
             -
           </div>
           <div className="h-8 w-8 text-base flex items-center justify-center">
-            4
+            {articleQte}
           </div>
-          <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none">
+          <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
+          onClick={HandleIncreaseQte}>
             +
           </div>
         </div>
@@ -228,7 +261,8 @@ function ProductArticle(){
           <BsCartPlusFill className="text-white-500 text-xl"/> Add to cart
         </a>
         <a href="#" className="border border-gray-300 text-gray-600 bg-gray-100 hover:bg-gray-200
-         px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition">
+         px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
+         onClick={HandleWishlist}>
           <AiFillHeart className="text-red-500 text-xl"/> Wishlist
         </a>
       </div>
@@ -443,10 +477,8 @@ function ProductArticle(){
             <div className="text-xs text-gray-500 ml-3">(150)</div>
           </div>
         </div>
-        <a
-          href="#"
-          className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-        >
+        <a href="#" className="block w-full py-1 text-center text-white bg-primary border border-primary
+          rounded-b hover:bg-transparent hover:text-primary transition">
           Add to cart
         </a>
       </div>
