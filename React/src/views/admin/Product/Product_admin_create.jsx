@@ -22,6 +22,7 @@ function ProductAdmin(){
   const [productPrice, SetProductPrice] = useState('');
   const [productQte, SetProductQte] = useState('');
   const [productCategory, SetProductCategory] = useState('');
+  const [descriptionProduct, SetdescriptionProduct] = useState('');
 
   {/** Handle product image **/}
   const handleImageChange = async (e) => {
@@ -42,7 +43,8 @@ function ProductAdmin(){
       'name': productName,
       'price_unit': productPrice,
       'product_quantity': productQte,
-      'product_category': productCategory
+      'product_category': productCategory,
+      'product_description': descriptionProduct
     }
 try{
     await axios.post(link_api,formData).then(response=>{
@@ -143,7 +145,19 @@ try{
               </select>
             </div>
           </div>
-          <div className="product__add">
+          <label className="block" htmlFor="categories_selection">product description</label>
+            <div className="categories space-x-4">
+            <textarea
+              id="product_description"
+              name="product_description"
+              cols={30}
+              rows={5}
+              placeholder="Enter Product Description"
+              className="w-full border border-gray-300 rounded px-2 py-1"
+              onChange={(e)=>SetdescriptionProduct(e.target.value)}
+            />
+            </div>
+            <div className="product__add">
             <input
               type="submit"
               value="Add Product"

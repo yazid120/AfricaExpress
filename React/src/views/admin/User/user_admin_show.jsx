@@ -49,7 +49,7 @@ function UserAdminShow(){
       DelteConfirmatonPopVisible && (<DelteConfirmatonPop
         onCancel={HandleCancelSub}
         onConfirm={HandleConfirmSub}/>)
-    }
+      }
   <div className='flex justify-between p-4'>
       <h1 className="text-2xl font-bold mb-4">Client List</h1>
       <Link className='border_btn text-s text-white font-semi-bold rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/user/add">+ add new user account</Link>

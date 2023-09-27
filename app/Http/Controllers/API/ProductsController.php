@@ -65,25 +65,28 @@ class ProductsController extends Controller
     #Create product admin
     public function create(Request $request){
 
-    //    $validator = $request->validate([
-    //     'name' => 'required|max:255|min:5|unique:products',
-    //     'price_unit' => 'required|numeric',
-    //     'product_image' => 'required',
-    //     'product_quantity' => 'required|integer|min:1'
+       $validator = $request->validate([
+        'name' => 'required|max:255|min:5|unique:products',
+        'price_unit' => 'required|numeric',
+        'product_image' => 'required',
+        'product_quantity' => 'required|integer|min:1',
+        'product_description' => 'min:10'
+       ]);
+
+    //    $product = product::create([
+    //     'name' => $request->name,
+    //     'price_unit' => $request->price_unit,
+    //     'image' => $request->product_image,
+    //     'quantity' => $request->product_quantity,
+    //     'product_description'=> $request->product_description
     //    ]);
 
-       $product = product::create([
-        'name' => 'Logitech G502 HERO Wired Gaming Mouse',
-        'price_unit' => '49.99',
-        'image' => 'Logitech_G502_Hero.jpg',
-        'quantity' => 8,
-       ]);
-
-       return response()->json([
-        'status'=>'ok',
-        'massage'=> 'product created successfuly',
-        'product'=> $product
-       ]);
+    //    return response()->json([
+    //     'status'=>'ok',
+    //     'massage'=> 'product created successfuly',
+    //     'product'=> $product
+    //    ]);
+    return response()->json($validator); 
 
         // $products = DB::table('products')->where('id',$product->id)->get();
         // $category = DB::table('categories')->get();
