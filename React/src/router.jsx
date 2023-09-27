@@ -47,7 +47,8 @@ const ProductAdminUpdate = React.lazy( ()=> import("./views/admin/Product/Produc
 
 const BrandAdminShow = React.lazy( ()=> import("./views/admin/brands/brands_admin_show"));
 const BrandsAdminAdd = React.lazy( ()=> import("./views/admin/brands/brands_admin_create"));
-
+const BrandsAdminUpdate = React.lazy ( ()=> import("./views/admin/brands/brands_admin_update"));
+const BrandsAdminDelete =  React.lazy ( ()=> import("./views/admin/brands/brands_admin_delete"));
 
 function Guest_layout(){
   return(
@@ -128,6 +129,8 @@ const Routing = function(){
 
     <Route path="/admin/brand/show" element={<BrandAdminShow/>}/>
     <Route path="/admin/brand/add" element={<BrandsAdminAdd/>}/>
+    <Route path="/admin/brand/update/:id" element={<BrandsAdminUpdate/>}/>
+    <Route path="/admin/brand/delete/:id" element={<BrandsAdminDelete/>}/>
 
   </Route>
 

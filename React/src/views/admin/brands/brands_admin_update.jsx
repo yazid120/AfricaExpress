@@ -1,12 +1,35 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar_admin from "../Dashboard/partials/Navbar_admin";
 
-function BrandsAdminAdd(){
+
+function BrandsAdminUpdate(){
+  const {id} = useParams();
   const [brandImg, SetbrandImg] = useState(null);
-  const [brandName, SetbrandName] = useState('');
-  const [brandDescription, SetbrandDescription] = useState('');
+  const [brandInfos, SetbrandInfos] = useState({brand_name:''});
+  const [brandName, SetbrandName] = useState({});
+  const [isModified, SetIsModified] = useState(false);
+
+  useEffect(()=>{
+    fetch(`http://localhost:8000/api/product/brands/brand-index/${id}`)
+    .then((response) => response.json())
+    .then((data)=>{
+      SetbrandName(data);
+      SetbrandInfos({brand_name: data.brand_name});
+    })
+    .catch((error)=>console.error('error fetching data ',error));
+  },[])
+
+  const HandleBrandInfos = (e)=>{
+    const {name,value}= e.target;
+    SetbrandInfos({
+      ...brandInfos,
+      [name]:value
+    });
+    SetIsModified(true);
+  }
 
   {/** Handle product image **/}
   const handleImageChange = async (e) => {
@@ -16,10 +39,8 @@ function BrandsAdminAdd(){
 
   async function HandleAddBrand(e){
    e.preventDefault();
-   const formData ={
-    'brand_name': brandName,
-   }
-   await axios.post('http://localhost:8000/api/admin/brands/create', formData)
+
+   await axios.put(`http://localhost:8000/api/admin/brands/update/${id}`, brandInfos)
    .then(response=>{
     console.log(response.data);
     if(response.data['status']=='ok'){
@@ -27,15 +48,16 @@ function BrandsAdminAdd(){
       location.href='http://localhost:5000/admin/brand/show';
     }
    })
-
   }
+
+  console.log(brandInfos)
   return(
     <>
     <Navbar_admin/>
 
     <div style={{position:'relative',top:'4.3rem'}}>
     <div className="wrapper mx-auto max-w-md p-4">
-    <div className="heading text-2xl font-bold mb-4">Add Brand</div>
+    <div className="heading text-2xl font-bold mb-4">Update Brand</div>
     <div className="product">
       <form id="add-product-form" className="space-y-4" onSubmit={HandleAddBrand}>
         <div className="product__image relative">
@@ -62,29 +84,20 @@ function BrandsAdminAdd(){
             <input
               type="text"
               id="brand_name"
-              name="name"
+              name="brand_name"
               placeholder="Enter brand Name"
               className="w-full border border-gray-300 rounded px-2 py-1"
-              onChange={(e)=>SetbrandName(e.target.value)}
+              value={brandInfos.brand_name}
+              onChange={HandleBrandInfos}
             />
           </div>
-          {/* <div className="brand__desc">
-            <label htmlFor="brand_name" className="block">brand description</label>
-            <input
-              type="text"
-              id="brand_name"
-              name="name"
-              placeholder="Enter brand Name"
-              className="w-full border border-gray-300 rounded px-2 py-1"
-              onChange={(e)=>SetbrandDescription(e.target.value)}
-            />
-          </div> */}
 
           <div className="brand__add">
             <input
               type="submit"
-              value="Add brand"
-              className="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+              value="Update brand"
+              className={isModified ? 'active-button' : 'disabled-button'}
+              disabled={!isModified}
             />
           </div>
         </div>
@@ -95,4 +108,4 @@ function BrandsAdminAdd(){
     </>
   )
 }
-export default BrandsAdminAdd;
+export default BrandsAdminUpdate;

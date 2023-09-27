@@ -16,13 +16,28 @@ function BrandAdminShow(){
   const [brandsList, SetbrandsList] = useState([]);
   const [DelteConfirmatonPopVisible, SetDelteConfirmatonPopVisible] = useState(false);
   const BrandList = brandData('http://localhost:8000/api/product/brands/show', SetbrandsList);
+  const [brandId, SetbrandId] = useState([]);
 
 
   const HandleDeleteClick =(useridData)=>{
     SetDelteConfirmatonPopVisible(true);
+    SetbrandId(useridData);
   }
   const HandleCancelSub =()=>{
     SetDelteConfirmatonPopVisible(false);
+  }
+
+  const HandleConfirmSub = ()=>{
+    if(brandId !== null || brandId.length > 0){
+      location.href = `http://localhost:5000/admin/brand/delete/${brandId}`;
+    }
+    else{
+      location.href = `http://localhost:5000/admin/user/show?error=Invalid_id`;
+    }
+  }
+
+  async function HandleUpdateBrandAdmin(UserID){
+    location.href = `http://localhost:5000/admin/brand/update/${UserID}`;
   }
   return(
     <>
@@ -32,11 +47,11 @@ function BrandAdminShow(){
       DelteConfirmatonPopVisible && (<DelteConfirmatonPop
         onCancel={HandleCancelSub}
         onConfirm={HandleConfirmSub}/>)
-    }
+      }
   <div className='flex justify-between p-4'>
       <h1 className="text-2xl font-bold mb-4">brand List</h1>
       <Link className='border_btn text-s text-white font-semi-bold rounded p-2 flex items-center'
-       style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/user/add">+ add new user brand</Link>
+       style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/brand/add">+ add new user brand</Link>
   </div>
       <table className="min-w-full w-full divide-y divide-gray-200">
         <thead>
@@ -66,7 +81,7 @@ function BrandAdminShow(){
               <td className="px-6 py-4 whitespace-nowrap">{brand.created_at}</td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <Link className="border_btn rounded flex items-center justify-center p-2"
-                style={{backgroundColor:'#ffa5008a'}} onClick={()=>HandleUpdateUserAdmin(brand.id)}>update</Link>
+                style={{backgroundColor:'#ffa5008a'}} onClick={()=>HandleUpdateBrandAdmin(brand.id)}>update</Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button className="border_btn rounded flex items-center justify-center p-2"

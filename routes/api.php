@@ -41,7 +41,11 @@ Route::get('/product',[ProductsController::class, 'show']);
 Route::get('/product/article/images', [ProductsController::class, 'ProductArticleImages']);
 
 Route::get('/product/brands/index', [BrandsController::class, 'index']);
+Route::get('/product/brands/brand-index/{id}',[BrandsController::class,'brand_index']);
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
+Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
+Route::put('/admin/brands/update/{id}' ,[BrandsController::class, 'update']);
+Route::delete('/admin/brands/delete/{id}' ,[BrandsController::class, 'delete']);
 
 //Users Api Controller
 Route::get('/admin/user/index/{id}', [UsersController::class, 'index']);
