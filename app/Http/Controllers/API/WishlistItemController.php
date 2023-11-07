@@ -43,7 +43,16 @@ class WishlistItemController extends Controller
       ]);
     }
 
-    public function delete(){
-
+    public function delete($id){
+      $WishlistItem = WishlistItem::findOrfail($id);
+      if($WishlistItem){
+        $wishlistItems_list = DB::table('wishlist_item')
+      ->join('products','wishlist_item.product_id','=','products.id')
+      ->join('wishlists','wishlist_item.whishlist_id','=','wishlists.id')
+      ->select('wishlist_item.id','products.name','products.price_unit','products.image','wishlists.user_id',
+      'wishlist_item.whishlist_id')
+      ->get();
+      }
+      return response()->json($wishlistItems_list);
     }
 }
