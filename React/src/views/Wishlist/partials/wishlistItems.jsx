@@ -18,7 +18,7 @@ const WishlistItem = ()=>{
           console.error('Connection failed!!', error);
         });
     } catch (error) {
-      // error
+      // error failed api connection
       console.error('Connection failed !!');
     }
   }, []);
