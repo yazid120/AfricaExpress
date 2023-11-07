@@ -23,7 +23,6 @@ const WishlistItem = ()=>{
     }
   }, []);
 
-  // console.log(WishItem)
   return(
     <>
     {WishItem.map((item)=>(
