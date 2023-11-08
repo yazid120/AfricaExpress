@@ -3,6 +3,7 @@ import axios from "axios";
 import {useEffect,useState} from "react";
 import SideBarProfile from "./components/SideBarProfile";
 import GetUser from "./components/User_Info/GetUserInfo";
+import ProfileSection from "./components/ProfileSection";
 
 
 let Profile = function(){
@@ -89,8 +90,13 @@ let Profile = function(){
             <p className="text-gray-800">20317</p>
           </div>
         </div>
+        
+      {/* profile section top */}
+      <ProfileSection/>
       </div>
       {/* ./info */}
+
+
     </div>
     {/* ./account wrapper */}
 
