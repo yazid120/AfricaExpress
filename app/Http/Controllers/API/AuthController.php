@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Wishlist;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -33,7 +34,9 @@ class AuthController extends Controller
     $user= User::create([
       'name'=>$request->name,
       'email'=>$request->email,
-      'password'=> md5($request-> password)
+      'password'=> md5($request-> password),
+      'user_token'=> Str::random(60),
+      'logical_delete'=> false
     ]);
 
     // add a cart id to user (personal)
