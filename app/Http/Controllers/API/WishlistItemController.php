@@ -15,44 +15,63 @@ class WishlistItemController extends Controller
       $wishlistItems = DB::table('wishlist_item')
       ->join('products','wishlist_item.product_id','=','products.id')
       ->join('wishlists','wishlist_item.whishlist_id','=','wishlists.id')
-      ->select('products.name','products.price_unit','products.image','wishlists.user_id')
+      ->select('products.id','products.name','products.price_unit','products.image','wishlists.user_id')
       ->get();
       return response()->json($wishlistItems);
     }
 
-    public function add(Request $request){
-      $validation_WishlistItems = $request->validate([
-       'product_id'=>'required|integer',
-       'whishlist_id'=>'required|integer'
-      ]);
-
-      if(!$validation_WishlistItems){
-        return response()->json([
-            'error'=>'error set data validation'
+    public function add(Request $request) {
+        $validation_WishlistItems = $request->validate([
+            'product_id' => 'required|integer',
+            'whishlist_id' => 'required|integer'
         ]);
-      }
 
-      $wishlistItem = WishlistItem::create([
-        'product_id'=> $request->product_id,
-        'whishlist_id'=> $request->whishlist_id
-      ]);
+        if (!$validation_WishlistItems) {
+            return response()->json(['error' => 'Error in data validation']);
+        }
 
-      return response()->json([
-        'status'=>'ok',
-        'message'=>'product added to wishlist successfuly'
-      ]);
+        // Check if the product_id is already in the wishlist
+        $existingWishlistItem = WishlistItem::where('product_id', $request->product_id)
+            ->where('whishlist_id', $request->whishlist_id)
+            ->first();
+
+        if ($existingWishlistItem) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Product already exists in the wishlist'
+            ]);
+        }
+
+        // If not, create a new WishlistItem
+        $wishlistItem = WishlistItem::create([
+            'product_id' => $request->product_id,
+            'whishlist_id' => $request->whishlist_id
+        ]);
+
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Product added to wishlist successfully'
+        ]);
     }
 
-    public function delete($id){
-      $WishlistItem = WishlistItem::findOrfail($id);
-      if($WishlistItem){
-        $wishlistItems_list = DB::table('wishlist_item')
-      ->join('products','wishlist_item.product_id','=','products.id')
-      ->join('wishlists','wishlist_item.whishlist_id','=','wishlists.id')
-      ->select('wishlist_item.id','products.name','products.price_unit','products.image','wishlists.user_id',
-      'wishlist_item.whishlist_id')
-      ->get();
-      }
-      return response()->json($wishlistItems_list);
+    public function delete($productId){
+        $productModel = new Product();
+
+        $wishlistItem = WishlistItem::where('product_id', $productId)->first();
+
+        if ($wishlistItem) {
+            $wishlistItem->delete();
+
+            $deletedItem = DB::table('wishlist_item')
+                ->join('products', 'wishlist_item.product_id', '=', 'products.id')
+                ->join('wishlists', 'wishlist_item.whishlist_id', '=', 'wishlists.id')
+                ->select('wishlist_item.id', 'products.name', 'products.price_unit', 'products.image', 'wishlists.user_id', 'wishlist_item.whishlist_id')
+                ->where('wishlist_item.product_id', $productId)
+                ->first();
+
+            return response()->json($deletedItem);
+        }
+
+        return response()->json(['error' => 'Item not found in wishlist'], 404);
     }
 }

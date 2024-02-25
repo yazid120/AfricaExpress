@@ -5,14 +5,25 @@ import { BsTrash } from "react-icons/bs";
 
 const WishlistItem = ()=>{
   const image_path_uri = '../src/assets/images/Products/';
-  const [WishItem, SetWishItem] = useState([]);
+  const [WishItem, setWishItems] = useState([]);
+
+  const deleteItemWishlist = (itemId) => {
+    axios.delete(`http://127.0.0.1:8000/api/wishlist/items/delete/${itemId}`)
+      .then((response) => {
+        setWishItems(response.data);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error('Delete failed!!', error);
+      });
+  };
 
 
   useEffect(() => {
     try {
       axios.get(`http://127.0.0.1:8000/api/wishlist/items/index`)
         .then((response) => {
-          SetWishItem(response.data);
+          setWishItems(response.data);
         })
         .catch((error) => {
           console.error('Connection failed!!', error);
@@ -25,7 +36,7 @@ const WishlistItem = ()=>{
 
   return(
     <>
-    {WishItem.map((item)=>(
+    {Array.isArray(WishItem) && WishItem.map((item) => (
       <div className="flex items-center justify-between border gap-6 p-4 border-gray-200 rounded" key={item.id}>
         <div className="w-28">
           <img src={image_path_uri+item.image} alt="product 6" className="w-full"/>
@@ -43,9 +54,12 @@ const WishlistItem = ()=>{
            rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
           add to cart
         </a>
-        <div className="text-2xl text-red-500">
+
+        {/* delete item from wishlist button */}
+       <div className="text-2xl text-red-500 cursor-pointer hover:bg-grey" onClick={() => deleteItemWishlist(item.id)}>
         <BsTrash/>
        </div>
+
         <div className="text-gray-600 cursor-pointer hover:text-primary">
           <i className="fa-solid fa-trash" />
         </div>

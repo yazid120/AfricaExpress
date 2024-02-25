@@ -50,6 +50,7 @@ Route::get('/wishlist/show', [WishlistController::class, 'show']);
 Route::get('/wishlist/items/index', [WishlistItemController::class, 'index']);
 Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
 Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
+Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
