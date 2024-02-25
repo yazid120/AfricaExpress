@@ -90,7 +90,7 @@ let Profile = function(){
             <p className="text-gray-800">20317</p>
           </div>
         </div>
-        
+
       {/* profile section top */}
       <ProfileSection/>
       </div>

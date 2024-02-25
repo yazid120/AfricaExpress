@@ -23,7 +23,7 @@ function ShopProduct({products,SearchProdFilter}){
   const image_path_uri = '../src/assets/images/Products/';
 
   async function HandleProductArticle(productArticleID){
-    location.href=`http://127.0.0.1:5000/product/article/${productArticleID}`;
+    location.href=`http://localhost:5000/product/article/${productArticleID}`;
   }
 
   return(

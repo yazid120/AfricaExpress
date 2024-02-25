@@ -90,7 +90,7 @@ const Routing = function(){
   <Route path="/" element={<Guest_layout/>}>
     <Route index element={<Home/>}/>
     <Route path="/contact" element={<Contact/>}/>
-    <Route path="/product/article/:id" element={<ProductArticle/>}/>
+    <Route exact path="/product/article/:id" element={<ProductArticle/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
