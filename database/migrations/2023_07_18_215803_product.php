@@ -19,6 +19,7 @@ return new class extends Migration
           $table->integer('quantity');
           $table->unsignedBigInteger('brand_id');
           $table->text('product_description')->nullable();
+          $table->boolean('logical_delete')->nullable();
           $table->timestamps();
         });
     }
