@@ -38,7 +38,6 @@ const Wishlist = function(){
   </div>
 
   <div className="container grid grid-cols-12 items-start gap-6 pt-4 pb-16">
-    {/* sidebar */}
     <SideBar/>
 
     {/* wishlist */}
@@ -47,7 +46,6 @@ const Wishlist = function(){
       <WishlistItem/>
 
     </div>
-    {/* ./wishlist */}
   </div>
 </>
 

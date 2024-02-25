@@ -11,6 +11,7 @@ const WishlistItem = ()=>{
     axios.delete(`http://127.0.0.1:8000/api/wishlist/items/delete/${itemId}`)
       .then((response) => {
         setWishItems(response.data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error('Delete failed!!', error);
