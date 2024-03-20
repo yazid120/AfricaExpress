@@ -8,34 +8,45 @@ import SearchBarProduct from './components/Search_Bar_product';
 
 
 let Product = function(){
-  const [products,SetProduct] = useState([]);
+  const [products, SetProduct] = useState([]);
+  const [totalProducts, SetTotalProducts] = useState(0);
   const [CategoryFilter, SetCategoryFilter] = useState('');
   const [SearchProdFilter, SetSearchProdFilter] = useState('');
   const [pageNumber, SetPageNumber] = useState(0);
 
-   {/** products pagination **/}
-   const ProductPerPage = 3;
-   const pageCount = Math.ceil(products.length / ProductPerPage);
-   const offset = pageNumber * ProductPerPage;
-   const currentPageData = products.slice(offset,ProductPerPage+offset);
+  const api_links = `http://127.0.0.1:8000/api/product?category=${CategoryFilter}&search=${SearchProdFilter}&page=${pageNumber + 1}`;
+  const api_link = "http://127.0.0.1:8000/api/product";
 
-   const HandlePageNumber = ({selected})=>{
-     SetPageNumber(selected);
+  useEffect(() => {
+    axios.get(api_link)
+        .then(response => {
+            SetProduct(response.data);
+            SetTotalProducts(response.data.length);
+
+        })
+        .catch(error => console.error(error));
+  }, [CategoryFilter, SearchProdFilter, pageNumber]);
+
+
+
+   if (!products) {
+    return <div>Loading...</div>; // or any other loading indicator
    }
 
-   console.log(CategoryFilter)
+   {/** products pagination **/}
+   const ProductPerPage = 3;
+   const pageCount = Math.ceil(totalProducts / ProductPerPage);
+   const offset = pageNumber * ProductPerPage;
+   const currentPageData = products.slice(offset, ProductPerPage + offset);
+   console.log(pageCount)
+
+  const HandlePageNumber = ({selected})=>{
+    SetPageNumber(selected);
+  }
+
+  //  console.log(CategoryFilter)
   const user_id = localStorage.getItem('user_id') ?? 'null';
   const cart_id = localStorage.getItem('cart_id') ?? 'null';
-
-
-   const api_link = "http://127.0.0.1:8000/api/product";
-
-   useEffect(() => {
-    fetch(api_link)
-        .then(response => response.json())
-        .then(data => SetProduct(data))
-        .catch(error => console.error(error));
-   }, []);
 
 return(
 <>
@@ -90,7 +101,7 @@ return(
       <ShopProduct products={currentPageData} SearchProdFilter={SearchProdFilter}/>
 
       {/* Product Pagination */}
-  <div className="mt-4 pl-12 pr-12	">
+  <div className="mt-4 pl-8 pr-8	">
     <ReactPaginate
     color="primary"
     previousLabel="Previous"
@@ -100,11 +111,11 @@ return(
     onPageChange={HandlePageNumber}
     count={10}
     variant="outlined"
-    previousLinkClassName='px-3 py-2 border rounded-md'
-    nextLinkClassName='px-3 py-2 border rounded-md'
+    previousLinkClassName='px-3 py-2 border rounded-md font-semibold	'
+    nextLinkClassName='px-3 py-2 border rounded-md font-semibold	'
     disabledClassName='text-grey-300'
     containerClassName='pagination flex justify-around items-center mt-4'
-    activeClassName='active bg-blue-500 text-white rounded-full p-2 pt-0.5 pb-0.5'/>
+    activeClassName='active bg-blue-500 text-white rounded-md p-2 px-4	'/>
   </div>
 
     </div>

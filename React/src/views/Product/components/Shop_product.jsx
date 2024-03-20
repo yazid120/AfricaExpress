@@ -2,22 +2,6 @@ import React from "react";
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
 
-
-let logged_user = (id)=>{
-  if(id === null){
-    return false;
-  }else{
-    return true;
-  }
-}
-let exist_cart = (cart_id)=>{
-  if(cart_id === null){
-    return false;
-  }else{
-    return true;
-  }
-}
-
 function ShopProduct({products,SearchProdFilter}){
   const [productelement, Setproductelement] = useState([]);
   const image_path_uri = '../src/assets/images/Products/';
