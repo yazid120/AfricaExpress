@@ -37,8 +37,8 @@ function ProductTable(){
     <>
     <div style={{position:'relative',top:'4.3rem'}}>
   <div className='flex justify-between p-4'>
-      <h1 className="text-2xl font-bold mb-4">Product List</h1>
-      <Link className='border_btn text-s text-white font-semi-bold rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/product/create">+ add new product</Link>
+      <h1 className="text-2xl font-bold mb-4">List Of Products</h1>
+      <Link className='text-s text-white font-semi-bold rounded p-2 flex items-center' style={{backgroundColor:'#5969ed'}} to="http://localhost:5000/admin/product/create">+ add new product</Link>
   </div>
       <table className="min-w-full w-full divide-y divide-gray-200">
         <thead>
@@ -83,7 +83,7 @@ function ProductTable(){
               <td className="px-6 py-4 whitespace-nowrap">{product.brand_name}</td>
               <td className="px-6 py-4 whitespace-nowrap">{product.created_at}</td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Link className="border_btn rounded flex items-center justify-center p-2" style={{backgroundColor:'#ffa5008a'}}
+                <Link className="border_btn rounded flex items-center justify-center p-2" style={{backgroundColor:'rgba(255, 165, 0, 0.83)'}}
                 to='http://localhost:5000/admin/product/update'>update</Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -105,11 +105,11 @@ function ProductTable(){
     onPageChange={HandlePageNumber}
     count={10}
     variant="outlined"
-    previousLinkClassName='px-3 py-2 border rounded-md'
-    nextLinkClassName='px-3 py-2 border rounded-md'
+    previousLinkClassName='px-3 py-2 border rounded-md font-semibold	'
+    nextLinkClassName='px-3 py-2 border rounded-md font-semibold	'
     disabledClassName='text-grey-300'
-    containerClassName='pagination flex justify-content mt-4'
-    activeClassName='active bg-blue-500 text-white border-radius'/>
+    containerClassName='pagination flex justify-around items-center mt-4'
+    activeClassName='active bg-blue-500 text-white rounded-md p-2 px-4	'/>
   </div>
   </div>
     </>
