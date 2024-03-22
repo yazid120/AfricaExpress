@@ -2,6 +2,7 @@ import React from "react";
 import {VscAccount} from "react-icons/vsc";
 import {BsBagPlusFill} from "react-icons/bs";
 import {AiOutlineHeart} from "react-icons/ai";
+import { useState } from "react";
 
 
 let logout = function(){
@@ -13,9 +14,25 @@ let logout = function(){
 }
 
 let NavBar = function(){
+  const [WishlistItems, setWishlistItems] = useState([]);
   const userAuth = localStorage.getItem('user_id');
 
-
+  const GetWishlistItems = function(){
+    useEffect(() => {
+      try {
+        axios.get(`http://127.0.0.1:8000/api/wishlist/items/index`)
+          .then((response) => {
+            setWishlistItems(response.data);
+          })
+          .catch((error) => {
+            console.error('Connection failed!!', error);
+          });
+      } catch (error) {
+        // error failed api connection
+        console.error('Connection failed !!');
+      }
+    }, []);
+  }
   const mystyle={width:'auto', gap:'1rem'}
   return(
   <>
@@ -52,10 +69,10 @@ let NavBar = function(){
             <AiOutlineHeart className="fa-regular fa-heart" />
           </div>
           <div className="item_ice_text text-xs leading-3">Wishlist</div>
-          <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center
-           bg-primary text-white text-xs">
-            8
-          </div>
+            <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center
+            bg-red-500 text-white text-xs">
+              {WishlistItems.length}
+            </div>
         </a>
         {/* account item */}
         {userAuth ?
