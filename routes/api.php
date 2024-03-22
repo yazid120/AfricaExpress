@@ -52,6 +52,9 @@ Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
 Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 
+// Cart Api Controllers
+
+
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
 Route::put('/admin/brands/update/{id}' ,[BrandsController::class, 'update']);

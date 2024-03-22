@@ -7,6 +7,7 @@ let Login = function(){
    const [email,SetEmail] = useState("");
    const [password,SetPassword] = useState("");
 
+
    async function HandleLogin(e){
     e.preventDefault();
     const FormatData={
@@ -14,22 +15,19 @@ let Login = function(){
         password:password
     }
     const api_link = "http://127.0.0.1:8000/api/login";
-    // console.log(FormatData);
-    try{
-    axios.post(api_link,FormatData).then(response=>{
-     console.log(response.data);
-     if(response.data['message']=== 'user logged in successfuly' && response.data['status'] === 'success'){
-      localStorage.setItem('user_id',response.data['user_id']);
-      localStorage.setItem('cart_id',response.data['cart_id']);
-      localStorage.setItem('wishlist_id',response.data['wishlist_id']);
-       window.location.replace('/profile');
-     }
-    })
+      try{
+      axios.post(api_link,FormatData).then(response=>{
+      console.log(response.data);
+        if (response.data.status === 'success') {
+          document.cookie = `Ecommerce_access_token=${response.data.userToken}; max-age=${60*60*24*7}; path=/`;
+          window.location.replace('/profile');
+        }
+      })
     }catch(error){
-        //console.log(error.response.data);
+      console.error(error);
     }
-
    }
+
     return(
         <>
         <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">

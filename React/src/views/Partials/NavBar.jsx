@@ -6,16 +6,16 @@ import { useState } from "react";
 
 
 let logout = function(){
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('cart_id');
-    localStorage.removeItem('wishlist_id');
     sessionStorage.clear('user_id');
+    document.cookie = 'Ecommerce_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    // Redirect to home page
     location.replace('/');
 }
 
 let NavBar = function(){
   const [WishlistItems, setWishlistItems] = useState([]);
-  const userAuth = localStorage.getItem('user_id');
+  const userAuth  = document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
 
   const GetWishlistItems = function(){
     useEffect(() => {
