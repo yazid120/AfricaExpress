@@ -2,6 +2,7 @@ import React from "react";
 import {VscAccount} from "react-icons/vsc";
 import {BsBagPlusFill} from "react-icons/bs";
 import {AiOutlineHeart} from "react-icons/ai";
+import { BsBell } from 'react-icons/bs';
 import { useState } from "react";
 
 
@@ -52,14 +53,25 @@ let NavBar = function(){
             <div className="flex items-center space-x-4" style={mystyle}>
 
         <div className="flex items-center space-x-4 gap-4">
+        {/* Notification item */}
+        <a href="/cart" className="item_ice text-center text-gray-700 hover:text-primary transition relative">
+          <div className="text-2xl">
+            <BsBell className="fa-solid fa-bag-shopping" />
+          </div>
+          <div className="item_ice_text text-xs leading-3">notification</div>
+          <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center
+            bg-red-500 text-white text-xs">
+            0
+          </div>
+        </a>
         {/* Cart item */}
         <a href="/cart" className="item_ice text-center text-gray-700 hover:text-primary transition relative">
           <div className="text-2xl">
             <BsBagPlusFill className="fa-solid fa-bag-shopping" />
           </div>
           <div className="item_ice_text text-xs leading-3">Cart</div>
-          <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center
-          justify-center bg-primary text-white text-xs">
+          <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center
+            bg-red-500 text-white text-xs">
             2
           </div>
         </a>
