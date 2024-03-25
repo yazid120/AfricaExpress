@@ -12,6 +12,7 @@ use App\Http\Controllers\API\BrandsController;
 use App\Http\Controllers\API\SubCategoryController;
 use App\Http\Controllers\API\WishlistController;
 use App\Http\Controllers\API\WishlistItemController;
+use App\Http\Controllers\API\NotificationController;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 
@@ -51,6 +52,8 @@ Route::get('/wishlist/items/index', [WishlistItemController::class, 'index']);
 Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
 Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
+
+Route::get('/notification/emailV', [NotificationController::class, 'EmailVerifyNotification']);
 
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
