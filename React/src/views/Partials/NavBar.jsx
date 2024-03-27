@@ -8,37 +8,16 @@ import CountryList from "./components/CountryList";
 
 
 let logout = function(){
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('cart_id');
-    localStorage.removeItem('wishlist_id');
     sessionStorage.clear('user_id');
+    document.cookie = 'Ecommerce_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    // Redirect to home page
     location.replace('/');
 }
 
 let NavBar = function(){
   const [WishlistItems, setWishlistItems] = useState([]);
-  const [zipCode, setZipCode] = useState('');
-  const [showForm, setShowForm] = useState(false);
   const userAuth = localStorage.getItem('user_id');
-
-
-  const handleMouseEnter = () => {
-    setShowForm(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowForm(false);
-  };
-
-  const handleZipCodeChange = (e) => {
-    setZipCode(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Submitted ZIP code:', zipCode);
-  };
 
   const GetWishlistItems = function(){
     useEffect(() => {

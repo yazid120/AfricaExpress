@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Children,Suspense } from "react";
 import { lazy } from 'react';
 import { BrowserRouter, createBrowserRouter, Routes, Route, Outlet,Navigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 import App from "./App";
 import GuestLayout from "./components/GuestLayout";
 import Footer from './views/Partials/Footer';
@@ -61,11 +63,12 @@ function Guest_layout(){
 }
 
 function Auth_layout(){
-  const User_auth = localStorage.getItem('user_id');
+  const userToken = document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
+
   return(
     <>
     <NavBar/>
-    {User_auth ?
+    {userToken ?
       <Outlet/>:
       <Navigate to={{pathname:'/login'}}/>
     }
@@ -81,7 +84,7 @@ function Admin_layout(){
   )
 }
 
- const userAuth= localStorage.getItem('user_id');
+ const userAuth= document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
 const Routing = function(){
   return(
   <Suspense>

@@ -53,7 +53,12 @@ Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
 Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 
+<<<<<<< HEAD
+// Cart Api Controllers
+
+=======
 Route::get('/notification/emailV', [NotificationController::class, 'EmailVerifyNotification']);
+>>>>>>> 2cbba0dc9c7663bb2726c26529531fbc39a7b9c4
 
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);

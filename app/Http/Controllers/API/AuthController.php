@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
 use App\Models\Wishlist;
 use App\Models\User;
@@ -83,13 +84,35 @@ class AuthController extends Controller
 
         #correct password
           if(md5($request->password) === $password_status->password){
+            Session::put('user_id', $password_status->id);
             if(!is_null($cart_status)){
-            #matched pwd and login successful
-            return response()->json(['status'=>'success','message'=>'user logged in successfuly',
-            'user_id'=>$password_status->id,
-            'cart_id'=>$cart_status->id,
-            'wishlist_id'=>$wishlist_status->id
-        ]);
+                Session::put('cart_id', $cart_status->id);
+                if (!is_null($wishlist_status)) {
+                    Session::put('wishlist_id', $wishlist_status->id);
+
+                    $user = DB::table('user')->where('id', $password_status->id)->first();
+
+                    if ($user) {
+                        $userToken = $user->user_token;
+
+                        // Set the user token as a cookie
+                        // $cookie = cookie('Ecommerce_access_token', $userToken, 60*24*7); // Expires in 7 days
+
+                        // Return JSON response with success message and user IDs
+                        return response()->json([
+                            'status' => 'success',
+                            'message' => 'user logged in successfully',
+                            'user_id' => $password_status->id,
+                            'cart_id' => $cart_status->id,
+                            'wishlist_id' => $wishlist_status->id,
+                            'userToken'=>$userToken
+                        ]); // Attach the cookie to the response
+                    }else {
+                        return response()->json(['status'=>'error', 'message'=>'User not found']);
+                    }
+                }else{
+                    return response()->json(['status'=>'error', 'message'=>'wishlist not created properly']);
+                }
             }else{
             return response()->json(['status'=>'error', 'message'=>'cart not created properly']);
             }
