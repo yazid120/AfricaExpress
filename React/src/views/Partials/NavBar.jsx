@@ -2,7 +2,9 @@ import React from "react";
 import {VscAccount} from "react-icons/vsc";
 import {BsBagPlusFill} from "react-icons/bs";
 import {AiOutlineHeart} from "react-icons/ai";
+import { BsBell } from 'react-icons/bs';
 import { useState } from "react";
+import CountryList from "./components/CountryList";
 
 
 let logout = function(){
@@ -15,7 +17,7 @@ let logout = function(){
 
 let NavBar = function(){
   const [WishlistItems, setWishlistItems] = useState([]);
-  const userAuth  = document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
+  const userAuth = localStorage.getItem('user_id');
 
   const GetWishlistItems = function(){
     useEffect(() => {
@@ -42,6 +44,43 @@ let NavBar = function(){
           <div className="flex items-center">
             <a href="/" className="text-white">Logo</a>
           </div>
+
+          <div className="relative" onMouseEnter={handleMouseEnter}onMouseLeave={handleMouseLeave} >
+  <p className="text-white">Deliver to:</p>
+  {showForm && (
+    <div
+      className="absolute top-16 rounded bg-white p-4 z-10"
+      style={{ zIndex: 10, position: 'relative' }}
+    >
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+        <div className="mb-4">
+          <label htmlFor="zipCode" className="block text-gray-700">
+            ZIP Code:
+          </label>
+          <input
+            type="text"
+            id="zipCode"
+            value={zipCode}
+            onChange={handleZipCodeChange}
+            required
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-primary"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Select Country:</label>
+          <CountryList />
+        </div>
+        <button
+          type="submit"
+          className="bg-primary bg-orange-600 w-full text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300"
+        >
+          Save
+        </button>
+      </form>
+    </div>
+  )}
+</div>
+
           <div style={mystyle} className="navigation_items">
               <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
               <a href="/about" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
@@ -52,14 +91,25 @@ let NavBar = function(){
             <div className="flex items-center space-x-4" style={mystyle}>
 
         <div className="flex items-center space-x-4 gap-4">
+        {/* Notification item */}
+        <a href="/cart" className="item_ice text-center text-gray-700 hover:text-primary transition relative">
+          <div className="text-2xl">
+            <BsBell className="fa-solid fa-bag-shopping" />
+          </div>
+          <div className="item_ice_text text-xs leading-3">notification</div>
+          <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center
+            bg-red-500 text-white text-xs">
+            0
+          </div>
+        </a>
         {/* Cart item */}
         <a href="/cart" className="item_ice text-center text-gray-700 hover:text-primary transition relative">
           <div className="text-2xl">
             <BsBagPlusFill className="fa-solid fa-bag-shopping" />
           </div>
           <div className="item_ice_text text-xs leading-3">Cart</div>
-          <div className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center
-          justify-center bg-primary text-white text-xs">
+          <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center
+            bg-red-500 text-white text-xs">
             2
           </div>
         </a>
