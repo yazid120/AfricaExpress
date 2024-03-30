@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import {useParams} from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import {AiFillHeart} from "react-icons/ai";
 import {BsCartPlusFill} from "react-icons/bs";
@@ -14,19 +15,23 @@ function GetProductArticle(link_api,SetproductID){
 }
 
 function ProductArticle(){
+  const navigate  = useNavigate ();
   const {id} = useParams();
   const [ProductArticle, SetProductArticle] = useState([]);
   const [ProductArticleImages, SetProductArticleImages] = useState([]);
+
 
   const [article, SetArticle] = useState('');
   const [articleName, SetarticleName] = useState('');
   const [articlePrice, SetarticlePrice] = useState('');
   const [articleQte, SetarticleQte] = useState(1);
+  const [CartItems, setCartItems] = useState([]);
   const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle);
   const GetProductImages = GetProductArticle(`http://localhost:8000/api/product/image/${id}`,SetProductArticleImages);
 
   const imgArticleUri = '../../src/assets/images/Products/articles/';
   const imgArticleMainUri = '../../src/assets/images/Products/';
+
 
   const setValueArticle =(value, SetValue)=>{
     SetArticle(value);
@@ -47,6 +52,25 @@ function ProductArticle(){
     }
   }
 
+  const HandleAddToCart = async(e, item)=>{
+    e.preventDefault();
+    const FormData={
+      'cart_id': localStorage.getItem('cart_id'),
+      'product_id': ProductArticle[0]['id'],
+      'product_qte': articleQte
+    }
+    setCartItems([...CartItems, item]);
+    try{
+      const response = await axios.post('http://localhost:8000/api/cart/add', FormData);
+      if (response.data.response) {
+        console.log(response.data.message); // Log success message
+        window.location.replace('/cart');
+      }
+    }catch (error) {
+      console.error('failed fetching data', error);
+    }
+  }
+
   const HandleWishlist = async(e)=>{
     e.preventDefault();
     const whishlistID = localStorage.getItem('wishlist_id');
@@ -56,12 +80,11 @@ function ProductArticle(){
       'whishlist_id': parseInt(whishlistID)
     }
   try{
-    axios.post('http://localhost:8000/api/wishlist/items/add',fromData)
-    .then(response=>{
-      console.log(response.data);
-    }).then((error)=>{
-      // console.error('failed fetching data', error);
-    })
+    const response = await axios.post('http://localhost:8000/api/wishlist/items/add',fromData);
+    if (response.data.response) {
+      console.log(response.data.message); // Log success message
+      window.location.replace('/wishlist');
+    }
   }catch(error){
     console.error(error);
   }
@@ -256,7 +279,7 @@ function ProductArticle(){
         </div>
       </div>
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
-        <a href="#" className="bg-primary border border-primary text-white bg-gray-700
+        <a onClick={HandleAddToCart} href="#" className="bg-primary border border-primary text-white bg-gray-700
         px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-gray-500 hover:text-primary transition">
           <BsCartPlusFill className="text-white-500 text-xl"/> Add to cart
         </a>
@@ -412,10 +435,9 @@ function ProductArticle(){
             <div className="text-xs text-gray-500 ml-3">(150)</div>
           </div>
         </div>
-        <a
-          href="#"
-          className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-        >
+        <a href="#"
+          className="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b
+           hover:bg-transparent hover:text-primary transition">
           Add to cart
         </a>
       </div>

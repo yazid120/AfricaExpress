@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import {VscAccount} from "react-icons/vsc";
 import {BsBagPlusFill} from "react-icons/bs";
 import {AiOutlineHeart} from "react-icons/ai";
@@ -10,14 +11,27 @@ import CountryList from "./components/CountryList";
 let logout = function(){
     sessionStorage.clear('user_id');
     document.cookie = 'Ecommerce_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
     // Redirect to home page
     location.replace('/');
 }
 
 let NavBar = function(){
   const [WishlistItems, setWishlistItems] = useState([]);
-  const userAuth = localStorage.getItem('user_id');
+  const userAuth = document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
+  const [zipCode, setZipCode] = useState('');
+  const [showForm, setShowForm] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowForm(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowForm(false);
+  };
+
+  const handleZipCodeChange = (e) => {
+    setZipCode(e.target.value);
+  };
 
   const GetWishlistItems = function(){
     useEffect(() => {
@@ -25,6 +39,7 @@ let NavBar = function(){
         axios.get(`http://127.0.0.1:8000/api/wishlist/items/index`)
           .then((response) => {
             setWishlistItems(response.data);
+            console.log(WishlistItems);
           })
           .catch((error) => {
             console.error('Connection failed!!', error);
@@ -44,14 +59,12 @@ let NavBar = function(){
           <div className="flex items-center">
             <a href="/" className="text-white">Logo</a>
           </div>
-
-          <div className="relative" onMouseEnter={handleMouseEnter}onMouseLeave={handleMouseLeave} >
-  <p className="text-white">Deliver to:</p>
+        <div className="relative" onMouseEnter={handleMouseEnter}onMouseLeave={handleMouseLeave} >
+      <p className="text-white">Deliver to:</p>
   {showForm && (
     <div
       className="absolute top-16 rounded bg-white p-4 z-10"
-      style={{ zIndex: 10, position: 'relative' }}
-    >
+      style={{ zIndex: 10, position: 'relative' }}>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto">
         <div className="mb-4">
           <label htmlFor="zipCode" className="block text-gray-700">
@@ -80,12 +93,11 @@ let NavBar = function(){
     </div>
   )}
 </div>
-
-          <div style={mystyle} className="navigation_items">
-              <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-              <a href="/about" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
-              <a href="/services" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
-              <a href="/contact" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+      <div style={mystyle} className="navigation_items">
+            <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="/about" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+            <a href="/services" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
+            <a href="/contact" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
           </div>
           <div className="hidden md:block">
             <div className="flex items-center space-x-4" style={mystyle}>

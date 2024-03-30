@@ -84,7 +84,9 @@ function Admin_layout(){
   )
 }
 
- const userAuth= document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
+const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+const userAuthCookie = cookies.find(cookie => cookie.startsWith('Ecommerce_access_token'));
+
 const Routing = function(){
   return(
   <Suspense>
@@ -97,8 +99,8 @@ const Routing = function(){
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
-    <Route path="/cart" element={userAuth ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
-    <Route path="/Wishlist" element={userAuth ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
+    <Route path="/cart" element={userAuthCookie ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
+    <Route path="/Wishlist" element={userAuthCookie ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
   </Route>
 
 <Route path="/profile" element={<Auth_layout/>}>
@@ -136,7 +138,6 @@ const Routing = function(){
     <Route path="/admin/brand/delete/:id" element={<BrandsAdminDelete/>}/>
 
   </Route>
-
     {/* 404 page not found route */}
     <Route path='*' element={<NotFound_404/>}/>
     {/* <Route path='*' element={<Navigate to='/404'/>}/> */}

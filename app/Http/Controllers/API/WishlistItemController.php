@@ -48,10 +48,7 @@ class WishlistItemController extends Controller
             'whishlist_id' => $request->whishlist_id
         ]);
 
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Product added to wishlist successfully'
-        ]);
+        return response()->json(['response'=>true, 'message' => 'Product added to wishlist successfully', 200]);
     }
 
     public function delete($productId){
