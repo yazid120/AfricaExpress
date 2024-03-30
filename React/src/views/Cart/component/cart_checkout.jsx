@@ -1,14 +1,11 @@
 import React from "react";
+import {useState} from "react";
 
 function CheckoutCart(){
     return(
-        <>
-        
-  <div
-    className="w-full rellative z-10 right-0 h-full overflow-x-hidden transform translate-x-0 
-transition ease-in-out duration-700"
-    id="checkout"
-  >
+    <>
+    <div className="w-full rellative z-10 right-0 h-full overflow-x-hidden transform translate-x-0
+      transition ease-in-out duration-700" id="checkout">
     <div className="flex items-end lg:flex-row flex-col justify-end" id="cart">
 
       <div className="lg:w-96 md:w-8/12 w-full bg-gray-100 dark:bg-gray-900 h-full">
@@ -52,11 +49,9 @@ transition ease-in-out duration-700"
               </p>
             </div>
             <button
-              
-              className="text-base leading-none w-full py-5 bg-primary 
-              border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 
-              text-white dark:hover:bg-gray-700"
-            >
+              className="text-base leading-none w-full py-5 bg-primary
+              border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
+              text-white dark:hover:bg-gray-700" >
               Checkout
             </button>
           </div>
