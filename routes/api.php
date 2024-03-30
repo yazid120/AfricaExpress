@@ -53,36 +53,35 @@ Route::get('/wishlist/items/index', [WishlistItemController::class, 'index']);
 Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
 Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
-
 // Cart Api Controllers
 Route::get('/cart/index', [CartItemsController::class, 'index']);
 Route::get('/cart/{id}', [CartItemsController::class, 'UserCartitems']);
 Route::post('/cart/add', [CartItemsController::class,'add']);
-
+// notification Controllers
 Route::get('/notification/emailV', [NotificationController::class, 'EmailVerifyNotification']);
 
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
+
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
 Route::put('/admin/brands/update/{id}' ,[BrandsController::class, 'update']);
 Route::delete('/admin/brands/delete/{id}' ,[BrandsController::class, 'delete']);
-
-//Users Api Controllers
+//Admin Users Api Controllers
 Route::get('/admin/user/index/{id}', [UsersController::class, 'index']);
 Route::get('/admin/user/show',[UsersController::class, 'show']);
 Route::post('/admin/user/create', [UsersController::class, 'create']);
 Route::put('/admin/user/update/{id}', [UsersController::class, 'update']);
 Route::delete('/admin/user/delete/{id}', [UsersController::class, 'delete']);
 Route::get('/admin/user/delete/{id}', [UsersController::class, 'delete']);
-
+//Admin products Api Controllers
 Route::post('/admin/product/create', [ProductsController::class, 'create']);
 Route::get('/admin/product/create', [ProductsController::class, 'create']);
-
-//Admin Authentications Api Controllers
-Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
-Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']);
 
 Route::get('/admin/product/category/index', [CategoryController::class, 'index']);
 Route::post('/admin/product/category/create', [CategoryController::class, 'create']);
 
 Route::get('/admin/product/category/subCategory', [SubCategoryController::class, 'show']);
 Route::get('/admin/product/category/subCategory/{id}', [SubCategoryController::class, 'index']);
+
+//Admin Authentications Api Controllers
+Route::post('/admin/login', [AdminController::class, 'LoginAdmin']);
+Route::post('/admin/signup', [AdminController::class, 'SignupAdmin']);

@@ -33,6 +33,12 @@ let NavBar = function(){
     setZipCode(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log('Submitted ZIP code:', zipCode);
+  };
+
   const GetWishlistItems = function(){
     useEffect(() => {
       try {
@@ -85,8 +91,8 @@ let NavBar = function(){
         </div>
         <button
           type="submit"
-          className="bg-primary bg-orange-600 w-full text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300"
-        >
+          className="bg-primary bg-orange-600 w-full text-white px-4 py-2 rounded-md hover:bg-primary-dark
+           transition duration-300">
           Save
         </button>
       </form>
@@ -147,7 +153,6 @@ let NavBar = function(){
         :<></>
         }
         </div>
-
             <div>
             {!userAuth ?
             <>
