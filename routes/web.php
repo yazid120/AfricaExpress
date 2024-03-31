@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', [AdminAuthController::class, 'index'])->name('auth.login');
+Route::post('/admin/login', [AdminAuthController::class, 'loginAuth'])->name('admin.login');
+Route::post('admin/password/email', [AdminAuthController::class, 'sendResetLinkEmail']);
+Route::post('admin/password/reset', [AdminAuthController::class, 'resetpwd']);
+
 Route::get('/', function () {
     return view('index');
 });
+
 
 
