@@ -30,42 +30,21 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="{{ url("/tenders") }}">
+          <a class="nav-link " href="{{ url("/commandes") }}">
             <i class="material-icons">vertical_split</i>
             <span>Mes commandes</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="{{ url("/paper-work/0") }}">
+          <a class="nav-link " href="{{ url("/products") }}">
             <i class="material-icons">folder</i>
-            <span>Mes documents</span>
+            <span>products</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="{{ url("/submition") }}">
+          <a class="nav-link " href="{{ url("/users") }}">
             <i class="material-icons">note_add</i>
-            <span>offre soumission</span>
-          </a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link" href="{{ url("/commande/gangant") }}">
-            <i class="material-icons">local_police</i>
-            <span>marches gangant</span>
-          </a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="{{ url("/commande/non_gangant") }}">
-            <i class="material-icons"><span class="material-symbols-outlined">
-             feedback
-            </span></i>
-            <span>marches perdu </span>
-          </a>
-        </li>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{{ url("/commande/cdc") }}">
-            <i class="material-icons">bar_chart</i>
-            <span>cahier des charge</span>
+            <span>users</span>
           </a>
         </li>
         <li class="nav-item">
