@@ -19,7 +19,9 @@ class product extends Model
         'name',
         'categorie_prod',
         'image',
-        'quantity'
+        'quantity',
+        'brand_id',
+        'product_description', 'logical_delete'
     ];
 
     protected static $marks = [
@@ -41,8 +43,9 @@ class product extends Model
     public function ProductImage(){
         return $this->hasMany(ProductImage::class);
     }
-    public function ProductBrand(){
-        return $this->hasOne(Brands::class);
+    // brands relation
+    public function brand(){
+        return $this->belongsTo(Brands::class);
     }
 
 
