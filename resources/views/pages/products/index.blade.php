@@ -18,7 +18,6 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <script src="https://cdn.tailwindcss.com"></script>
-        <script src="../js/app.js"></script>
     </head>
     <body class="antialiased h-100">
             <div class="color-switcher animated">
@@ -84,6 +83,47 @@
               <!-- End Page Header -->
 
             <div class="row">
+                <div>
+                    <button id="openModalBtn" class="bg-blue-500 mb-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Add New Product
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div id="modal" class="modal-add-product">
+                    <div class="modal-content">
+                        <span id="closeModalBtn" class="close">&times;</span>
+                        <!-- Add New Product Form -->
+                        <h2 class="text-lg font-semibold mb-4">Add New Product</h2>
+                        <form id="addProductForm">
+                            <div class="mb-4">
+                                <input type="text" id="productName" placeholder="Product Name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="text" id="priceUnit" placeholder="Price Unit" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="productImage">Product Image</label>
+                                <input type="file" id="productImage" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" accept="image/*" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="number" id="quantityAvailable" placeholder="Quantity Available" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <select id="brandName" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                                    <option value="">Select Brand</option>
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <textarea id="productDescription" placeholder="Product Description" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Product</button>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- products Stats -->
                 <div class="products-table">
                     @if ($products->isNotEmpty())
@@ -138,5 +178,6 @@
         <script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="/js/admin/product.js"></script>
     </body>
 </html>
