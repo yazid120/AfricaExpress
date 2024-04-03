@@ -39,22 +39,22 @@ document.addEventListener('DOMContentLoaded', function() {
       formData.append('productDescription', productDescription);
       console.log(formData);
 
-      // fetch('http://localhost:8000/products/add', {
-      //   method: 'POST',
-      //   body: formData // Send form data as the body of the request
-      // })
-      // .then(response => {
-      //   if (!response.ok) {
-      //     throw new Error('Network response was not ok');
-      //   }
-      //   return response.json(); // Assuming the server returns JSON data
-      // })
-      // .then(data => {
-      //   console.log(data);
-      // })
-      // .catch(error => {
-      //   console.error('There was a problem with the fetch operation:', error);
-      // });
+      fetch('http://localhost:8000/products/add', {
+        method: 'POST',
+        body: formData // Send form data as the body of the request
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); // Assuming the server returns JSON data
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
 
       // Close the modal after adding the product
       modal.style.display = 'none';
