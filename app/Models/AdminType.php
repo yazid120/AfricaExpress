@@ -15,7 +15,6 @@ class AdminType extends Model
     protected $fillable = [
         'admin_type',
     ];
-
     public function admins()
     {
         return $this->hasMany(Admin::class, 'type_id');
