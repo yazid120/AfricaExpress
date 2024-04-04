@@ -17,7 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('type_id');
+            $table->timestamp('last_loggedIn')->default(\Illuminate\Support\Facades\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
+            # Foreign keys
+            $table->foreign('type_id')->references('id')->on('admin_type');
         });
     }
 
