@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AdminType;
 
 class Admin extends Model implements Authenticatable
 {
@@ -16,6 +17,12 @@ class Admin extends Model implements Authenticatable
         'email',
         'password'
     ];
+
+    # Define the relationship
+    public function adminType()
+    {
+        return $this->belongsTo(AdminType::class, 'type_id');
+    }
 
     public function getAuthIdentifierName()
     {
@@ -46,6 +53,4 @@ class Admin extends Model implements Authenticatable
     {
         return null; // not used
     }
-
-
 }
