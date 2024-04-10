@@ -10,6 +10,7 @@ import CountryList from "./components/CountryList";
 
 let logout = function(){
     sessionStorage.clear('user_id');
+    localStorage.clear();
     document.cookie = 'Ecommerce_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     // Redirect to home page
     location.replace('/');
