@@ -325,7 +325,7 @@ function ProductArticle(){
   {/****  product-detail ****/}
   {/* description */}
   <div className="box-container m-2">
-  <div className="container pb-16 bg-slate-200">
+  <div className=" pb-16 bg-slate-200">
     <div className="container mx-auto">
         <SubHeader />
     </div>
@@ -347,8 +347,8 @@ function ProductArticle(){
       </div>
     </div>
     {/* Ratings & Reviews */}
-    <div className="container pb-16" id="ratingsReviews">
-      <h2 className="text-2xl font-semibold mb-4">Ratings & Reviews</h2>
+    <div className="p-6 w-full bg-white" id="ratingsReviews">
+      <h2 className="text-2xl font-semibold mb-4">Customer reviews</h2>
       <RatingsReviews/>
     </div>
   </div>

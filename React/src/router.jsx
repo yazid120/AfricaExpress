@@ -17,6 +17,7 @@ import ResetPassword from "./views/Auth/ResetPassword";
 import ProductArticle from "./views/Product/Part/Product_article";
 import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
+import Orders from "./views/Orders";
 
 {/*** Profile layouts components/pages ***/}
 const Profile = React.lazy(()=> import("./views/Profile/Profile"));
@@ -101,6 +102,7 @@ const Routing = function(){
     <Route path="/resetpassword" element={<ResetPassword/>}/>
     <Route path="/cart" element={userAuthCookie ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/Wishlist" element={userAuthCookie ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
+    <Route path="/orders" element={userAuthCookie ? <Orders/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
   </Route>
 
 <Route path="/profile" element={<Auth_layout/>}>
