@@ -10,5 +10,5 @@
 
   .rating-fill {
     height: 100%;
-    background-color: gold; /* Color for the filled portion */
+    background-color: rgb(51, 51, 51); /* Color for the filled portion */
   }

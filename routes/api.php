@@ -14,6 +14,7 @@ use App\Http\Controllers\API\WishlistController;
 use App\Http\Controllers\API\WishlistItemController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\CartItemsController;
+use App\Http\Controllers\API\CustomerReviewsController;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 
@@ -53,14 +54,17 @@ Route::get('/wishlist/items/index', [WishlistItemController::class, 'index']);
 Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
 Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
-// Cart Api Controllers
+# Cart Api Controllers
 Route::get('/cart/index', [CartItemsController::class, 'index']);
 Route::get('/cart/{id}', [CartItemsController::class, 'UserCartitems']);
 Route::post('/cart/add', [CartItemsController::class,'add']);
-// notification Controllers
+# notification Controllers
 Route::get('/notification/emailV', [NotificationController::class, 'EmailVerifyNotification']);
 
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
+# Customers Review Controller
+Route::get('/reviews/show', [CustomerReviewsController::class, 'ReviewsAll']);
+Route::post('/reviews/add', [CustomerReviewsController::class, 'CustomeraddReview']);
 
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
 Route::put('/admin/brands/update/{id}' ,[BrandsController::class, 'update']);
