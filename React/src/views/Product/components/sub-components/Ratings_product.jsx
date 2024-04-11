@@ -34,6 +34,13 @@ const RatingsProduct = ()=>{
             </div>
           </a>
         </td>
+        <td className="rating-percentage">
+        <div className="rating-bar">
+          <div className="rating-fill"
+           style={{ width: `${percentages[index]}%` }}>
+           </div>
+          </div>
+        </td>
         <td className="a-text-right a-nowrap a-nowrap">
           <span className="a-letter-space"></span>
           <a
@@ -43,13 +50,6 @@ const RatingsProduct = ()=>{
           >
             {percentages[index]}%
           </a>
-        </td>
-        <td className="rating-percentage">
-        <div className="rating-bar">
-          <div className="rating-fill"
-           style={{ width: `${percentages[index]}%` }}>
-           </div>
-          </div>
         </td>
       </tr>
     ));
@@ -62,6 +62,15 @@ const RatingsProduct = ()=>{
           {renderRatings()}
         </tbody>
       </table>
+      <hr aria-hidden="true" class="a-spacing-medium m-4"></hr>
+      <div className="review-section">
+        <h2 className="text-xl font-bold mb-2">Review this product</h2>
+        <span>
+          <a href="#" className="inline-block px-4 py-1 border bg-white text-black rounded hover:bg-slate-100">
+            write your customer review
+          </a>
+        </span>
+      </div>
     </div>
     </>
   )

@@ -19,6 +19,7 @@ const GlobalRating = ()=>{
         ))}
         <span className="ml-2 text-gray-600">({globalRating.toFixed(1)}/5)</span>
       </div>
+      <span className="text-xs font-semibold">All reviews come from verified purchasers</span>
     </div>
   )
 }

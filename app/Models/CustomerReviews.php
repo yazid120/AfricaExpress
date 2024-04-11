@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CustomerReviewsImages;
+use App\Models\User; 
 
 class CustomerReviews extends Model
 {
@@ -15,6 +16,11 @@ class CustomerReviews extends Model
 
     public function images()
     {
-        return $this->hasMany(CustomerReviewsImages::class);
+        return $this->hasMany(CustomerReviewsImages::class , 'customer_review_id');
     }
+    public function user()
+    {
+    return $this->belongsTo(User::class);
+}
+
 }

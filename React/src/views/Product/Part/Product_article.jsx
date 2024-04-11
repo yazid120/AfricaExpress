@@ -321,6 +321,7 @@ function ProductArticle(){
     ))
     }
   </div>
+  <hr aria-hidden="true" class="a-spacing-medium m-4"></hr>
 
   {/****  product-detail ****/}
   {/* description */}

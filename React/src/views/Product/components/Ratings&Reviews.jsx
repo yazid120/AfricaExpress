@@ -1,14 +1,26 @@
 import React from "react";
+import axios from "axios";
+import { useEffect, useState } from 'react';
 import RatingsProduct from "./sub-components/Ratings_product";
 import GlobalRating from "./sub-components/Global_Rating";
 import CustomersSaysReviews from "./sub-components/Reviews_says_product";
 
 const RatingsReviews = ()=>{
-  const reviews = [
-    { id: 1, user: "John Doe", rating: 4, review: "Great product!" },
-    { id: 2, user: "Jane Smith", rating: 5, review: "Excellent quality!" },
-    // Add more reviews as needed
-  ];
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/reviews/show'); // Assuming your API route for fetching reviews is '/api/reviews'
+      const data = await response.json();
+      setReviews(data);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  };
   return(
     <>
     <div className="container mx-auto">
@@ -19,7 +31,7 @@ const RatingsReviews = ()=>{
         {/* customers ratings stat */}
         <RatingsProduct/>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="w-8/12 p-4 gap-4">
       {/* Customers riviews */}
       <CustomersSaysReviews reviews={reviews}/>
       </div>
