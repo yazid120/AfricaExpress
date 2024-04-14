@@ -7,6 +7,7 @@ import CustomersSaysReviews from "./sub-components/Reviews_says_product";
 
 const RatingsReviews = ()=>{
   const [reviews, setReviews] = useState([]);
+  const [globalRating, setGlobalRating] = useState(0);
 
   useEffect(() => {
     fetchReviews();
@@ -14,9 +15,15 @@ const RatingsReviews = ()=>{
 
   const fetchReviews = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/reviews/show'); // Assuming your API route for fetching reviews is '/api/reviews'
+      const response = await fetch('http://localhost:8000/api/reviews/show');
       const data = await response.json();
       setReviews(data);
+
+      if (data.length > 0) {
+        const totalRating = data.reduce((acc, review) => acc + review.rating, 0);
+        const averageRating = totalRating / data.length;
+        setGlobalRating(averageRating);
+      }
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
@@ -27,9 +34,9 @@ const RatingsReviews = ()=>{
      <div className="ratings_reviews_container flex">
       <div className="p-4 w-1/3">
         {/* global stars rating */}
-        <GlobalRating/>
+        <GlobalRating globalRating={globalRating}/>
         {/* customers ratings stat */}
-        <RatingsProduct/>
+        <RatingsProduct percentages={globalRating}/>
       </div>
       <div className="w-8/12 p-4 gap-4">
       {/* Customers riviews */}

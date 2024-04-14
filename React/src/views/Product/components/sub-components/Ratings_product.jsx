@@ -5,11 +5,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import '../../../../style/product.css'
 
 
-const RatingsProduct = ()=>{
+const RatingsProduct = ({percentages})=>{
   const renderRatings = () => {
     const ratings = [1, 2, 3, 4, 5];
-    // Array to hold the percentage for each star rating
-    const percentages = [20, 40, 60, 80, 100];
 
      return ratings.map((rating, index) => (
       <tr key={rating} className="a-histogram-row a-align-center">

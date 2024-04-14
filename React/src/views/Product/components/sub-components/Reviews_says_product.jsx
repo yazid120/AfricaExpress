@@ -8,7 +8,7 @@ const CustomersSaysReviews = ({reviews})=>{
     <div className="">
       <h2 className="text-lg font-semibold mb-2">Customers says</h2>
         {reviews.map((review) => (
-          <div key={review.id} className="border rounded p-4">
+          <div key={review.id} className="border rounded p-4 m-2">
             {/* Rating */}
             <div className="flex items-center mb-2">
             <span className="text-yellow-500">
@@ -37,15 +37,18 @@ const CustomersSaysReviews = ({reviews})=>{
                 {review.images.map((image, index) => (
                   <img
                     key={index}
-                    src={image.image_url}
+                    src={'http://localhost/E-commerce/public/storage/' + image.image_url}
                     alt={`Review ${review.id} image ${index + 1}`}
-                    className="w-full h-auto rounded"
+                    className="h-auto rounded"
                   />
                 ))}
               </div>
             )}
           </div>
         ))}
+        <button className="text-black font-bold py-2 px-4 rounded">
+          View More
+        </button>
         </div>
     </>
   )
