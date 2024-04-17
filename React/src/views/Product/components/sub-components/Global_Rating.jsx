@@ -2,8 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-const GlobalRating = ()=>{
-  const globalRating = 4.6;
+const GlobalRating = ({globalRating})=>{
 
   return (
     <div className="global-rating rounded p-2 mb-2">
