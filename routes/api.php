@@ -64,6 +64,7 @@ Route::get('/notification/emailV', [NotificationController::class, 'EmailVerifyN
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 # Customers Review Controller
 Route::get('/reviews/show', [CustomerReviewsController::class, 'ReviewsAll']);
+Route::get('/reviews/show/{productId}', [CustomerReviewsController::class, 'ReviewsById']);
 Route::post('/reviews/add', [CustomerReviewsController::class, 'CustomeraddReview']);
 
 Route::post('/admin/brands/create' ,[BrandsController::class, 'create']);
