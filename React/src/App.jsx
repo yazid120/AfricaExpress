@@ -10,11 +10,9 @@ function App() {
   const [state , dispatch] = useReducer(reducer, initialState);
   return (
     <>
-  <React.StrictMode>
     <UserContext.Provider value={{state, dispatch}}>
       <Routing/>
     </UserContext.Provider>
-  </React.StrictMode>
     </>
   )
 }

@@ -93,7 +93,7 @@ const Routing = function(){
   <Suspense>
    <Routes>
     {/* Guest Layout routes */}
-  <Route path="/" element={<Guest_layout/>}>
+    <Route path="/" element={<Guest_layout/>}>
     <Route index element={<Home/>}/>
     <Route path="/contact" element={<Contact/>}/>
     <Route exact path="/product/article/:id" element={<ProductArticle/>}/>
