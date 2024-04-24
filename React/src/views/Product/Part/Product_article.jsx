@@ -9,6 +9,7 @@ import DescriptionProducts from "../components/Description_Product";
 import SpecificationsProducts from "../components/Specifications_Product";
 import RelatedProducts from "../components/Related_Product";
 import RatingsReviews from "../components/Ratings&Reviews";
+import ProductInfos from "../components/sub-components/ProductInfos";
 
 
 function GetProductArticle(link_api,SetproductID){
@@ -24,11 +25,7 @@ function ProductArticle(){
   const {id} = useParams();
   const [ProductArticle, SetProductArticle] = useState([]);
   const [ProductArticleImages, SetProductArticleImages] = useState([]);
-
-
   const [article, SetArticle] = useState('');
-  const [articleName, SetarticleName] = useState('');
-  const [articlePrice, SetarticlePrice] = useState('');
   const [articleQte, SetarticleQte] = useState(1);
   const [CartItems, setCartItems] = useState([]);
   const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle);
@@ -38,6 +35,7 @@ function ProductArticle(){
   const imgArticleMainUri = '../../src/assets/images/Products/';
 
 
+  console.log(ProductArticle);
   const setValueArticle =(value, SetValue)=>{
     SetArticle(value);
   }
@@ -113,7 +111,7 @@ function ProductArticle(){
   <div className="container p-6 grid grid-cols-2 gap-6">
     <div>
       <img
-        src={imgArticleMainUri+article}
+        src={imgArticleMainUri+ProductArticle.image}
         alt="product"
         className="w-full"
       />
@@ -133,193 +131,16 @@ function ProductArticle(){
       }</div>
     </div>
 
-    {
-      ProductArticle.map((article, key)=>(
-    <div key={key}>
-      <h2 className="text-3xl font-semibold uppercase mb-2">
-        {article.name}
-      </h2>
-      <div className="flex items-center mb-4">
-        <div className="flex gap-1 text-sm text-yellow-400">
-          <span>
-            <i className="fa-solid fa-star" />
-          </span>
-          <span>
-            <i className="fa-solid fa-star" />
-          </span>
-          <span>
-            <i className="fa-solid fa-star" />
-          </span>
-          <span>
-            <i className="fa-solid fa-star" />
-          </span>
-          <span>
-            <i className="fa-solid fa-star" />
-          </span>
-        </div>
-        <div className="text-xs text-gray-500 ml-3">(150 Reviews)</div>
-      </div>
-      <div className="space-y-2">
-        <p className="text-gray-800 font-semibold space-x-2">
-          <span>Availability: </span>
-          <span className="text-green-600">In Stock</span>
-        </p>
-        <p className="space-x-2">
-          <span className="text-gray-800 font-semibold">Brand: </span>
-          <span className="text-gray-600">{article.brand_name}</span>
-        </p>
-        <p className="space-x-2">
-          <span className="text-gray-800 font-semibold">Category: </span>
-          <span className="text-gray-600">{article.cat_name}</span>
-        </p>
-        <p className="space-x-2">
-          <span className="text-gray-800 font-semibold">SKU: </span>
-          <span className="text-gray-600">BE45VGRT</span>
-        </p>
-      </div>
-      <div className="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
-        <p className="text-xl text-primary font-semibold">{article.price_unit}</p>
-        <p className="text-base text-black line-through">$55.00</p>
-      </div>
-      <label className="" htmlFor="">description</label>
-      <p className="mt-4 text-gray-600">
-        {article.product_description}
-      </p>
-      <div className="pt-4">
-        <h3 className="text-sm text-gray-800 uppercase mb-1">Size</h3>
-        <div className="flex items-center gap-2">
-          <div className="size-selector">
-            <input type="radio" name="size" id="size-xs" className="hidden" />
-            <label
-              htmlFor="size-xs"
-              className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
-            >
-              XS
-            </label>
-          </div>
-          <div className="size-selector">
-            <input type="radio" name="size" id="size-sm" className="hidden" />
-            <label
-              htmlFor="size-sm"
-              className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
-            >
-              S
-            </label>
-          </div>
-          <div className="size-selector">
-            <input type="radio" name="size" id="size-m" className="hidden" />
-            <label
-              htmlFor="size-m"
-              className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
-            >
-              M
-            </label>
-          </div>
-          <div className="size-selector">
-            <input type="radio" name="size" id="size-l" className="hidden" />
-            <label
-              htmlFor="size-l"
-              className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
-            >
-              L
-            </label>
-          </div>
-          <div className="size-selector">
-            <input type="radio" name="size" id="size-xl" className="hidden" />
-            <label
-              htmlFor="size-xl"
-              className="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600"
-            >
-              XL
-            </label>
-          </div>
-        </div>
-      </div>
-      <div className="pt-4">
-        <h3 className="text-xl text-gray-800 mb-3 uppercase font-medium">
-          Color
-        </h3>
-        <div className="flex items-center gap-2">
-          <div className="color-selector">
-            <input type="radio" name="color" id="red" className="hidden" />
-            <label
-              htmlFor="red"
-              className="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
-              style={{ backgroundColor: "#fc3d57" }}
-            />
-          </div>
-          <div className="color-selector">
-            <input type="radio" name="color" id="black" className="hidden" />
-            <label
-              htmlFor="black"
-              className="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
-              style={{ backgroundColor: "#000" }}
-            />
-          </div>
-          <div className="color-selector">
-            <input type="radio" name="color" id="white" className="hidden" />
-            <label
-              htmlFor="white"
-              className="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
-              style={{ backgroundColor: "#fff" }}
-            />
-          </div>
-        </div>
-      </div>
-      {/* quantity article */}
-      <div className="mt-4">
-        <h3 className="text-sm text-gray-800 uppercase mb-1">Quantity</h3>
-        <div className="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
-          <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-          onClick={HandleDecreaseQte}>
-            -
-          </div>
-          <div className="h-8 w-8 text-base flex items-center justify-center">
-            {articleQte}
-          </div>
-          <div className="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"
-          onClick={HandleIncreaseQte}>
-            +
-          </div>
-        </div>
-      </div>
-      <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
-        <a onClick={HandleAddToCart} href="#" className="bg-primary border border-primary text-white bg-gray-700
-        px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-gray-500 hover:text-primary transition">
-          <BsCartPlusFill className="text-white-500 text-xl"/> Add to cart
-        </a>
-        <a href="#" className="border border-gray-300 text-gray-600 bg-gray-100 hover:bg-gray-200
-         px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition"
-         onClick={HandleWishlist}>
-          <AiFillHeart className="text-red-500 text-xl"/> Wishlist
-        </a>
-      </div>
-      <div className="flex gap-3 mt-4">
-        <a
-          href="#"
-          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex
-          items-center justify-center"
-        >
-          <i className="fa-brands fa-facebook-f" />
-        </a>
-        <a
-          href="#"
-          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex
-          items-center justify-center"
-        >
-          <i className="fa-brands fa-twitter" />
-        </a>
-        <a
-          href="#"
-          className="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex
-          items-center justify-center"
-        >
-          <i className="fa-brands fa-instagram" />
-        </a>
-      </div>
+    <div>
+    <ProductInfos
+        ProductArticle={ProductArticle}
+        HandleAddToCart={HandleAddToCart}
+        HandleWishlist={HandleWishlist}
+        HandleDecreaseQte={HandleDecreaseQte}
+        HandleIncreaseQte={HandleIncreaseQte}
+        articleQte={articleQte}
+      />
     </div>
-    ))
-    }
   </div>
   <hr aria-hidden="true" class="a-spacing-medium m-4"></hr>
 

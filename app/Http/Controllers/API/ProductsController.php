@@ -13,21 +13,16 @@ use App\Models\Category;
 class ProductsController extends Controller
 {
     public function index(Request $request){
-    $product = DB::table('products')
-    ->join('brands', 'products.brand_id', '=', 'brands.id')
-    ->join('product_categorie', 'products.id', '=', 'product_categorie.product_id')
-    ->join('categories', 'product_categorie.categorie_id','=','categories.id')
-    ->select('products.*', 'brands.brand_name','categories.cat_name')
-    ->where('products.id',$request->id)
-    ->get();
+        $product = product::with('brand', 'Categories')
+        ->findOrFail($request->id);
 
-    if($product){
-      return response()->json($product);
-    }else{
-      return response()->json(['product not found !!']);
+        if ($product) {
+            return response()->json($product);
+        } else {
+            return response()->json(['error' => 'Product not found !!']);
+        }
     }
 
-    }
     public function imageProductIndex(Request $request){
      $product_images = DB::table('products')
     ->join('product_images', 'products.id', '=', 'product_images.product_id')
@@ -43,12 +38,10 @@ class ProductsController extends Controller
     }
 
     public function show(){
-     $product = DB::table('products')
-     ->join('brands','brands.id','=','products.brand_id')
-     ->select('products.*','brands.brand_name')
-     ->orderBy('products.id','desc')
-     ->get();
-     return response()->json($product);
+        $products = Product::with('brand')
+        ->get();
+
+        return response()->json($products);
     }
 
     public function ProductCategorieFilter(){
@@ -86,7 +79,7 @@ class ProductsController extends Controller
     //     'massage'=> 'product created successfuly',
     //     'product'=> $product
     //    ]);
-    return response()->json($validator); 
+    return response()->json($validator);
 
         // $products = DB::table('products')->where('id',$product->id)->get();
         // $category = DB::table('categories')->get();

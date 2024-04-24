@@ -6,7 +6,6 @@ const CustomersSaysReviews = ({reviews})=>{
   return(
     <>
     <div className="">
-      <h2 className="text-lg font-semibold mb-2">Customers says</h2>
         {reviews.map((review) => (
           <div key={review.id} className="border rounded p-4 m-2">
             {/* Rating */}

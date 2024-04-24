@@ -29,8 +29,8 @@ class product extends Model
     ];
 
     // Categorie product relation
-    public function Categorie(){
-      return $this->belongsToMany(Category::class);
+    public function Categories(){
+      return $this->belongsToMany(Category::class, 'product_categorie', 'product_id', 'categorie_id');
     }
     // Wishlist product relation
     public function WishlistProduct(){

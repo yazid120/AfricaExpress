@@ -42,7 +42,9 @@ const RatingsReviews = ()=>{
       </div>
       <div className="w-8/12 p-4 gap-4">
       {/* Customers riviews */}
-      {reviews.length > 0 ? <CustomersSaysReviews reviews={reviews} /> : <p>No reviews were found for this article.</p>}
+      <h2 className="text-lg font-semibold mb-2">Customers says</h2>
+      {reviews.length > 0 ? <CustomersSaysReviews reviews={reviews} /> :
+          <p className="text-gray-500 italic">No reviews were found for this article.</p>}
       </div>
       </div>
     </div>
