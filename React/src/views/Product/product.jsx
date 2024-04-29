@@ -35,7 +35,7 @@ let Product = function(){
    }
 
    {/** products pagination **/}
-   const ProductPerPage = 3;
+   const ProductPerPage = 5;
    const pageCount = Math.ceil(totalProducts / ProductPerPage);
    const offset = pageNumber * ProductPerPage;
    const currentPageData = products.slice(offset, ProductPerPage + offset);

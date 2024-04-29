@@ -137,6 +137,7 @@
                                     <th>Quantity Available</th>
                                     <th>Images</th>
                                     <th>description</th>
+                                    <th>more infos</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -158,6 +159,9 @@
                                             @endif
                                         </td>
                                         <td class="product-description">{{ $product->product_description }}</td>
+                                        <td>
+                                            <a href="/products/{{$product->id}}">more infos</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

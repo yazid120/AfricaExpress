@@ -22,6 +22,7 @@ Route::post('admin/password/email', [AdminAuthController::class, 'sendResetLinkE
 Route::post('admin/password/reset', [AdminAuthController::class, 'resetpwd']);
 # products routes
 Route::get('/products', [AdminProductsController::class, 'index']);
+Route::get('/products/{product}', [AdminProductsController::class, 'article'])->name('product.article');
 Route::post('/products/add', [AdminProductsController::class, 'add'])->name('admin.product.add');
 Route::get('/products/{id}/edit', [AdminProductsController::class, 'edit'])->name('admin.product.edit');
 Route::put('/products/{id}/update', [AdminProductsController::class, 'update'])->name('admin.product.update');
