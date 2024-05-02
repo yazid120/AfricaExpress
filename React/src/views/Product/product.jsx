@@ -35,7 +35,7 @@ let Product = function(){
    }
 
    {/** products pagination **/}
-   const ProductPerPage = 3;
+   const ProductPerPage = 5;
    const pageCount = Math.ceil(totalProducts / ProductPerPage);
    const offset = pageNumber * ProductPerPage;
    const currentPageData = products.slice(offset, ProductPerPage + offset);
@@ -45,7 +45,19 @@ let Product = function(){
     SetPageNumber(selected);
   }
 
-  //  console.log(CategoryFilter)
+  const handleSortChange = (event) => {
+    const option = event.target.value;
+    axios.get(`http://localhost:8000/api/product/filter/${option}`)
+      .then(response => {
+          // Handle the response from the server
+          console.log(response.data);
+      })
+      .catch(error => {
+          // Handle errors
+          console.error('Error fetching filtered products:', error);
+      });
+  };
+  
   const user_id = localStorage.getItem('user_id') ?? 'null';
   const cart_id = localStorage.getItem('cart_id') ?? 'null';
 
@@ -80,7 +92,8 @@ return(
           name="sort"
           id="sort"
           className="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary
-          focus:border-primary">
+          focus:border-primary"
+          onChange={handleSortChange}>
           <option value="">Default sorting</option>
           <option value="price-low-to-high">Price low to high</option>
           <option value="price-high-to-low">Price high to low</option>

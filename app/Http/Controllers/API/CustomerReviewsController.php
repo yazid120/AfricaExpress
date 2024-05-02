@@ -18,8 +18,8 @@ class CustomerReviewsController extends Controller
     public function ReviewsById($productId)
     {
         $customerReviews = CustomerReviews::with('images', 'user')
-                                        ->where('product_id', $productId)
-                                        ->get();
+                            ->where('product_id', $productId)
+                            ->get();
         if ($customerReviews->isEmpty()) {
             return response()->json(['message' => 'No reviews were found for this article.']);
         }

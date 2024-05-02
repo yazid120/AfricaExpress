@@ -15,6 +15,17 @@ class AdminProductsController extends Controller
         return view('pages/products/index', compact('products', 'brands'));
     }
 
+    public function article(Product $product)
+    {
+        $product = $product->load(['ProductImage', 'brand', 'categories']);
+        return view('pages.products.article', compact('product'));
+        // return response()->json(['product'=>$product]);
+    }
+
+    public function articleUpdate(){
+
+    }
+
     public function add(Request $request){
         $request->validate([
             'productName' => 'required|string',
@@ -43,7 +54,4 @@ class AdminProductsController extends Controller
     //     return view('pages/products/index', compact('products'));
     // }
 
-    public function update(){
-
-    }
 }
