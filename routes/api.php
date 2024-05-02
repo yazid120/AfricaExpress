@@ -44,6 +44,7 @@ Route::get('/product/{id}', [ProductsController::class, 'index']);
 Route::get('/product/image/{id}', [ProductsController::class, 'imageProductIndex']);
 Route::get('/product',[ProductsController::class, 'show']);
 Route::get('/product/article/images', [ProductsController::class, 'ProductArticleImages']);
+Route::get('/product/filter/{selection}', [ProductsController::class, 'ProductCategorieFilter']);
 
 Route::get('/product/brands/index', [BrandsController::class, 'index']);
 Route::get('/product/brands/brand-index/{id}',[BrandsController::class,'brand_index']);

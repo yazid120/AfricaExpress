@@ -66,7 +66,7 @@ let NavBar = function(){
           <div className="flex items-center">
           {/* Replace "Logo" text with your logo image */}
             <a href="/">
-              <img src="../src/assets/images/logo/AfricaExpress-logo-preview.png" alt="Logo" className="h-10" />
+              <img src="http://localhost:5000/src/assets/images/logo/AfricaExpress-logo-preview.png" alt="Logo" className="h-10" />
             </a>
           </div>
         <div className="relative" onMouseEnter={handleMouseEnter}onMouseLeave={handleMouseLeave} >

@@ -44,8 +44,29 @@ class ProductsController extends Controller
         return response()->json($products);
     }
 
-    public function ProductCategorieFilter(){
+    public function ProductCategorieFilter(Request $request, $selection)
+    {
+        // $selectedOption = $request->input('option');
+        $products = Product::query();
 
+        // Apply sorting based on the selected option
+        switch ($selection) {
+            case 'default':
+                return response()->json(['action' => 'default', 'products' => $products]);
+                break;
+            case 'latest':
+                // Sort products by the created_at timestamp in descending order (latest first)
+                $products = $products->orderBy('created_at', 'desc')->get();
+                break;
+            case 'price-high-to-low':
+                $products = $products->orderBy('price_unit', 'desc')->get();
+                break;
+            case 'price-low-to-high':
+                $products = $products->orderBy('price_unit', 'asc')->get();
+                break;
+        }
+
+        return response()->json(['action' => 'updateProducts', 'products' => $products]);
     }
 
     public function ProductArticleImages(){
