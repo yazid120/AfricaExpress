@@ -39,7 +39,6 @@ let Product = function(){
    const pageCount = Math.ceil(totalProducts / ProductPerPage);
    const offset = pageNumber * ProductPerPage;
    const currentPageData = products.slice(offset, ProductPerPage + offset);
-   console.log(pageCount)
 
   const HandlePageNumber = ({selected})=>{
     SetPageNumber(selected);
@@ -58,9 +57,19 @@ let Product = function(){
       });
   };
   
+  const handleSearchChange = ()=>{
+    axios.get().then(
+      response=>{
+        console.log(response.data)
+      }).catch(error => {
+        // Handle errors
+        console.error('Error fetching filtered products:', error);
+    });
+  }
+
   const user_id = localStorage.getItem('user_id') ?? 'null';
   const cart_id = localStorage.getItem('cart_id') ?? 'null';
-
+  console.log(SearchProdFilter);
 return(
 <>
   {/* shop wrapper */}
@@ -79,8 +88,7 @@ return(
         type="button"
         data-drawer-target="drawer-example"
         data-drawer-show="drawer-example"
-        aria-controls="drawer-example"
-      >
+        aria-controls="drawer-example" >
       <ion-icon name="grid-outline" />
       </button>
     </div>
@@ -112,7 +120,7 @@ return(
         </div>
       </div>
       {/*** Search Product Filter ***/}
-      <ShopProduct products={currentPageData} SearchProdFilter={SearchProdFilter}/>
+      <ShopProduct products={currentPageData}/>
 
       {/* Product Pagination */}
   <div className="mt-4 pl-8 pr-8	">
