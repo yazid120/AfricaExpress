@@ -19,7 +19,7 @@ class ProductsController extends Controller
         if ($product) {
             return response()->json($product);
         } else {
-            return response()->json(['error' => 'Product not found !!']);
+            return response()->json(['error' => 'Products not found !!']);
         }
     }
 
@@ -76,9 +76,14 @@ class ProductsController extends Controller
       return response()->json($ProductArticleimg);
     }
 
-    public function SearchProducts()
+    public function SearchProducts($query)
     {
-        
+        // Assuming you have a Product model and want to search products by name
+        if ($query === null || $query === '') {
+            return []; // Return an empty array if the query is empty
+        }
+        $searchResults = Product::where('name', 'ilike', '%' . $query . '%')->get();
+        return $searchResults;
     }
 
     #Create product admin
