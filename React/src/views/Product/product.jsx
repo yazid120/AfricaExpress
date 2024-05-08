@@ -5,6 +5,7 @@ import {useState,useEffect} from "react";
 import CategorieProduct from './components/Categorie_Product';
 import ShopProduct from './components/Shop_product';
 import SearchBarProduct from './components/Search_Bar_product';
+import { FaList, FaGripVertical } from 'react-icons/fa';
 
 
 
@@ -14,9 +15,18 @@ let Product = function(){
   const [CategoryFilter, SetCategoryFilter] = useState('');
   const [SearchProdFilter, SetSearchProdFilter] = useState('');
   const [pageNumber, SetPageNumber] = useState(0);
+  const [displayMode, setDisplayMode] = useState('grid');
 
   const api_links = `http://127.0.0.1:8000/api/product?category=${CategoryFilter}&search=${SearchProdFilter}&page=${pageNumber + 1}`;
   const api_link = "http://127.0.0.1:8000/api/product";
+
+  const handleGridClick = () => {
+    setDisplayMode('grid'); // Set display mode to grid when grid icon is clicked
+  };
+
+  const handleListClick = () => {
+    setDisplayMode('list'); // Set display mode to list when list icon is clicked
+  };
 
   useEffect(() => {
     axios.get(api_link)
@@ -56,7 +66,7 @@ let Product = function(){
           console.error('Error fetching filtered products:', error);
       });
   };
-  
+
   const handleSearchChange = ()=>{
     axios.get().then(
       response=>{
@@ -111,16 +121,18 @@ return(
       <SearchBarProduct HandleFilter={SetSearchProdFilter} SearchProdFilter/>
 
         <div className="flex gap-2 ml-auto">
-          <div className="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer">
-            <i className="fa-solid fa-grip-vertical" />
+          <div className="border border-primary w-10 h-9 flex items-center justify-center text-white
+           bg-primary rounded cursor-pointer" onClick={handleGridClick}>
+            <FaGripVertical />
           </div>
-          <div className="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer">
-            <i className="fa-solid fa-list" />
+          <div className="border border-gray-300 w-10 h-9 flex items-center justify-center
+           text-gray-600 rounded cursor-pointer" onClick={handleListClick}>
+            <FaList />
           </div>
         </div>
       </div>
-      {/*** Search Product Filter ***/}
-      <ShopProduct products={currentPageData}/>
+      {/***  Products  ***/}
+      <ShopProduct products={currentPageData} displayMode={displayMode}/>
 
       {/* Product Pagination */}
   <div className="mt-4 pl-8 pr-8	">

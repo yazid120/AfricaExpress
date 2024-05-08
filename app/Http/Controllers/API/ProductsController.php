@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\CategoryController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\product;
@@ -64,6 +65,9 @@ class ProductsController extends Controller
             case 'price-low-to-high':
                 $products = $products->orderBy('price_unit', 'asc')->get();
                 break;
+            default:
+                Log::error('Unexpected selection value: ' . $selection);
+                return response()->json(['error' => 'Invalid selection value']);
         }
 
         return response()->json(['action' => 'updateProducts', 'products' => $products]);
@@ -82,7 +86,7 @@ class ProductsController extends Controller
         if ($query === null || $query === '') {
             return []; // Return an empty array if the query is empty
         }
-        $searchResults = Product::where('name', 'ilike', '%' . $query . '%')->get();
+        $searchResults = Product::where('name', 'like', '%' . $query . '%')->get();
         return $searchResults;
     }
 
