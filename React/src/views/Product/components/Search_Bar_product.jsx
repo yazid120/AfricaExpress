@@ -10,7 +10,7 @@ function SearchBarProduct({HandleFilter}){
     const fetchSearchResults = async (searchInput) => {
       try {
         if (searchInput.trim() !== "") {
-          const response = await axios.get(`http://localhost:8000/api/product?search=${searchInput}`);
+          const response = await axios.get('');
           setSearchResults(response.data.products);
         } else {
           // If search input is empty, clear the search results

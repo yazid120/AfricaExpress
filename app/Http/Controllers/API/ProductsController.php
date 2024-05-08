@@ -76,6 +76,11 @@ class ProductsController extends Controller
       return response()->json($ProductArticleimg);
     }
 
+    public function SearchProducts()
+    {
+        
+    }
+
     #Create product admin
     public function create(Request $request){
 
