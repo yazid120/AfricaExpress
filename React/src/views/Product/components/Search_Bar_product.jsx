@@ -23,8 +23,6 @@ function SearchBarProduct({HandleFilter}){
     fetchSearchResults(searchInput);
   }, [searchInput]);
 
-  /*console.log(searchResults)
-  console.log(searchInput.length)*/
   return(
     <>
     <div className="w-full m-2">
@@ -44,9 +42,9 @@ function SearchBarProduct({HandleFilter}){
     <ul className="absolute w-3/5 mt-2 bg-white border border-gray-200 rounded-md shadow-md">
       {searchResults.map((product) => (
         <>
-        <li key={product.id} value={product.id} className="flex items-center hover:bg-gray-100 cursor-pointer">
+        <li key={product.id} value={product.id} className="flex p-1 items-center hover:bg-gray-100 cursor-pointer">
         <a href={`/product/article/${product.id}`} className="flex items-center w-full">
-          <img src={`../src/assets/images/Products/${product.image}`} className="w-1/5 bject-cover" alt="Product Image" />
+          <img src={`../src/assets/images/Products/${product.image}`} className="w-1/6 bject-cover" alt="Product Image" />
           <span className="px-4 py-2">{product.name}</span>
         </a>
         </li></>

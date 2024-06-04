@@ -21,7 +21,7 @@ function ShopProduct({products , displayMode}){
               onClick={() => HandleProductArticle(product.id)}
             >
               <img src={image_path_uri + product.image} alt={product.name} className={displayMode === 'grid' ? 'h-auto p-8 rounded-t-lg h-48': 'rounded-t-lg h-36'} />
-              <div>
+              <div className={displayMode === "grid" ? 'text-center': ''}>
                 <h3 className="text-l text-center font-semibold mt-2 taxt-black" value={product.name}>
                   {product.name}
                 </h3>

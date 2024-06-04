@@ -1,11 +1,17 @@
 import React from "react";
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from "axios";
 
 
 let Login = function(){
    const [email,SetEmail] = useState("");
    const [password,SetPassword] = useState("");
+   const [passwordVisible, setPasswordVisible] = useState(false);
+
+   const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
 
    async function HandleLogin(e){
@@ -88,16 +94,24 @@ let Login = function(){
                     </div>
 
                     <div className="mx-auto max-w-xs">
-
-                        <form method="post" action="#" onSubmit={HandleLogin}>
+                      <form method="post" action="#" onSubmit={HandleLogin}>
+                        {/* Email  */}
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
                              placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                             type="email" placeholder="Email" onChange={(e)=>SetEmail(e.target.value)}/>
-                        <input
-                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
-                             placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="password" placeholder="Password" onChange={(e)=>SetPassword(e.target.value)}/>
+                        {/* Password */}
+                        <div className="relative w-full mt-5">
+                            <input
+                              className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
+                              placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                              type={passwordVisible ? 'text' : 'password'} placeholder="Password"
+                              onChange={(e) => SetPassword(e.target.value)}/>
+                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={togglePasswordVisibility}>
+                              {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                            </div>
+                         </div>
+
                         <button
                             className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                             <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2"

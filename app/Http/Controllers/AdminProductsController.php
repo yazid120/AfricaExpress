@@ -12,14 +12,15 @@ class AdminProductsController extends Controller
     {
         $products = Product::with(['ProductImage','brand'])->get();
         $brands = Brands::all();
-        return view('pages/products/index', compact('products', 'brands'));
+        // return view('pages/products/index', compact('products', 'brands'));
+        return response()->json(compact('products', 'brands'));
     }
 
     public function article(Product $product)
     {
         $product = $product->load(['ProductImage', 'brand', 'categories']);
-        return view('pages.products.article', compact('product'));
-        // return response()->json(['product'=>$product]);
+        // return view('pages.products.article', compact('product'));
+        return response()->json(['product'=>$product]);
     }
 
     public function articleUpdate(){

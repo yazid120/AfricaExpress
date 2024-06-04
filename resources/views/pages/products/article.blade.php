@@ -100,11 +100,11 @@
                         <div class="additional-images mt-3">
                             <h5>Additional Images</h5>
                         <div class="row">
-                            <p>{{print_r($product['product_image'][0]->id)}}</p>
+                            <p>{{print_r($product['product_image'])}}</p>
                             {{-- @foreach($product['product_image'] as $image)
                                 {{ $image['image_uri'] }}
-                            @endforeach --}}
-                            {{-- @foreach($product['product_image'] as $image)
+                            @endforeach
+                            @foreach($product['product_image'] as $image)
                                 <div class="col-4">
                                 <img src="{{ asset('localhost:5000/src/assets/images/Products/articles' . $image['image_uri']) }}" alt="{{ $product['name'] }}" class="img-fluid">
                                 </div>
