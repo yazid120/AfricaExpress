@@ -54,6 +54,15 @@ function ProductInfos({ ProductArticle, HandleAddToCart, HandleWishlist, HandleD
     <p className="mt-4 text-gray-600">
       {ProductArticle.product_description}
     </p>
+
+    <div className="flex space-x-4 mt-5">
+      <button onClick={HandleWishlist} className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+        Add to Wishlist
+      </button>
+      <button onClick={HandleAddToCart} className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+        Add to Cart
+      </button>
+    </div>
     {/* Add other product information here */}
     {/* Example: Size, Color, Quantity, Add to Cart, Wishlist, Social Share */}
   </div>

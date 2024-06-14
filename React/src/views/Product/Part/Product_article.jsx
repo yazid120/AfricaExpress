@@ -28,6 +28,7 @@ function ProductArticle(){
   const [article, SetArticle] = useState('');
   const [articleQte, SetarticleQte] = useState(1);
   const [CartItems, setCartItems] = useState([]);
+  const [WishlistId, SetWishlistId] = useState(null);
   const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle);
   const GetProductImages = GetProductArticle(`http://localhost:8000/api/product/image/${id}`,SetProductArticleImages);
 
@@ -35,7 +36,7 @@ function ProductArticle(){
   const imgArticleMainUri = '../../src/assets/images/Products/';
 
 
-  console.log(ProductArticle);
+
   const setValueArticle =(value, SetValue)=>{
     SetArticle(value);
   }
@@ -59,7 +60,7 @@ function ProductArticle(){
     e.preventDefault();
     const FormData={
       'cart_id': localStorage.getItem('cart_id'),
-      'product_id': ProductArticle[0]['id'],
+      'product_id': ProductArticle.id,
       'product_qte': articleQte
     }
     setCartItems([...CartItems, item]);
@@ -74,25 +75,63 @@ function ProductArticle(){
     }
   }
 
+
+    // user cookie Token
+    useEffect(() => {
+      const fetchWishlistId = async () => {
+        const userToken = document.cookie
+          .split('; ')
+          .find(row => row.startsWith('Ecommerce_access_token='))
+          ?.split('=')[1];
+
+        if (!userToken) {
+          console.error('User token not found !!');
+          return;
+        }
+
+        try {
+          const response = await axios.post('http://localhost:8000/api/wishlist/session/id', { user_token: userToken });
+
+          if (response.data.status === 'success') {
+            SetWishlistId(response.data.wishlist_id);
+          } else {
+            console.error('Error:', response.data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching wishlist ID:', error);
+        }
+      };
+
+      fetchWishlistId();
+    }, []);
+
+
   const HandleWishlist = async(e)=>{
     e.preventDefault();
-    const whishlistID = localStorage.getItem('wishlist_id');
-    const productID = ProductArticle[0]['id'];
-    const fromData ={
+
+    if (!WishlistId) {
+      console.error('Wishlist ID is not available');
+      return;
+    }
+
+
+    const productID = ProductArticle.id;  // Ensure ProductArticle is available in this scope
+    const formData = {
       'product_id': productID,
-      'whishlist_id': parseInt(whishlistID)
+      'whishlist_id': parseInt(WishlistId)
+    };
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/wishlist/items/add', formData);
+      if (response.data.response) {
+        console.log(response.data.message); // Log success message
+        window.location.replace('/wishlist');
+      }
+    } catch (error) {
+      console.error(error);
     }
-  try{
-    const response = await axios.post('http://localhost:8000/api/wishlist/items/add',fromData);
-    if (response.data.response) {
-      console.log(response.data.message); // Log success message
-      window.location.replace('/wishlist');
-    }
-  }catch(error){
-    console.error(error);
   }
 
-  }
 
   return(
     <>
