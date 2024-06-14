@@ -83,8 +83,8 @@ let Product = function(){
 return(
 <>
   {/* shop wrapper */}
-  <div className="container grid md:grid-cols-4 grid-cols-2 gap-6 p-4 pl-0 pb-16 items-start"
-  style={{ maxWidth:'100%' }}>
+  <div className="container bg-slate-100 grid md:grid-cols-4 grid-cols-2 gap-6 p-4 pl-0 pb-16 items-start"
+    style={{ maxWidth:'100%' }}>
 
     {/* sidebar Categotie products */}
     <CategorieProduct HandleCategoriasation={SetCategoryFilter}/>

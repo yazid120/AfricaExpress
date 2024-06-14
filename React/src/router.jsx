@@ -18,6 +18,7 @@ import ProductArticle from "./views/Product/Part/Product_article";
 import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
 import Orders from "./views/Orders";
+import NotFound_404 from "./views/404_NotFound";
 
 {/*** Profile layouts components/pages ***/}
 const Profile = React.lazy(()=> import("./views/Profile/Profile"));
@@ -27,7 +28,7 @@ const ManageAddress = React.lazy(()=> import("./views/Profile/Settings/ManageAdd
 const ProfileInformation = React.lazy(()=> import("./views/Profile/Settings/ProfileInformation"));
 const ContactDetails = React.lazy(()=>import("./views/Profile/components/ContactDetails"));
 
-import NotFound_404 from "./views/404_NotFound";
+
 
 {/*** Admin layouts components/pages ***/}
 const Admin = React.lazy( ()=> import("./views/admin/admin"));

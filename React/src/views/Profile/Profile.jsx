@@ -10,6 +10,7 @@ let Profile = function(){
   const [user, Setuser] = useState([]);
   const UserId = localStorage.getItem('user_id');
   const User_infos = GetUser(UserId,Setuser);
+  console.log(UserId)
 
   return(
     <>

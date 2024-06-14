@@ -45,13 +45,14 @@ Route::get('/product/image/{id}', [ProductsController::class, 'imageProductIndex
 Route::get('/product',[ProductsController::class, 'show']);
 Route::get('/product/article/images', [ProductsController::class, 'ProductArticleImages']);
 Route::get('/product/filter/{selection}', [ProductsController::class, 'ProductCategorieFilter']);
-Route::get('/product/search/{query}',[ProductsController::class, 'SearchProducts']); 
+Route::get('/product/search/{query}',[ProductsController::class, 'SearchProducts']);
 
 Route::get('/product/brands/index', [BrandsController::class, 'index']);
 Route::get('/product/brands/brand-index/{id}',[BrandsController::class,'brand_index']);
 
 // Wishlists Api Controllers
 Route::get('/wishlist/show', [WishlistController::class, 'show']);
+Route::post('/wishlist/session/id', [WishlistController::class, 'WishlistsSessionID']);
 Route::get('/wishlist/items/index', [WishlistItemController::class, 'index']);
 Route::post('/wishlist/items/add', [WishlistItemController::class, 'add']);
 Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
