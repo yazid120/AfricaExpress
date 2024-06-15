@@ -9,6 +9,7 @@ use App\Models\Wishlist;
 use App\Models\WishlistItem;
 use App\Models\ProductImage;
 use App\Models\Brands;
+use App\Models\Order_items;
 
 class product extends Model
 {
@@ -46,6 +47,11 @@ class product extends Model
     // brands relation
     public function brand(){
         return $this->belongsTo(Brands::class);
+    }
+    // orderItems relation
+    public function orderItems()
+    {
+        return $this->hasMany(Order_items::class, 'product_id');
     }
 
 
