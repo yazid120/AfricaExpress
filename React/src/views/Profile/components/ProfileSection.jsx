@@ -3,49 +3,65 @@ import React from "react";
 
 function ProfileSection()
 {
-  return(
-    <>
-<section className="profile_page_wrappe_container w-full p-2">
-  <h1 className="text-2xl font-semibold mb-4">Profile Page</h1>
-  <div className="grid gap-4 grid-cols-3 grid-rows-3 p-5">
-    <div className="item_profile p-5 bg-white rounded cursor-pointer hover:bg-violet-600 border border-solid border-gray-400">
-      <p className="text-lg font-semibold">Account Infos</p>
-      <img src="../src/assets/images/Profile/settings-profile.png" alt="Account Info" className="w-16 h-16" />
-      <span className="text-gray-600">Edit name, mobile number, email, and password (all account information)</span>
-    </div>
-    <div className="item_profile p-5 bg-white rounded cursor-pointer border border-solid border-gray-400">
-      <p className="text-lg font-semibold">Help Customer</p>
-      <img src="../src/assets/images/Profile/customer-service.png" alt="Help Customer" className="w-16 h-16" />
-      <span className="text-gray-600">Browse self-service options, help articles, or contact us</span>
-    </div>
-    <div className="item_profile p-5 bg-white rounded cursor-pointer border border-solid border-gray-400">
-      <p className="text-lg font-semibold">Login &amp; Security</p>
-      <img src="../src/assets/images/Profile/login-security.png" alt="Login &amp; Security" className="w-16 h-16" />
-      <span className="text-gray-600">Manage your sensitive account info and add a layer of security to your account</span>
-    </div>
-    <div className="item_profile p-5 bg-white rounded cursor-pointer border border-solid border-gray-400">
-      <p className="text-lg font-semibold">Orders &amp; Product</p>
-      <img src="../src/assets/images/Profile/booking.png" alt="Orders &amp; Product" className="w-16 h-16" />
-      <span className="text-gray-600">Start tracking all your orders, latest products, and create your wishlist</span>
-    </div>
-    <div className="item_profile p-5 bg-white rounded cursor-pointer border border-solid border-gray-400">
-      <p className="text-lg font-semibold">Your Messages</p>
-      <img src="../src/assets/images/Profile/new-message.png" alt="Your Messages" className="w-16 h-16" />
-      <span className="text-gray-600">View any response messages from Customers or Sellers</span>
-    </div>
-    <div className="item_profile p-5 bg-white rounded cursor-pointer border border-solid border-gray-400">
-      <p className="text-lg font-semibold">Premium Membership</p>
-      <img src="../src/assets/images/Profile/crown.png" alt="Premium Membership" className="w-16 h-16" />
-      <span className="text-gray-600">Manage your membership, view benefits, and get your premium now...</span>
-    </div>
-    <div className="item_profile p-5 bg-white rounded cursor-pointer border border-solid border-gray-400">
-      <p className="text-lg font-semibold">Payment Methods</p>
-      <img src="../src/assets/images/Profile/secure-payment.png" alt="Payment Methods" className="w-16 h-16" />
-      <span className="text-gray-600">View all transactions, manage payment methods, and settings</span>
-    </div>
-  </div>
-</section>
-    </>
-  )
+  const profileItems = [
+    {
+      title: "Account Infos",
+      description: "Edit name, mobile number, email, and password (all account information)",
+      image: "../src/assets/images/Profile/settings-profile.png",
+      alt: "Account Info"
+    },
+    {
+      title: "Help Customer",
+      description: "Browse self-service options, help articles, or contact us",
+      image: "../src/assets/images/Profile/customer-service.png",
+      alt: "Help Customer"
+    },
+    {
+      title: "Login & Security",
+      description: "Manage your sensitive account info and add a layer of security to your account",
+      image: "../src/assets/images/Profile/login-security.png",
+      alt: "Login & Security"
+    },
+    {
+      title: "Orders & Product",
+      description: "Start tracking all your orders, latest products, and create your wishlist",
+      image: "../src/assets/images/Profile/booking.png",
+      alt: "Orders & Product"
+    },
+    {
+      title: "Your Messages",
+      description: "View any response messages from Customers or Sellers",
+      image: "../src/assets/images/Profile/new-message.png",
+      alt: "Your Messages"
+    },
+    {
+      title: "Premium Membership",
+      description: "Manage your membership, view benefits, and get your premium now...",
+      image: "../src/assets/images/Profile/crown.png",
+      alt: "Premium Membership"
+    },
+    {
+      title: "Payment Methods",
+      description: "View all transactions, manage payment methods, and settings",
+      image: "../src/assets/images/Profile/secure-payment.png",
+      alt: "Payment Methods"
+    },
+  ];
+  return (
+    <section className="profile_page_wrappe_container w-full p-4 bg-gray-50 rounded-md shadow-md">
+      <h1 className="text-2xl font-semibold mb-6 text-gray-800">Profile Page</h1>
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-4">
+        {profileItems.map((item, index) => (
+          <div key={index} className="item_profile p-6 bg-white rounded-md shadow-md cursor-pointer hover:bg-violet-600 transition duration-300 border border-gray-200 hover:border-violet-600">
+            <div className="flex items-center mb-4">
+              <img src={item.image} alt={item.alt} className="w-16 h-16 mr-4" />
+              <p className="text-lg font-semibold text-gray-800 hover:text-white">{item.title}</p>
+            </div>
+            <p className="text-gray-600 hover:text-white">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 export default ProfileSection;
