@@ -4,6 +4,7 @@ import {useEffect,useState} from "react";
 import SideBarProfile from "./components/SideBarProfile";
 import GetUser from "./components/User_Info/GetUserInfo";
 import ProfileSection from "./components/ProfileSection";
+import AccountDetails from "./components/AccountDetails";
 
 
 let Profile = function(){
@@ -47,7 +48,8 @@ let Profile = function(){
       </div>
 
       {/* info */}
-      <div className="col-span-9 grid grid-cols-3 gap-4">
+      <div className="col-span-9 grid grid-cols-1 gap-4">
+
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-medium text-gray-800 text-lg">
@@ -63,6 +65,7 @@ let Profile = function(){
             <p className="text-gray-800">0811 8877 988</p>
           </div>
         </div>
+
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-medium text-gray-800 text-lg">
@@ -78,6 +81,7 @@ let Profile = function(){
             <p className="text-gray-800">20371</p>
           </div>
         </div>
+
         <div className="shadow rounded bg-white px-4 pt-6 pb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-medium text-gray-800 text-lg">Billing address</h3>
@@ -91,9 +95,16 @@ let Profile = function(){
             <p className="text-gray-800">20317</p>
           </div>
         </div>
+          <div className="col-span-9 grid gap-4">
+            <div className="flex row mb-8">
+              <AccountDetails />
+            </div>
 
-      {/* profile section top */}
-      <ProfileSection/>
+            {/* profile section top */}
+            <div className="row">
+              <ProfileSection/>
+            </div>
+          </div>
       </div>
       {/* ./info */}
 
