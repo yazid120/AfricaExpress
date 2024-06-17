@@ -1,11 +1,18 @@
 import React from "react";
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from "../../api/axios";
 import {useNavigate} from 'react-router-dom';
 
 
 let SignUp = function(){
   const Navigate = useNavigate();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = (field) => {
+    setPasswordVisible({ ...passwordVisible, [field]: !passwordVisible[field] });
+  };
+
   const [FormData,setFormData]=useState({
     'name':'',
     'email':'',
@@ -102,14 +109,31 @@ let SignUp = function(){
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                             type="email" placeholder="email" name="email"
                             value={FormData.email} onChange={HandleChange} />
-                        <input
-                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="password" placeholder="Password" name="password"
-                            value={FormData.password} onChange={HandleChange} />
-                        <input
-                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="password" placeholder="re-password" name="confirm_password"
-                            value={FormData.confirm_password} onChange={HandleChange}/>
+
+                    <div className="relative w-full mt-5">
+                    <input
+                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
+                      placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      placeholder="Password" name="password" type={passwordVisible.password ? 'text' : 'password'}
+                      value={FormData.password} onChange={HandleChange} />
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                      onClick={() => togglePasswordVisibility('password')}>
+                      {passwordVisible.password ? <FaEyeSlash /> : <FaEye />}
+                    </div>
+                  </div>
+
+                  <div className="relative w-full mt-5">
+                    <input
+                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
+                      placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                      placeholder="Confirm Password" name="confirm_password" type={passwordVisible.confirm_password ? 'text' : 'password'}
+                      value={FormData.confirm_password} onChange={HandleChange} />
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                      onClick={() => togglePasswordVisibility('confirm_password')}>
+                      {passwordVisible.confirm_password ? <FaEyeSlash /> : <FaEye />}
+                    </div>
+                  </div>
+
                         <button
                             className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                             <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2"
@@ -123,16 +147,20 @@ let SignUp = function(){
                             </span>
                         </button>
                         </form>
-                        <p className="mt-6 text-xs text-gray-600 text-center">
-                            I agree to abide by templatana's
-                            <a href="#" className="border-b border-gray-500 border-dotted">
-                                Terms of Service
-                            </a>
-                            and its
-                            <a href="#" className="border-b border-gray-500 border-dotted">
-                                Privacy Policy
-                            </a>
-                        </p>
+                        <div className="mt-6 text-xs text-gray-600 text-center">
+                    <label>
+                      <input
+                        type="checkbox"  className="mr-2 leading-tight"/>
+                      I agree to abide by templatana's
+                      <a href="/termsConditions" className="border-b border-gray-500 m-1 border-dotted">
+                        Terms of Service
+                      </a>
+                      and its
+                      <a href="/privacy&policy" className="border-b border-gray-500 m-1 border-dotted">
+                        Privacy Policy
+                      </a>
+                    </label>
+                  </div>
                     </div>
                 </div>
             </div>
