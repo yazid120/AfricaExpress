@@ -9,9 +9,9 @@ let Login = function(){
    const [password,SetPassword] = useState("");
    const [passwordVisible, setPasswordVisible] = useState(false);
 
-   const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
 
 
    async function HandleLogin(e){
