@@ -13,6 +13,8 @@ import Home from "./views/home";
 import Contact from "./views/contact";
 import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
+import PrivacyPolicy from "./views/Privacy Terms/Privacy_Policy";
+import TermsConditions from "./views/Privacy Terms/Terms_Conditions";
 import ResetPassword from "./views/Auth/ResetPassword";
 import ProductArticle from "./views/Product/Part/Product_article";
 import Cart from "./views/Cart/cart";
@@ -100,6 +102,8 @@ const Routing = function(){
     <Route exact path="/product/article/:id" element={<ProductArticle/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
+    <Route path="/privacy&policy" element={<PrivacyPolicy/>}/>
+    <Route path="/termsConditions" element={<TermsConditions/>}/>
     <Route path="/resetpassword" element={<ResetPassword/>}/>
     <Route path="/cart" element={userAuthCookie ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/Wishlist" element={userAuthCookie ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
