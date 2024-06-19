@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useEffect } from "react";
 import {VscAccount} from "react-icons/vsc";
 import {BsBagPlusFill} from "react-icons/bs";
@@ -40,23 +41,20 @@ let NavBar = function(){
     console.log('Submitted ZIP code:', zipCode);
   };
 
-  const GetWishlistItems = function(){
-    useEffect(() => {
+  useEffect(() => {
+    const fetchWishlistItems = async () => {
       try {
-        axios.get(`http://127.0.0.1:8000/api/wishlist/items/index`)
-          .then((response) => {
-            setWishlistItems(response.data);
-            console.log(WishlistItems);
-          })
-          .catch((error) => {
-            console.error('Connection failed!!', error);
-          });
+        const response = await axios.get('http://127.0.0.1:8000/api/wishlist/items/index');
+        setWishlistItems(response.data);
       } catch (error) {
-        // error failed api connection
-        console.error('Connection failed !!');
+        console.error('Connection failed!!', error);
       }
-    }, []);
-  }
+    };
+
+    fetchWishlistItems();
+  }, []);
+
+
   const mystyle={width:'auto', gap:'1rem'}
   return(
   <>
