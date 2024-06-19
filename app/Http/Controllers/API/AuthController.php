@@ -27,9 +27,8 @@ class AuthController extends Controller
       if($validated->fails()){
         return response()->json([
             'message'=>$validated->errors(),
-            'status'=>'validation-error'
-        ],404);
-            return 'error validation';
+            'status'=>'infos missing please fill your form'
+        ]);
         }
         #create new user
         $user= User::create([
@@ -56,6 +55,7 @@ class AuthController extends Controller
             'cart'=>$cart,
             'wishlist'=>$wishlist
         ],201);
+        
     }
 
 
@@ -70,7 +70,7 @@ class AuthController extends Controller
     if ($validator->fails()) {
         return response()->json([
             'message' => $validator->errors(),
-            'status' => 'login validation error'
+            'status' => 'login validation error.'
         ]);
     }
 
@@ -79,16 +79,16 @@ class AuthController extends Controller
 
     if (!$user) {
         return response()->json([
-            'status' => 'error',
-            'message' => 'wrong email address'
+            'status' => 'wrong email address or password.',
+            'message' => 'error'
         ]);
     }
 
     // Verify the password
     if (!md5($request->password, $user->password)) {
         return response()->json([
-            'status' => 'error',
-            'message' => 'wrong password'
+            'status' => 'wrong email address or password.',
+            'message' => 'error'
         ]);
     }
 

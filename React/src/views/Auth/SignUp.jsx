@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom';
 let SignUp = function(){
   const Navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [AuthErrorMesssge,SetAuthErrorMessage] = useState(null);
 
   const togglePasswordVisibility = (field) => {
     setPasswordVisible({ ...passwordVisible, [field]: !passwordVisible[field] });
@@ -29,9 +30,12 @@ let SignUp = function(){
     try{
     await axios.post('http://127.0.0.1:8000/api/signup',FormData).then(
       response=>{
-        // console.log(response.data);
+        //console.log(response.data);
         if(response.data['message'] === 'User registrated Successfuly' && response.data['status'] === 'ok'){
           window.location.href = '/login';
+        }
+        else{
+            SetAuthErrorMessage(response.data.status);
         }
       })
     }catch(error){
@@ -101,6 +105,14 @@ let SignUp = function(){
 
                     <div className="mx-auto max-w-xs">
                       <form className="Form-signup_wrapp" onSubmit={HandleSubmit} action="#" method="POST">
+                      {
+                            AuthErrorMesssge &&(
+                                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                                    <strong className="font-bold"> Error: </strong>
+                                        <span className="block sm:inline">{AuthErrorMesssge}</span>
+                                </div>
+                            )
+                        }
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                             type="text" placeholder="Full Name" name="name"
