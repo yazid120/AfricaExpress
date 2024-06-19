@@ -8,6 +8,7 @@ let Login = function(){
    const [email,SetEmail] = useState("");
    const [password,SetPassword] = useState("");
    const [passwordVisible, setPasswordVisible] = useState(false);
+   const [AuthErrorMesssge,SetAuthErrorMessage] = useState(null);
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
@@ -23,16 +24,20 @@ let Login = function(){
     const api_link = "http://127.0.0.1:8000/api/login";
       try{
       axios.post(api_link,FormatData).then(response=>{
-      console.log(response.data);
+        //console.log(response.data);
         if (response.data.status === 'success') {
           document.cookie = `Ecommerce_access_token=${response.data.userToken}; max-age=${60*60*24*7}; path=/`;
           window.location.replace('/profile');
+        }else{
+            SetAuthErrorMessage(response.data.status);
         }
       })
     }catch(error){
       console.error(error);
+      SetAuthErrorMessage('Something went wrong try again later .')
     }
    }
+   console.log(AuthErrorMesssge == ''? 'no message': AuthErrorMesssge);
 
     return(
         <>
@@ -95,6 +100,14 @@ let Login = function(){
 
                     <div className="mx-auto max-w-xs">
                       <form method="post" action="#" onSubmit={HandleLogin}>
+                        {
+                            AuthErrorMesssge &&(
+                                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                                    <strong className="font-bold"> Error: </strong>
+                                        <span className="block sm:inline">{AuthErrorMesssge}</span>
+                                </div>
+                            )
+                        }
                         {/* Email  */}
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
