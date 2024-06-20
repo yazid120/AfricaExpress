@@ -15,6 +15,7 @@ use App\Http\Controllers\API\WishlistItemController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\CartItemsController;
 use App\Http\Controllers\API\CustomerReviewsController;
+use App\Models\Cart_items;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 
@@ -59,6 +60,7 @@ Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete
 Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 # Cart Api Controllers
 Route::get('/cart/index', [CartItemsController::class, 'index']);
+Route::get('/cart/cartItems', [CartItemsController::class, 'CartItems']); 
 Route::get('/cart/{id}', [CartItemsController::class, 'UserCartitems']);
 Route::post('/cart/add', [CartItemsController::class,'add']);
 # notification Controllers

@@ -48,6 +48,13 @@ class CartItemsController extends Controller
         return response()->json(['response'=>true ,'message' => 'Product added to cart successfully'], 200);
     }
 
+    public function CartItems()
+    {
+        $cart_items = Cart_items::with('product')
+        ->get();
+        return response()->json($cart_items);
+    }
+
     public function UserCartitems($cartId)
     {
     $cartItems = Cart_items::where('cart_id', $cartId)->get();
