@@ -22,7 +22,6 @@ function SummaryCart({product}){
     const [QteProduct, SetQteProduct] = useState(1);
     const [MaxQteProduct, SetMaxQteProduct] = useState([]);
     const [CartItems, SetCartItems] = useState([]);
-    console.log(QteProduct)
 
 
   function increase_qte(){
@@ -40,6 +39,19 @@ function SummaryCart({product}){
       SetQteProduct(QteProduct-1)
     }
   }
+
+  useEffect(()=>{
+    try{
+      axios.get(`http://127.0.0.1:8000/api/cart/cartItems`)
+      .then((response)=>{
+        SetCartItems(response.data)
+      })
+    }catch(error){
+      console.error(error);
+    }
+  }, [])
+  console.log(CartItems)
+
     return(
         <>
       <div className="lg:w-1/2 mr-4 md:w-full w-full lg:px-8 lg:py-14 md:px-6 px-4 md:py-8 py-4 bg-white dark:bg-slate-300 overflow-y-hidden overflow-x-hidden lg:h-screen h-auto" id="scroll" style={{ width: "90%" }}>
@@ -56,8 +68,8 @@ function SummaryCart({product}){
 
   {/* Cart items */}
   <div className="cart_items">
-    {cart.map((item) => (
-      <CartItem key={item.id} item={item} decrease_qte={decrease_qte} increase_qte={increase_qte} QteProduct={QteProduct} />
+    {CartItems.map((item) => (
+      <CartItem key={item.id} item={item.product} decrease_qte={decrease_qte} increase_qte={increase_qte} QteProduct={QteProduct} />
     ))}
   </div>
 </div>

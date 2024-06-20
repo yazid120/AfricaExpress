@@ -15,12 +15,9 @@ const Cart = function(){
   return(
     <>
     <div className="" id="chec-div" style={{ position: "revert" }}>
-  <div
-    className="w-full rellative z-10 right-0 h-full overflow-x-hidden transform translate-x-0
-    transition ease-in-out duration-700"
-    id="checkout"
-  >
-    <div className="flex m-4 items-end lg:flex-row flex-col justify-end" id="cart">
+    <div className="w-full rellative z-10 right-0 h-full overflow-x-hidden transform translate-x-0
+    transition ease-in-out duration-700" id="checkout">
+    <div className="flex m-4 lg:flex-row flex-col justify-end" id="cart">
      {/* Summary  */}
       <SummaryCart/>
 

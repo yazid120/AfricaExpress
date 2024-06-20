@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useEffect } from "react";
 import {VscAccount} from "react-icons/vsc";
 import {BsBagPlusFill} from "react-icons/bs";
@@ -18,6 +19,7 @@ let logout = function(){
 
 let NavBar = function(){
   const [WishlistItems, setWishlistItems] = useState([]);
+  const [CartItems, setCartItems] = useState([]);
   const userAuth = document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
   const [zipCode, setZipCode] = useState('');
   const [showForm, setShowForm] = useState(false);
@@ -40,8 +42,9 @@ let NavBar = function(){
     console.log('Submitted ZIP code:', zipCode);
   };
 
-  const GetWishlistItems = function(){
+
     useEffect(() => {
+      const fetchWishlistItems = function(){
       try {
         axios.get(`http://127.0.0.1:8000/api/wishlist/items/index`)
           .then((response) => {
@@ -55,8 +58,26 @@ let NavBar = function(){
         // error failed api connection
         console.error('Connection failed !!');
       }
+      };
+      fetchWishlistItems();
     }, []);
-  }
+
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/cart/cartItems`);
+        setCartItems(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Connection failed!!', error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  
   const mystyle={width:'auto', gap:'1rem'}
   return(
   <>
@@ -135,7 +156,7 @@ let NavBar = function(){
           <div className="item_ice_text text-xs leading-3">Cart</div>
           <div className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center
             bg-red-500 text-white text-xs">
-            2
+            {CartItems.length}
           </div>
         </a>
         {/* wishlist item */}
