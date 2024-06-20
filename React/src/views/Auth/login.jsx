@@ -24,7 +24,7 @@ let Login = function(){
     const api_link = "http://127.0.0.1:8000/api/login";
       try{
       axios.post(api_link,FormatData).then(response=>{
-        //console.log(response.data);
+        console.log(response.data);
         if (response.data.status === 'success') {
           document.cookie = `Ecommerce_access_token=${response.data.userToken}; max-age=${60*60*24*7}; path=/`;
           window.location.replace('/profile');

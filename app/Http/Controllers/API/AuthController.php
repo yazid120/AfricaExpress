@@ -55,6 +55,7 @@ class AuthController extends Controller
             'cart'=>$cart,
             'wishlist'=>$wishlist
         ],201);
+        
     }
 
 
