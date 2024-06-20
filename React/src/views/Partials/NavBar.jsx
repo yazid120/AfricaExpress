@@ -43,21 +43,17 @@ let NavBar = function(){
   };
 
 
-    useEffect(() => {
-      const fetchWishlistItems = function(){
+
+ 
+
+  useEffect(() => {
+    const fetchWishlistItems = async () => {
       try {
-        axios.get(`http://127.0.0.1:8000/api/wishlist/items/index`)
-          .then((response) => {
-            setWishlistItems(response.data);
-            console.log(WishlistItems);
-          })
-          .catch((error) => {
-            console.error('Connection failed!!', error);
-          });
+        const response = await axios.get('http://127.0.0.1:8000/api/wishlist/items/index');
+        setWishlistItems(response.data);
       } catch (error) {
-        // error failed api connection
-        console.error('Connection failed !!');
-      }
+        console.error('Connection failed!!', error);
+        }
       };
       fetchWishlistItems();
     }, []);
@@ -77,7 +73,6 @@ let NavBar = function(){
     fetchCartItems();
   }, []);
 
-  
   const mystyle={width:'auto', gap:'1rem'}
   return(
   <>
