@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from "axios";
 
@@ -37,7 +38,6 @@ let Login = function(){
       SetAuthErrorMessage('Something went wrong try again later .')
     }
    }
-   console.log(AuthErrorMesssge == ''? 'no message': AuthErrorMesssge);
 
     return(
         <>
@@ -137,6 +137,15 @@ let Login = function(){
                                 login
                             </span>
                         </button>
+
+                        {/* Forgot Password Link */}
+                        <div className="text-center mt-4">
+                          <Link to="/forgot-password" className="text-sm text-gray-600
+                           hover:text-gray-800">
+                            Forgot Password?
+                          </Link>
+                        </div>
+
                         <p className="mt-6 text-xs text-gray-600 text-center">
                             I agree to abide by templatana's{' '}
                             <a href="#" className="border-b border-gray-500 border-dotted">
