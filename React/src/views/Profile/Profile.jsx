@@ -9,9 +9,25 @@ import AccountDetails from "./components/AccountDetails";
 
 let Profile = function(){
   const [user, Setuser] = useState([]);
+  const [NotificationVerif, setNotificationVerif] = useState([]);
   const UserId = localStorage.getItem('user_id');
   const User_infos = GetUser(UserId,Setuser);
   console.log(UserId)
+
+  useEffect(()=>{
+   const fetchAccountVerif = async()=>{
+      try{
+        const response = await axios.get(`http://127.0.0.1:8000/api/notification/sees/${UserId}`);
+        if(response.data.verified !== true){
+          setNotificationVerif('Account verification required');
+        }
+      }catch(error){
+        console.error('Error fetching account verification:', error);
+      }
+   }
+   fetchAccountVerif();
+  }, []);
+
 
   return(
     <>

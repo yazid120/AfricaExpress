@@ -42,10 +42,6 @@ let NavBar = function(){
     console.log('Submitted ZIP code:', zipCode);
   };
 
-
-
- 
-
   useEffect(() => {
     const fetchWishlistItems = async () => {
       try {
@@ -64,7 +60,6 @@ let NavBar = function(){
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/cart/cartItems`);
         setCartItems(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Connection failed!!', error);
       }
@@ -133,7 +128,7 @@ let NavBar = function(){
 
         <div className="flex items-center space-x-4 gap-4">
         {/* Notification item */}
-        <a href="/cart" className="item_ice text-center text-gray-700 hover:text-primary transition relative">
+        <a href="/notification" className="item_ice text-center text-gray-700 hover:text-primary transition relative">
           <div className="text-2xl">
             <BsBell className="fa-solid fa-bag-shopping" />
           </div>
