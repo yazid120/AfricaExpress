@@ -22,6 +22,12 @@ import Wishlist from "./views/Wishlist/wishlist";
 import Notification from "./views/notification/notification";
 import Orders from "./views/Orders";
 import NotFound_404 from "./views/404_NotFound";
+import LoadingSpinner from "./LoadingSpinner";
+{/*** Router layouts ***/}
+import Guest_layout from "./router_layouts/Guest_Layout";
+import Auth_layout from "./router_layouts/Auth_Layout";
+import Admin_layout from "./router_layouts/Admin_Layout";
+
 
 {/*** Profile layouts components/pages ***/}
 const Profile = React.lazy(()=> import("./views/Profile/Profile"));
@@ -57,55 +63,32 @@ const BrandsAdminAdd = React.lazy( ()=> import("./views/admin/brands/brands_admi
 const BrandsAdminUpdate = React.lazy ( ()=> import("./views/admin/brands/brands_admin_update"));
 const BrandsAdminDelete =  React.lazy ( ()=> import("./views/admin/brands/brands_admin_delete"));
 
-function Guest_layout(){
-  return(
-    <>
-    <NavBar/>
-     <Outlet/>
-    <Footer/>
-    </>
-  )
-}
 
-function Auth_layout(){
-  const userToken = document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
 
-  return(
-    <>
-    <NavBar/>
-    {userToken ?
-      <Outlet/>:
-      <Navigate to={{pathname:'/login'}}/>
-    }
-    <Footer/>
-    </>
-  )
-}
-
-function Admin_layout(){
-  const Admin_auth = localStorage.getItem('admin_id');
- return(
-     Admin_auth ? <Admin/>  : <Outlet/>
-  )
-}
-
-const cookies = document.cookie.split(';').map(cookie => cookie.trim());
-const userAuthCookie = cookies.find(cookie => cookie.startsWith('Ecommerce_access_token'));
+const ProtectedRoute = ({ element: Element, isAuth, path }) => {
+  if (!isAuth) {
+    // Redirect to login page if user is not authenticated
+    return <Navigate to="/login" replace />;
+  }
+  return <Element />;
+};
 
 const Routing = function(){
+  const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+  const userAuthCookie = cookies.find(cookie => cookie.startsWith('Ecommerce_access_token'));
   return(
-  <Suspense>
+  <Suspense fallback={<LoadingSpinner />}>
    <Routes>
     {/* Guest Layout routes */}
     <Route path="/" element={<Guest_layout/>}>
     <Route index element={<Home/>}/>
     <Route path="/contact" element={<Contact/>}/>
     <Route exact path="/product/article/:id" element={<ProductArticle/>}/>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/signup" element={<SignUp/>}/>
+    <Route path="/login" element={userAuthCookie ? <Navigate to="/" replace /> : <Login />}/>
+    <Route path="/signup" element={userAuthCookie ? <Navigate to="/" replace /> : <SignUp />}/>
     <Route path="/privacy&policy" element={<PrivacyPolicy/>}/>
     <Route path="/termsConditions" element={<TermsConditions/>}/>
-    <Route path="/resetpassword" element={<ResetPassword/>}/>
+    <Route path="/forgot-password" element={<ResetPassword/>}/>
     <Route path="/cart" element={userAuthCookie ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/Wishlist" element={userAuthCookie ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/notification" element={userAuthCookie ?<Notification/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>

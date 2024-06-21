@@ -80,3 +80,29 @@ footer{
 .logout{
     border: 1px solid #f0f8ff12;
 }
+
+.loading-spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3); /* light gray border */
+    border-radius: 50%;
+    border-top: 4px solid #ffffff; /* white top border */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite; /* animation to rotate */
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
