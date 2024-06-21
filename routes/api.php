@@ -60,11 +60,12 @@ Route::get('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete
 Route::delete('/wishlist/items/delete/{id}',[WishlistItemController::class, 'delete']);
 # Cart Api Controllers
 Route::get('/cart/index', [CartItemsController::class, 'index']);
-Route::get('/cart/cartItems', [CartItemsController::class, 'CartItems']); 
+Route::get('/cart/cartItems', [CartItemsController::class, 'CartItems']);
 Route::get('/cart/{id}', [CartItemsController::class, 'UserCartitems']);
 Route::post('/cart/add', [CartItemsController::class,'add']);
 # notification Controllers
 Route::get('/notification/emailV', [NotificationController::class, 'EmailVerifyNotification']);
+Route::get('/notification/sees/{id}', [NotificationController::class, 'AccountVerificationNot']); 
 
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 # Customers Review Controller

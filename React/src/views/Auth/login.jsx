@@ -112,13 +112,13 @@ let Login = function(){
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
                              placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                            type="email" placeholder="Email" onChange={(e)=>SetEmail(e.target.value)}/>
+                            type="email" placeholder="Email" value={email} onChange={(e)=>SetEmail(e.target.value)}/>
                         {/* Password */}
                         <div className="relative w-full mt-5">
                             <input
                               className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200
                               placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                              type={passwordVisible ? 'text' : 'password'} placeholder="Password"
+                              type={passwordVisible ? 'text' : 'password'} placeholder="Password" value={password}
                               onChange={(e) => SetPassword(e.target.value)}/>
                             <div className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onClick={togglePasswordVisibility}>
                               {passwordVisible ? <FaEyeSlash /> : <FaEye />}
@@ -138,11 +138,11 @@ let Login = function(){
                             </span>
                         </button>
                         <p className="mt-6 text-xs text-gray-600 text-center">
-                            I agree to abide by templatana's
+                            I agree to abide by templatana's{' '}
                             <a href="#" className="border-b border-gray-500 border-dotted">
                                 Terms of Service
-                            </a>
-                            and its
+                            </a>{' '}
+                            and its {' '}
                             <a href="#" className="border-b border-gray-500 border-dotted">
                                 Privacy Policy
                             </a>

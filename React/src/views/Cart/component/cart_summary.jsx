@@ -50,7 +50,6 @@ function SummaryCart({product}){
       console.error(error);
     }
   }, [])
-  console.log(CartItems)
 
     return(
         <>

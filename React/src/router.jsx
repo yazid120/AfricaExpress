@@ -19,6 +19,7 @@ import ResetPassword from "./views/Auth/ResetPassword";
 import ProductArticle from "./views/Product/Part/Product_article";
 import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
+import Notification from "./views/notification/notification";
 import Orders from "./views/Orders";
 import NotFound_404 from "./views/404_NotFound";
 
@@ -107,6 +108,7 @@ const Routing = function(){
     <Route path="/resetpassword" element={<ResetPassword/>}/>
     <Route path="/cart" element={userAuthCookie ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/Wishlist" element={userAuthCookie ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
+    <Route path="/notification" element={userAuthCookie ?<Notification/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/orders" element={userAuthCookie ? <Orders/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
   </Route>
 
