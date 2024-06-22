@@ -34,7 +34,7 @@ class AuthController extends Controller
         $user= User::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=> md5($request-> password),
+            'password'=> Hash::make($request-> password),
             'user_token'=> Str::random(60),
             'logical_delete'=> false
         ]);
@@ -55,7 +55,7 @@ class AuthController extends Controller
             'cart'=>$cart,
             'wishlist'=>$wishlist
         ],201);
-        
+
     }
 
 
@@ -85,7 +85,7 @@ class AuthController extends Controller
     }
 
     // Verify the password
-    if (!md5($request->password, $user->password)) {
+    if (!Hash::check($request->password, $user->password)) {
         return response()->json([
             'status' => 'wrong email address or password.',
             'message' => 'error'
@@ -114,6 +114,8 @@ class AuthController extends Controller
     ]);
 
     }
+
+
 }
 
 ?>

@@ -15,7 +15,8 @@ import Login from "./views/Auth/login";
 import SignUp from "./views/Auth/SignUp";
 import PrivacyPolicy from "./views/Privacy Terms/Privacy_Policy";
 import TermsConditions from "./views/Privacy Terms/Terms_Conditions";
-import ResetPassword from "./views/Auth/ResetPassword";
+import ResetPassword from "./views/Auth/components/ResetPassword";
+import ForgotPassword from "./views/Auth/components/ForgotPassword";
 import ProductArticle from "./views/Product/Part/Product_article";
 import Cart from "./views/Cart/cart";
 import Wishlist from "./views/Wishlist/wishlist";
@@ -88,7 +89,8 @@ const Routing = function(){
     <Route path="/signup" element={userAuthCookie ? <Navigate to="/" replace /> : <SignUp />}/>
     <Route path="/privacy&policy" element={<PrivacyPolicy/>}/>
     <Route path="/termsConditions" element={<TermsConditions/>}/>
-    <Route path="/forgot-password" element={<ResetPassword/>}/>
+    <Route path="/forgot-password" element={<ForgotPassword/>}/>
+    <Route path="/reset-password" element={<ResetPassword/>}/>
     <Route path="/cart" element={userAuthCookie ? <Cart/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/Wishlist" element={userAuthCookie ? <Wishlist/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>
     <Route path="/notification" element={userAuthCookie ?<Notification/> : <Navigate to={{pathname:'/login'}} replace={true}/>}/>

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProductsController;
 use App\Http\Controllers\API\UsersController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ForgotPasswordController;
+use App\Http\Controllers\API\ResetpasswordController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\CategoryController;
@@ -38,6 +40,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //user Authentication Api Controllers
 Route::post('/signup', [AuthController::class,'signup']);
 Route::post('/login', [AuthController::class,'login']);
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::post('/reset-password', [ResetpasswordController::class, 'resetPassword'])->name('password.reset');
 //Profile user Api Controllers
 Route::get('/profile/{id}', [ProfileController::class, 'index']);
 //Product Api Controllers
@@ -65,7 +69,7 @@ Route::get('/cart/{id}', [CartItemsController::class, 'UserCartitems']);
 Route::post('/cart/add', [CartItemsController::class,'add']);
 # notification Controllers
 Route::get('/notification/emailV', [NotificationController::class, 'EmailVerifyNotification']);
-Route::get('/notification/sees/{id}', [NotificationController::class, 'AccountVerificationNot']); 
+Route::get('/notification/sees/{id}', [NotificationController::class, 'AccountVerificationNot']);
 
 Route::get('/product/brands/show', [BrandsController::class, 'show']);
 # Customers Review Controller
