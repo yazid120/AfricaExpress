@@ -12,8 +12,8 @@ class AdminProductsController extends Controller
     {
         $products = Product::with(['ProductImage','brand'])->get();
         $brands = Brands::all();
-        // return view('pages/products/index', compact('products', 'brands'));
-        return response()->json(compact('products', 'brands'));
+        return view('pages/products/index', compact('products', 'brands'));
+        //return response()->json(compact('products', 'brands'));
     }
 
     public function article(Product $product)
@@ -21,6 +21,10 @@ class AdminProductsController extends Controller
         $product = $product->load(['ProductImage', 'brand', 'categories']);
         // return view('pages.products.article', compact('product'));
         return response()->json(['product'=>$product]);
+    }
+    public function ArticleImagesLimitsNotification()
+    {
+        
     }
 
     public function articleUpdate(){
@@ -48,6 +52,25 @@ class AdminProductsController extends Controller
         $product->product_description = $request->input('productDescription');
 
         return response()->json(['message' => 'Product added successfully', 'product' => $product]);
+    }
+
+    public function Delete($id)
+    {
+        $product = product::findOrFail($id);
+
+        $product->logical_delete = 1; 
+        $product->save();
+
+        return redirect()->back()->with('success','product deleted successfuly');
+    }
+
+    public function Update(Request $request,$id)
+    {
+        $product = product::findOrFail($id);
+
+        $product->update($request->all());
+
+        return redirect()->back()->with('success','product updated successfuly');
     }
 
     // public function show(){
