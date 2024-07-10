@@ -81,13 +81,13 @@
                 </div>
               </div>
               <!-- End Page Header -->
-
-            <div class="row">
                 <div>
                     <button id="openModalBtn" class="bg-blue-500 mb-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Add New Product
                     </button>
                 </div>
+            <div class="row">
+                
                 <!-- Modal -->
                 <div id="modal" class="modal-add-product">
                     <div class="modal-content">
@@ -138,6 +138,7 @@
                                     <th>Images</th>
                                     <th>description</th>
                                     <th>more infos</th>
+                                    <th>option</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -162,6 +163,15 @@
                                         <td>
                                             <a href="/products/{{$product->id}}">more infos</a>
                                         </td>
+                                <td>
+                            <button  class="text-blue-600 hover:text-blue-900">Update</button>
+                              <span class="mx-2">|</span>
+                        <form action="{{ route('admin.product.delete', $product->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('PUT') <!-- Use PUT method for updating logical_delete -->
+                          <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                        </form>
+                              </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -172,6 +182,70 @@
                 </div>
 
 
+                <!-- Modal for updating product -->
+<div id="updateModal{{ $product->id }}" class="fixed inset-0 z-50 overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:flex sm:p-0">
+        <!-- Background overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+
+        <!-- Modal content -->
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">Update Product</h3>
+                        <!-- Update form (you can use Livewire/Alpine.js for dynamic form handling) -->
+                        <form action="{{ route('admin.product.update', $product->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <!-- Form fields for updating product attributes -->
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                <input type="text" name="name" id="name" value="{{ $product->name }}" class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <!-- Add more fields as needed (brand_name, price_unit, etc.) -->
+                            <div class="mb-4">
+                                <input type="text" value='{{ $product->name }}' id="productName" placeholder="Product Name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="text" value='{{ $product->price_unit }}' id="priceUnit" placeholder="Price Unit" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="productImage">Product Image</label>
+                                <input type="file" id="productImage" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" accept="image/*" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="number" value='{{ $product->quantity }}' id="quantityAvailable" placeholder="Quantity Available" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <select id="brandName" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+                                    <option value="">{{ optional($product->brand)->brand_name }}</option>
+                                    @foreach ($brands as $brand)
+                                        <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <textarea value="{{ $product->product_description }}" id="productDescription"
+                                 placeholder="Product Description" class="w-full px-4 py-2 border rounded-md 
+                                 focus:outline-none focus:border-blue-500"></textarea>
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm">
+                                    Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
             </div>
 

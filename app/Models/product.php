@@ -22,7 +22,8 @@ class product extends Model
         'image',
         'quantity',
         'brand_id',
-        'product_description', 'logical_delete'
+        'product_description', 
+        'logical_delete'
     ];
 
     protected static $marks = [
