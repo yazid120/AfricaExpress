@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Cart;
 use App\Models\Wishlist;
+use App\Models\Address;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
@@ -56,6 +58,10 @@ class User extends Authenticatable
     // user wishlist relation
     public function UserWishlist(): HasOne{
         return $this->hasOne(Wishlist::class);
+    }
+    // user addresses relation
+    public function addresses(): BelongsToMany {
+        return $this->belongsToMany(Address::class, 'address_user', 'user_id', 'address_id');
     }
 
 }

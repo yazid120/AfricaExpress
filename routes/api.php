@@ -17,6 +17,7 @@ use App\Http\Controllers\API\WishlistItemController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\CartItemsController;
 use App\Http\Controllers\API\CustomerReviewsController;
+use App\Http\Controllers\API\AddressesController;
 use App\Models\Cart_items;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
@@ -43,7 +44,9 @@ Route::post('/login', [AuthController::class,'login']);
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::post('/reset-password', [ResetpasswordController::class, 'resetPassword'])->name('password.reset');
 //Profile user Api Controllers
-Route::get('/profile/{id}', [ProfileController::class, 'index']);
+Route::get('/profile/{token}', [ProfileController::class, 'index']);
+
+Route::get('/addresses', [AddressesController::class, 'fetchAddresses']);
 //Product Api Controllers
 Route::get('/product/{id}', [ProductsController::class, 'index']);
 Route::get('/product/image/{id}', [ProductsController::class, 'imageProductIndex']);

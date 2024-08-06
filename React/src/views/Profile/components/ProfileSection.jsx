@@ -55,9 +55,9 @@ function ProfileSection()
           <div key={index} className="item_profile p-6 bg-white rounded-md shadow-md cursor-pointer hover:bg-violet-600 transition duration-300 border border-gray-200 hover:border-violet-600">
             <div className="flex items-center mb-4">
               <img src={item.image} alt={item.alt} className="w-16 h-16 mr-4" />
-              <p className="text-lg font-semibold text-gray-800 hover:text-white">{item.title}</p>
+              <p className="text-lg font-semibold text-gray-800 ">{item.title}</p>
             </div>
-            <p className="text-gray-600 hover:text-white">{item.description}</p>
+            <p className="text-gray-600 ">{item.description}</p>
           </div>
         ))}
       </div>

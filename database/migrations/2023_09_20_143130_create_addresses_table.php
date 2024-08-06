@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,14 +14,18 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-
-            $table->string('Country/region', 90)->nullable();
-            $table->string('address_street', 35)->nullable();
-            $table->string('address_street_apt_floor_build', 45)->nullable();
-            $table->string('city', 28)->nullable();
-            $table->string('state', 46)->nullable();
-            $table->integer('zip_code')->nullable(); 
+            $table->unsignedBigInteger('user_id'); // Foreign key for users table
+            $table->string('address_line_1', 255);
+            $table->string('address_line_2', 255)->nullable();
+            $table->string('city', 100)->nullable();
+            $table->string('postal_code', 20)->nullable();
+            $table->string('country', 100)->nullable();
+            $table->string('telephone', 20)->nullable();
+            $table->string('mobile', 20)->nullable();
             $table->timestamps();
+
+            // If you have a users table and want to enforce foreign key constraint
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
         });
     }
 
