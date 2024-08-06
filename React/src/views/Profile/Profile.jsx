@@ -2,31 +2,51 @@ import React from "react";
 import axios from "axios";
 import {useEffect,useState} from "react";
 import SideBarProfile from "./components/SideBarProfile";
-import GetUser from "./components/User_Info/GetUserInfo";
 import ProfileSection from "./components/ProfileSection";
 import AccountDetails from "./components/AccountDetails";
+import DefaultAvatar from "../../assets/images/Profile/default/default._CR0,0,1024,1024_SX460_.jpg"
 
 
 let Profile = function(){
   const [user, Setuser] = useState([]);
   const [NotificationVerif, setNotificationVerif] = useState([]);
-  const UserId = localStorage.getItem('user_id');
-  const User_infos = GetUser(UserId,Setuser);
-  console.log(UserId)
 
-  useEffect(()=>{
-   const fetchAccountVerif = async()=>{
-      try{
-        const response = await axios.get(`http://127.0.0.1:8000/api/notification/sees/${UserId}`);
-        if(response.data.verified !== true){
-          setNotificationVerif('Account verification required');
+  const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+  const tokenCookie = cookies.find(cookie => cookie.startsWith('Ecommerce_access_token='));
+  const userToken = tokenCookie ? tokenCookie.split('=')[1] : null;
+
+  useEffect(() => {
+    async function fetchUser() {
+      if (userToken) {
+        try {
+          const response = await axios.get(`http://localhost:8000/api/profile/${userToken}`);
+          Setuser(response.data);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
         }
-      }catch(error){
-        console.error('Error fetching account verification:', error);
+      } else {
+        console.error("User token not found in cookies");
       }
-   }
-   fetchAccountVerif();
-  }, []);
+    }
+
+    fetchUser();
+  }, [userToken]);
+  console.log(user)
+
+
+  // useEffect(()=>{
+  //  const fetchAccountVerif = async()=>{
+  //     try{
+  //       const response = await axios.get(`http://127.0.0.1:8000/api/notification/sees/${userToken}`);
+  //       if(response.data.verified !== true){
+  //         setNotificationVerif('Account verification required');
+  //       }
+  //     }catch(error){
+  //       console.error('Error fetching account verification:', error);
+  //     }
+  //  }
+  //  fetchAccountVerif();
+  // }, []);
 
 
   return(
@@ -48,7 +68,7 @@ let Profile = function(){
         <div className="px-4 py-3 shadow flex items-center gap-4 rounded">
           <div className="flex-shrink-0">
             <img
-              src="../src/assets/images/Profile/default/default-avatar-profile-icon-social-media-user-vector-default-avatar-profile-icon-social-media-user-vector-portrait-176194876.webp"
+              src={DefaultAvatar}
               alt="profile"
               className="rounded-full w-14 h-14 border border-gray-200 p-1 object-cover"
             />
@@ -112,9 +132,6 @@ let Profile = function(){
           </div>
         </div>
           <div className="col-span-9 grid gap-4">
-            <div className="flex row mb-8">
-              <AccountDetails />
-            </div>
 
             {/* profile section top */}
             <div className="row">

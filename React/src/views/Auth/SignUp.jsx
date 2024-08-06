@@ -163,7 +163,7 @@ let SignUp = function(){
                     <label>
                       <input
                         type="checkbox"  className="mr-2 leading-tight"/>
-                      I agree to abide by templatana's
+                      I agree to AfricaExpress 
                       <a href="/termsConditions" className="border-b border-gray-500 m-1 border-dotted">
                         Terms of Service
                       </a>

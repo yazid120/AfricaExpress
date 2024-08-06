@@ -19,8 +19,7 @@ function SideBarProfile(){
       </div>
 
       <div
-        className={`mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600 lg:block ${isSidebarOpen ? 'block' : 'hidden'}`}
-      >
+        className={`mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600 lg:block ${isSidebarOpen ? 'block' : 'hidden'}`}>
         <div className="space-y-1 pl-8">
           <a
             href="/profile/ProfileInformation"
