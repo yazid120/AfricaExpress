@@ -1,12 +1,25 @@
 import React from "react";
 import axios from "axios";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
+import { Link } from 'react-router-dom'
 import {VscAccount} from "react-icons/vsc";
 import {BsBagPlusFill} from "react-icons/bs";
 import {AiOutlineHeart} from "react-icons/ai";
 import { BsBell } from 'react-icons/bs';
-import { useState } from "react";
 import CountryList from "./components/CountryList";
+
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 
 let logout = function(){
@@ -23,6 +36,15 @@ let NavBar = function(){
   const userAuth = document.cookie.split('; ').find(row => row.startsWith('Ecommerce_access_token='));
   const [zipCode, setZipCode] = useState('');
   const [showForm, setShowForm] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleMouseEnter = () => {
     setShowForm(true);
@@ -114,17 +136,8 @@ let NavBar = function(){
     </div>
   )}
 </div>
-    {/* <div className="hidden md:block">
-      <div style={mystyle} className="flex items-center space-x-4">
-            <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="/about" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
-            <a href="/services" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Services</a>
-            <a href="/contact" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-      </div>
-    </div> */}
-
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-4" style={mystyle}>
+      <div className="hidden md:block">
+        <div className="flex items-center space-x-4" style={mystyle}>
 
         <div className="flex items-center space-x-4 gap-4">
         {/* Notification item */}
@@ -161,7 +174,7 @@ let NavBar = function(){
             </div>
         </a>
         {/* account item */}
-        {userAuth ?
+        {/* {userAuth ?
           <a href="/profile" className="item_ice text-center text-gray-700 hover:text-primary transition relative">
           <div className="text-2xl">
             <VscAccount className="fa-regular fa-heart" />
@@ -169,9 +182,9 @@ let NavBar = function(){
           <div className="item_ice_text text-xs leading-3">account</div>
         </a>
         :<></>
-        }
+        } */}
         </div>
-            <div>
+            {/* <div>
             {!userAuth ?
             <>
               <a href="/SignUp" className="text-gray-300 hover:bg-gray-700
@@ -185,7 +198,87 @@ let NavBar = function(){
                hover:text-white px-3 py-2 rounded-md text-sm font-medium">logout</a>
             </>
             }
+            </div> */}
+      <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+          </IconButton>
+
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                sx={{
+                  color: 'white',
+                  borderRadius: '50%',
+                  padding: '12px',
+                  boxShadow: 'none'
+                }}
+              >
+                <AccountCircle sx={{ fontSize: 40 }}/>
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                sx={{
+                  '& .MuiPaper-root': {
+                    backgroundColor: '#333', // Background color of the menu
+                    color: '#fff', // Text color
+                    borderRadius: '10px', // Rounded corners
+                    padding: '10px', // Padding inside the menu
+                  },
+                }}
+                >
+                <MenuItem onClick={handleClose} component={Link} to="/" >
+                    Home
+                </MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/profile">
+                    My account
+                </MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/profile">
+                    Profile
+                </MenuItem>
+
+                {userAuth ?
+
+                <MenuItem onClick={logout} component={Link} to="/">
+                    logout
+                </MenuItem>
+                :
+                <>
+                <MenuItem onClick={handleClose} component={Link} to="/Signup">
+                    Signup
+                </MenuItem>
+
+                <MenuItem onClick={handleClose} component={Link} to="/login">
+                    login
+                </MenuItem>
+                </>
+                }
+
+              </Menu>
             </div>
+          </Box>
+
             </div>
           </div>
         </div>

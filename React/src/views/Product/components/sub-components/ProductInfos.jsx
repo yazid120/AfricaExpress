@@ -63,8 +63,6 @@ function ProductInfos({ ProductArticle, HandleAddToCart, HandleWishlist, HandleD
         Add to Cart
       </button>
     </div>
-    {/* Add other product information here */}
-    {/* Example: Size, Color, Quantity, Add to Cart, Wishlist, Social Share */}
   </div>
 </div>
     </>

@@ -33,7 +33,7 @@ function SummaryCart({product}){
   }
 
   function decrease_qte(){
-    if(QteProduct<=0){
+    if(QteProduct<=1){
       SetQteProduct(1)
     }else{
       SetQteProduct(QteProduct-1)
