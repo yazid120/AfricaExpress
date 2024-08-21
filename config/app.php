@@ -159,6 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Rebing\GraphQL\GraphQLServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -187,6 +188,7 @@ return [
         'View'=> Illuminate\Support\Facades\View::class,
         'Session'=> Illuminate\Support\Facades\Session::class,
         'Route' => \Illuminate\Support\Facades\Route::class,
+        'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class,
     ])->toArray(),
 
 ];

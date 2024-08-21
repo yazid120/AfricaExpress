@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminBrandsController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,9 @@ use App\Http\Controllers\AdminBrandsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('graphiql', function () {
+    return view('graphiql');
+});
 
 Route::get('/login', [AdminAuthController::class, 'index'])->name('auth.login');
 Route::post('/admin/login', [AdminAuthController::class, 'loginAuth'])->name('admin.login');

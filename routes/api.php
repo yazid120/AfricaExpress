@@ -20,6 +20,7 @@ use App\Http\Controllers\API\CustomerReviewsController;
 use App\Models\Cart_items;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ use Illuminate\Foundation\Auth\User;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix' => 'graphql'], function () {
+    GraphQL::routes();
 });
 
 
