@@ -57,18 +57,18 @@ class CartItemsController extends Controller
 
     public function UserCartitems($cartId)
     {
-    $cartItems = Cart_items::where('cart_id', $cartId)->get();
-    $products = [];
+        $cartItems = Cart_items::where('cart_id', $cartId)->get();
+        $products = [];
 
-    foreach ($cartItems as $cartItem) {
-        $product = Product::find($cartItem->product_id);
+        foreach ($cartItems as $cartItem) {
+            $product = Product::find($cartItem->product_id);
 
-        if ($product) {
-            $products[] = $product;
+            if ($product) {
+                $products[] = $product;
+            }
         }
-    }
-    // Return the array of product information
-    return response()->json(['response'=> $products]);
+
+        return response()->json(['response'=> $products]);
     }
 
 

@@ -22,6 +22,7 @@ use App\Models\Cart_items;
 use App\Models\Category;
 use Illuminate\Foundation\Auth\User;
 use Rebing\GraphQL\Support\Facades\GraphQL;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'graphql'], function () {
-    GraphQL::routes();
+    Route::post('/', [\Rebing\GraphQL\GraphQLController::class, 'query']);
+    // Or use a closure
+    // Route::post('/', function() {
+    //     return app('graphql')->execute();
+    // });
+});
+
+Route::get('/session/user', function () {
+    // Set a session value
+    if(Session::has('user_id')){
+        return response()->json([
+            'user_id' =>Session::get('user_id'),
+            'status'=> 'success'
+        ]);
+    }else{
+        return response()->json([
+            'message'=>'no user session was found',
+            'status' => 'failed',
+            'all_sessions' => Session::all()
+        ]);
+    }
+
 });
 
 

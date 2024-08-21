@@ -10,15 +10,17 @@ import SpecificationsProducts from "../components/Specifications_Product";
 import RelatedProducts from "../components/Related_Product";
 import RatingsReviews from "../components/Ratings&Reviews";
 import ProductInfos from "../components/sub-components/ProductInfos";
+import useFetchUser from "../../action/fetchUser";
 
 
 function GetProductArticle(link_api,SetproductID){
   useEffect(()=>{
     axios.get(link_api).then(response=>{
-    SetproductID(response.data);
+      SetproductID(response.data);
     })
   },[])
 }
+
 
 function ProductArticle(){
   const navigate  = useNavigate ();
@@ -29,12 +31,18 @@ function ProductArticle(){
   const [articleQte, SetarticleQte] = useState(1);
   const [CartItems, setCartItems] = useState([]);
   const [WishlistId, SetWishlistId] = useState(null);
+
+  const cookies = document.cookie.split(';').map(cookie => cookie.trim());
+  const tokenCookie = cookies.find(cookie => cookie.startsWith('Ecommerce_access_token='));
+  const userToken = tokenCookie ? tokenCookie.split('=')[1] : null;
+
+  const {user, error} = useFetchUser(userToken);
+
   const GetProduct = GetProductArticle(`http://localhost:8000/api/product/${id}`,SetProductArticle);
   const GetProductImages = GetProductArticle(`http://localhost:8000/api/product/image/${id}`,SetProductArticleImages);
 
   const imgArticleUri = '../../src/assets/images/Products/articles/';
   const imgArticleMainUri = '../../src/assets/images/Products/';
-
 
 
   const setValueArticle =(value, SetValue)=>{
@@ -56,10 +64,11 @@ function ProductArticle(){
     }
   }
 
+
   const HandleAddToCart = async(e, item)=>{
     e.preventDefault();
     const FormData={
-      'cart_id': localStorage.getItem('cart_id'),
+      'cart_id': user.id,
       'product_id': ProductArticle.id,
       'product_qte': articleQte
     }
@@ -74,7 +83,6 @@ function ProductArticle(){
       console.error('failed fetching data', error);
     }
   }
-
 
     // user cookie Token
     useEffect(() => {

@@ -5,49 +5,19 @@ import SideBarProfile from "./components/SideBarProfile";
 import ProfileSection from "./components/ProfileSection";
 import AccountDetails from "./components/AccountDetails";
 import DefaultAvatar from "../../assets/images/Profile/default/default._CR0,0,1024,1024_SX460_.jpg"
+import useFetchUser from ".././action/fetchUser"
 
 
 let Profile = function(){
-  const [user, Setuser] = useState([]);
   const [NotificationVerif, setNotificationVerif] = useState([]);
 
   const cookies = document.cookie.split(';').map(cookie => cookie.trim());
   const tokenCookie = cookies.find(cookie => cookie.startsWith('Ecommerce_access_token='));
   const userToken = tokenCookie ? tokenCookie.split('=')[1] : null;
 
-  useEffect(() => {
-    async function fetchUser() {
-      if (userToken) {
-        try {
-          const response = await axios.get(`http://localhost:8000/api/profile/${userToken}`);
-          Setuser(response.data);
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
-      } else {
-        console.error("User token not found in cookies");
-      }
-    }
+  const {user, error} = useFetchUser(userToken);
 
-    fetchUser();
-  }, [userToken]);
   console.log(user)
-
-
-  // useEffect(()=>{
-  //  const fetchAccountVerif = async()=>{
-  //     try{
-  //       const response = await axios.get(`http://127.0.0.1:8000/api/notification/sees/${userToken}`);
-  //       if(response.data.verified !== true){
-  //         setNotificationVerif('Account verification required');
-  //       }
-  //     }catch(error){
-  //       console.error('Error fetching account verification:', error);
-  //     }
-  //  }
-  //  fetchAccountVerif();
-  // }, []);
-
 
   return(
     <>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminBrandsController;
-
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +19,8 @@ use App\Http\Controllers\AdminBrandsController;
 Route::get('graphiql', function () {
     return view('graphiql');
 });
+
+
 
 Route::get('/login', [AdminAuthController::class, 'index'])->name('auth.login');
 Route::post('/admin/login', [AdminAuthController::class, 'loginAuth'])->name('admin.login');
