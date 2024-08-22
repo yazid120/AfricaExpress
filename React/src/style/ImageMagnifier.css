@@ -1,0 +1,21 @@
+.image-container {
+    position: relative;
+  }
+
+  .magnifier {
+    position: absolute;
+    width: 150px; /* Size of the magnifier lens */
+    height: 150px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none; /* Hide initially */
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure it's on top */
+  }
+
+  .image-container:hover .magnifier {
+    display: block; /* Show the magnifier on hover */
+  }

@@ -24,13 +24,11 @@ class ProductsController extends Controller
         }
     }
 
-    public function imageProductIndex(Request $request){
-     $product_images = DB::table('products')
-    ->join('product_images', 'products.id', '=', 'product_images.product_id')
-    ->select('products.*', 'product_images.image_uri')
-    ->where('products.id',$request->id)
-    ->pluck('image_uri')
-    ->all();
+    public function imageProductIndex($id){
+     $product_images = Product::with('ProductImage:id,product_id,image_uri')
+     ->select('id' , 'name', 'image')
+     ->find($id);
+
       if($product_images){
         return response()->json($product_images);
       }else{
