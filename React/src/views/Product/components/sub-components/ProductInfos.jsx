@@ -1,4 +1,5 @@
 import React from 'react';
+import Stars from './part/stars';
 
 function ProductInfos({ ProductArticle, HandleAddToCart, HandleWishlist, HandleDecreaseQte, HandleIncreaseQte, articleQte }) {
   return (
@@ -10,21 +11,7 @@ function ProductInfos({ ProductArticle, HandleAddToCart, HandleWishlist, HandleD
     </h2>
     <div className="flex items-center mb-4">
       <div className="flex gap-1 text-sm text-yellow-400">
-        <span>
-          <i className="fa-solid fa-star" />
-        </span>
-        <span>
-          <i className="fa-solid fa-star" />
-        </span>
-        <span>
-          <i className="fa-solid fa-star" />
-        </span>
-        <span>
-          <i className="fa-solid fa-star" />
-        </span>
-        <span>
-          <i className="fa-solid fa-star" />
-        </span>
+        <Stars value={4} />
       </div>
       <div className="text-xs text-gray-500 ml-3">(150 Reviews)</div>
     </div>

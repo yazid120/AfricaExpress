@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import {AiFillHeart} from "react-icons/ai";
 import {BsCartPlusFill} from "react-icons/bs";
+import ProductImagesMagnifier from "../components/ProductImages";
 import SubHeader from "../components/SubHeader";
 import DescriptionProducts from "../components/Description_Product";
 import SpecificationsProducts from "../components/Specifications_Product";
@@ -18,7 +19,7 @@ function GetProductArticle(link_api,SetproductID){
     axios.get(link_api).then(response=>{
       SetproductID(response.data);
     })
-  },[])
+  },[link_api,SetproductID])
 }
 
 
@@ -26,12 +27,11 @@ function ProductArticle(){
   const navigate  = useNavigate ();
   const {id} = useParams();
   const [ProductArticle, SetProductArticle] = useState([]);
-  const [ProductArticleImages, SetProductArticleImages] = useState([]);
-  const [article, SetArticle] = useState('');
+  const [ProductArticleImages, SetProductArticleImages] = useState({});
   const [articleQte, SetarticleQte] = useState(1);
   const [CartItems, setCartItems] = useState([]);
   const [WishlistId, SetWishlistId] = useState(null);
-
+  {/* User access token */}
   const cookies = document.cookie.split(';').map(cookie => cookie.trim());
   const tokenCookie = cookies.find(cookie => cookie.startsWith('Ecommerce_access_token='));
   const userToken = tokenCookie ? tokenCookie.split('=')[1] : null;
@@ -45,10 +45,6 @@ function ProductArticle(){
   const imgArticleMainUri = '../../src/assets/images/Products/';
 
 
-  const setValueArticle =(value, SetValue)=>{
-    SetArticle(value);
-  }
-
   useEffect(()=>{
     if (ProductArticle.length > 0) {
       setValueArticle(ProductArticle[0].image);
@@ -61,26 +57,6 @@ function ProductArticle(){
   const HandleDecreaseQte = ()=>{
     if(articleQte >1){
       SetarticleQte(articleQte -1)
-    }
-  }
-
-
-  const HandleAddToCart = async(e, item)=>{
-    e.preventDefault();
-    const FormData={
-      'cart_id': user.id,
-      'product_id': ProductArticle.id,
-      'product_qte': articleQte
-    }
-    setCartItems([...CartItems, item]);
-    try{
-      const response = await axios.post('http://localhost:8000/api/cart/add', FormData);
-      if (response.data.response) {
-        console.log(response.data.message); // Log success message
-        window.location.replace('/cart');
-      }
-    }catch (error) {
-      console.error('failed fetching data', error);
     }
   }
 
@@ -113,7 +89,27 @@ function ProductArticle(){
       fetchWishlistId();
     }, []);
 
+  {/* * cart handle   * */}
+  const HandleAddToCart = async(e, item)=>{
+      e.preventDefault();
+      const FormData={
+        'cart_id': user.id,
+        'product_id': ProductArticle.id,
+        'product_qte': articleQte
+      }
+      setCartItems([...CartItems, item]);
+      try{
+        const response = await axios.post('http://localhost:8000/api/cart/add', FormData);
+        if (response.data.response) {
+          console.log(response.data.message); // Log success message
+          window.location.replace('/cart');
+        }
+      }catch (error) {
+        console.error('failed fetching data', error);
+      }
+  }
 
+  {/* * wishlist handle   * */}
   const HandleWishlist = async(e)=>{
     e.preventDefault();
 
@@ -121,23 +117,19 @@ function ProductArticle(){
       console.error('Wishlist ID is not available');
       return;
     }
-
-
-    const productID = ProductArticle.id;  // Ensure ProductArticle is available in this scope
+    const productID = ProductArticle?.id;  // Ensure ProductArticle is available in this scope
     const formData = {
       'product_id': productID,
       'whishlist_id': parseInt(WishlistId)
     };
-
     try {
       const response = await axios.post('http://localhost:8000/api/wishlist/items/add', formData);
-      if (response.data.response) {
-        console.log(response.data.message); // Log success message
-        window.location.replace('/wishlist');
+        if (response.data.response) {
+          window.location.replace('/wishlist');
+        }
+      }catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
   }
 
 
@@ -156,29 +148,13 @@ function ProductArticle(){
   {/* ./breadcrumb */}
   {/* product-detail */}
   <div className="container p-6 grid grid-cols-2 gap-6">
-    <div>
-      <img
-        src={imgArticleMainUri+ProductArticle.image}
-        alt="product"
-        className="w-full"
-      />
-      <div className="grid grid-cols-5 gap-4 mt-4" >
-      {
-      ProductArticleImages.map((article, key)=>(
-      <>
-      <div key={key}>
-        <img
-          src={imgArticleUri+article}
-          alt="product2"
-          className="w-full h-full cursor-pointer border border-primary"
-        />
-      </div>
-      </>
-      ))
-      }</div>
-    </div>
 
-    <div>
+    <ProductImagesMagnifier imgArticleMainUri={imgArticleMainUri}
+      ProductArticle={ProductArticle}
+      ProductArticleImages={ProductArticleImages}
+      imgArticleUri={imgArticleUri}/>
+
+  <div>
     <ProductInfos
         ProductArticle={ProductArticle}
         HandleAddToCart={HandleAddToCart}
@@ -189,7 +165,7 @@ function ProductArticle(){
       />
     </div>
   </div>
-  <hr aria-hidden="true" class="a-spacing-medium m-4"></hr>
+  <hr aria-hidden="true" className="a-spacing-medium m-4"></hr>
 
   {/****  product-detail ****/}
   {/* description */}

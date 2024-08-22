@@ -60,7 +60,7 @@ const RatingsProduct = ({percentages})=>{
           {renderRatings()}
         </tbody>
       </table>
-      <hr aria-hidden="true" class="a-spacing-medium m-4"></hr>
+      <hr aria-hidden="true" className="a-spacing-medium m-4"></hr>
       <div className="review-section">
         <h2 className="text-xl font-bold mb-2">Review this product</h2>
         <span>
