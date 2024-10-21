@@ -139,11 +139,22 @@ let Login = function(){
                         </button>
 
                         {/* Forgot Password Link */}
-                        <div className="text-center mt-4">
+                        <div className="text-center mt-4 p-2">
                           <Link to="/forgot-password" className="text-sm text-gray-600
                            hover:text-gray-800">
                             Forgot Password?
                           </Link>
+                        </div>
+                        <hr></hr>
+
+                        <div className="flex justify-center flex-col items-center mt-8 space-x-4">
+                          <span className="text-blue-500 text-xs font-semibold">★ become a Seller now</span>
+                            <Link
+                              to="/seller/login"
+                              className="text-blue-600 font-semibold hover:text-blue-800
+                              transition duration-300 ease-in-out">
+                                  login to your seller account
+                            </Link>
                         </div>
 
                         <p className="mt-6 text-xs text-gray-600 text-center">

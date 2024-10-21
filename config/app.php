@@ -189,6 +189,7 @@ return [
         'Session'=> Illuminate\Support\Facades\Session::class,
         'Route' => \Illuminate\Support\Facades\Route::class,
         'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ])->toArray(),
 
 ];
