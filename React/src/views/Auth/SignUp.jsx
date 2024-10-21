@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from "../../api/axios";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 
 let SignUp = function(){
@@ -158,12 +158,24 @@ let SignUp = function(){
                             SignUp
                             </span>
                         </button>
+
+                        <hr></hr>
+
+                        <div className="flex justify-center flex-col items-center mt-8 space-x-4">
+                          <span className="text-blue-500 text-xs font-semibold">★ become a Seller now</span>
+                            <Link
+                              to="/seller/login"
+                              className="text-blue-600 font-semibold hover:text-blue-800
+                              transition duration-300 ease-in-out">
+                                  create a seller account for free
+                            </Link>
+                        </div>
                         </form>
                         <div className="mt-6 text-xs text-gray-600 text-center">
                     <label>
                       <input
                         type="checkbox"  className="mr-2 leading-tight"/>
-                      I agree to AfricaExpress 
+                      I agree to AfricaExpress
                       <a href="/termsConditions" className="border-b border-gray-500 m-1 border-dotted">
                         Terms of Service
                       </a>

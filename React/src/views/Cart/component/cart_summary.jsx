@@ -57,7 +57,7 @@ function SummaryCart({product}){
   {/* Cart items selection */}
   <div className="Cart_items_selection">
     <p className="lg:text-4xl text-3xl font-black leading-10 text-gray-800 dark:text-white pt-3">
-      Shopping Cart
+        Shopping Cart
     </p>
     <label>
       <input type="checkbox" className=""/>

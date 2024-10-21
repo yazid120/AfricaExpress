@@ -20,7 +20,8 @@ Route::get('graphiql', function () {
     return view('graphiql');
 });
 
-
+Route::get('/auth/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('/auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 Route::get('/login', [AdminAuthController::class, 'index'])->name('auth.login');
 Route::post('/admin/login', [AdminAuthController::class, 'loginAuth'])->name('admin.login');

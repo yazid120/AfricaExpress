@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('date_birth');
-            $table->string('address');
-            $table->string('city');
+            $table->string('business_name');
+            $table->string('business_phone');
+            $table->string('business_address');
+            $table->string('business_type');
             $table->string('postal_code');
+            $table->enum('status', ['active', 'suspended', 'review'])->default('active');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('user');
             $table->timestamps();
