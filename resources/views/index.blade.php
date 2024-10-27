@@ -139,7 +139,7 @@
                     <div class="card-body pt-0">
                       <div class="row border-bottom py-2 bg-light">
                         <div class="col-12 col-sm-6">
-
+                            <x-chart/>
                         </div>
 
                       </div>
