@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminProductsController;
 use App\Http\Controllers\AdminBrandsController;
+use App\Http\Controllers\AdminUsersController;
 use Illuminate\Support\Facades\Session;
 
 /*
@@ -27,6 +28,11 @@ Route::get('/login', [AdminAuthController::class, 'index'])->name('auth.login');
 Route::post('/admin/login', [AdminAuthController::class, 'loginAuth'])->name('admin.login');
 Route::post('admin/password/email', [AdminAuthController::class, 'sendResetLinkEmail']);
 Route::post('admin/password/reset', [AdminAuthController::class, 'resetpwd']);
+#users routes
+Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
+Route::post('/users', [AdminUsersController::class, 'store'])->name('users.store');
+Route::put('/users/{id}', [AdminUsersController::class, 'edit'])->name('users.edit');
+Route::get('/users/{id}', [AdminUsersController::class, 'edit'])->name('users.show');
 # products routes
 Route::get('/products', [AdminProductsController::class, 'index']);
 Route::get('/products/{product}', [AdminProductsController::class, 'article'])->name('product.article');
